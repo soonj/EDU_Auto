@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>注册</title>
+</head>
+<body>
+	<form method="post" action="/index/user/checkyzm">
+		<!--<div>{:captcha_img()}</div>	-->
+		<div><img src="{:captcha_src()}" alt="captcha" /></div>
+		<input type="text" name="captcha">
+		<input type="submit" value="提交">
+	</form>
+	
+</body>
+</html>
