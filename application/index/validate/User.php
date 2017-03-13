@@ -13,4 +13,5 @@ class User extends Validate
         'upwd'  => 'require|length:6,16',
         'repwd|确认密码不一致' => 'require|confirm:upwd'
     ];
+
 }

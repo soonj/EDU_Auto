@@ -27,4 +27,5 @@ class User extends Model
     {
         return $this->hasMany('Res' , 'rid')->field('path , type , create_time');
     }
+
 }

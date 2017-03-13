@@ -2,12 +2,22 @@
 namespace app\index\controller;
 
 
-use app\common\controller\Common;
+use think\Controller;
 
-class Index extends Common
+class Index extends Controller
 {
     public function index()
     {
         return $this->fetch('index');
+    }
+
+    public function work()
+    {
+        return $this->fetch('work');
+    }
+
+    public function signup()
+    {
+        return $this->fetch('signup');
     }
 }
