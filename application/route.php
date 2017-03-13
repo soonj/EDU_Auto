@@ -25,3 +25,4 @@ return [
     'assis/:uname'  => 'index/assis/index',
     'admin/:uname'  => 'admin/index',
 ];
+
