@@ -4,7 +4,7 @@ namespace app\index\validate;
 
 use think\Validate;
 
-class User extends Validate
+class Profile extends Validate
 {
     //指定验证规则
     protected $rule = [
