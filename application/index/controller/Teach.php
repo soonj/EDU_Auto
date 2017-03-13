@@ -21,4 +21,44 @@ class Teach extends Common
         echo $uname;
     }
 
+    public function Blankpage()
+    {
+        return $this->fetch();
+    }
+
+    public function Bootstrapelements()
+    {
+        return $this->fetch();
+    }
+
+    public function Bootstrapgrid()
+    {
+        return $this->fetch();
+    }
+
+    public function Mywork()
+    {
+        return $this->fetch();
+    }
+
+    public function charts()
+    {
+        return $this->fetch();
+    }
+
+    public function Fixinfo()
+    {
+        return $this->fetch();
+    }
+
+    public function Forms()
+    {
+        return $this->fetch();
+    }
+
+    public function Tables()
+    {
+        return $this->fetch();
+    }
+
 }
