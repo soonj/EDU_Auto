@@ -8,4 +8,14 @@ class Index extends \think\Controller
     {
         return $this->fetch('index');
     }
+
+    public function work()
+    {
+        return $this->fetch('work');
+    }
+
+    public function signup()
+    {
+        return $this->fetch('signup');
+    }
 }
