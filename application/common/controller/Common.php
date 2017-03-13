@@ -11,7 +11,7 @@ class Common extends Controller
     public function _initialize(){
 
         if( !Cookie::has('uname') || !Session::has('uid')) {
-            $this->error('Please login first', '/');
+            $this->error('Please login first', '/signin');
         }
 
         $this->uid = Session::get('uid');
