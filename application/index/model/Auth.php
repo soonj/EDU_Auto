@@ -59,14 +59,30 @@ class Auth extends Model
                     'msg'   => '用户名已存在',
                 );
             }else{
+
+                //基本信息添加
                 $user = new User($data);
                 $user->allowField(true)->save();
 
+                //默认权限添加
+                $user->role()->save([
+                    'roleid'=> $user->uid,
+                    'role'  => 4
+                ]);
+
+                //默认详情添加
+                $user->profile()->save([
+                    'pid'    => $user->uid,
+                    'profile'=> '',
+                ]);
+
                 return array(
-                    0       => 1,
-                    'msg'   => 'success',
-                    'uid'   => $user->uid,
-                    'uname' => $user->uname,
+                    0           => 1,
+                    'msg'       => 'success',
+                    'uid'       => $user->uid,
+                    'uname'     => $user->uname,
+                    'profile'   => $user->profile,
+                    'role'      => $user->role->role,
                 );
             }
         }
