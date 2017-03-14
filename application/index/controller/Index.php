@@ -15,4 +15,9 @@ class Index extends Common
     {
         return $this->fetch('signin');
     }
+
+    public function signin()
+    {
+        return $this->fetch('signin');
+    }
 }

@@ -3,7 +3,6 @@ namespace app\index\controller;
 
 use app\common\controller\Common;
 use think\Loader;
-
 /**
  * Class Teach
  * @package app\index\controller
@@ -16,15 +15,24 @@ class Teach extends Common
         parent::_initialize();
         //角色权限检查
         $role = Loader::model('Role')->getRole($this->uid);
+        //var_dump($role);die;
         if ($role != 2){
             $this->error('权限不正确');
         }
+        //$Session::set('name', "$name");
     }
 
-    public function index($uname)
+    public function bgd_index($uname)
     {
         //TODO:展示教师用户页
-        echo $uname;
+
+        return $this->fetch();
+    }
+
+    public function homework($uname)
+    {
+        
+        return $this->fetch();
     }
 
     public function Blankpage()
@@ -54,6 +62,9 @@ class Teach extends Common
 
     public function Fixinfo()
     {
+        
+        $data = db('profile')->where('pid', $_SESSION['think']['uid'])->find();
+        $this->assign('userinfo', $data);
         return $this->fetch();
     }
 
