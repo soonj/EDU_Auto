@@ -27,8 +27,8 @@ class Auth extends Model
                         'msg'       => 'success',
                         'uid'       => $user->uid,
                         'uname'     => $user->uname,
-                        'profile'   => $user->profile->profile,
-                        'role'      => $user->role->role,
+                        'profile'   => $user->profile,
+                        'role'      => $user->role,
                     );
                 } else {
                     return array(

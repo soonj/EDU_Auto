@@ -14,7 +14,7 @@ class Role extends Model
     public function getRole($id)
     {
         $user = User::get($id);
-        return $user->role->role;
+        return $user->role;
     }
 
 }
