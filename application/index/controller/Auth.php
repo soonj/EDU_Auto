@@ -26,6 +26,7 @@ class Auth extends Controller
             //注册成功
             Cookie::set('uname' , $result['uname'] , 3600);
             Session::set('uid' , $result['uid']);
+            Session::set('uname' , $result['uname']);
             //跳转至个人页面
             $this->success($result['msg'] , '/index/'.$result['uname']);
         }else {
@@ -49,18 +50,19 @@ class Auth extends Controller
         if ($result[0] == 0){
             Cookie::set('uname' , $result['uname'] , 3600);
             Session::set('uid' , $result['uid']);
+            Session::set('uname' , $result['uname']);
             switch ($result['role']){
                 case 0:
-                    $this->success($result['msg'] , '/stu/'.$result['uname']);
+                    $this->success($result['msg'] , '/stu/index/'.$result['uname']);
                     break;
                 case 1:
-                    $this->success($result['msg'] , '/assis/'.$result['uname']);
+                    $this->success($result['msg'] , '/assis/index/'.$result['uname']);
                     break;
                 case 2:
-                    $this->success($result['msg'] , '/teach/'.$result['uname']);
+                    $this->success($result['msg'] , '/teach/index/'.$result['uname']);
                     break;
                 case 3:
-                    $this->success($result['msg'] , '/admin/'.$result['uname']);
+                    $this->success($result['msg'] , '/admin/index/'.$result['uname']);
                     break;
             }
         }else{

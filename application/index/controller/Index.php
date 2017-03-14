@@ -20,4 +20,9 @@ class Index extends Controller
     {
         return $this->fetch('signup');
     }
+
+    public function signin()
+    {
+        return $this->fetch('signin');
+    }
 }
