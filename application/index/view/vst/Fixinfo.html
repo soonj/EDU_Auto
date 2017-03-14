@@ -128,7 +128,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {name} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -158,7 +158,7 @@
                     <li>
                         <a href="http://www.tp5.com/index/index/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
                     </li>
-                    <li  class="active">
+                    <li>
                         <a href="http://www.tp5.com/index/index/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                     </li>
                     <li>
@@ -194,20 +194,102 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Forms
+                            资料管理
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                                <i class="fa fa-dashboard"></i>  <a href="bgd_index.html">首页</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-edit"></i> Forms
+                                <i class="fa fa-edit"></i> 个人信息
                             </li>
                         </ol>
                     </div>
                 </div>
                 <!-- /.row -->
 
+                <div class="row" style="margin-bottom: 30px;display:block;" id="userinfo_list">
+                    <div class="col-lg-3">
+                        <h2></h2>
+                        <div class="table-responsive">
+                            <img src="/index/image/ROTK.jpg" width="" height="100%">
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <h2>{name}</h2>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped">
+                               
+                                <tbody>
+                                    <tr>
+                                        <td>身份证</td>
+                                        <td>111110101010101010</td>
+                                        <td>教师证</td>
+                                        <td>111110101010101010</td>
+                                    </tr>
+                                    <tr>
+                                        <td>手机号</td>
+                                        <td>13616166666</td>
+                                        <td>qq号</td>
+                                        <td>11223344</td>
+                                    </tr>
+                                    <tr>
+                                        <td>住址街道</td>
+                                        <td>北京市海淀区</td>
+                                        <td>详细地址</td>
+                                        <td>外馆斜街1号甲</td>
+                                    </tr>
+                                    <tr>
+                                        <td>学历</td>
+                                        <td>研究生</td>
+                                        <td>职称</td>
+                                        <td>教授</td>
+                                    </tr>
+                                    <tr>
+                                        <td>毕业院校</td>
+                                        <td>哈尔滨佛学院</td>
+                                        <td>专业</td>
+                                        <td>藏传佛教</td>
+                                    </tr>
+                                    <tr>
+                                        <td>任职院系</td>
+                                        <td>人文学院</td>
+                                        <td>执教科目</td>
+                                        <td>藏传佛教</td>
+                                    </tr>
+                                    <tr>
+                                        <td>执教班级</td>
+                                        <td colspan="3">16050431班， 16050432班， 16050433班，</td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="text-right col-lg-2" style="margin-left: -15px;">
+                                    <a id="update_userinfo">资料更新？ <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    $(function(){
+                        alert('111');
+                        $('#update_userinfo').click(function(){
+                            alert('1111');
+                            $("#userinfo_list").hide();
+                            //$('#pic li').eq($(this).index()).stop().animate({'opacity':1} , 500);
+                        });
+                    });
+                    /*window.onload = function()
+                    {
+                        var oUpdate = document.getElementById('update_userinfo');
+
+                        oUpdate.onclick = function()
+                        {
+                            alert('111');
+                        }
+                    }*/
+                    
+                </script>
                 <div class="row">
                     <div class="col-lg-6">
 
