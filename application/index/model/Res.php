@@ -9,4 +9,24 @@ class Res extends Model
     {
         parent::initialize();
     }
+
+    public function add()
+    {
+
+    }
+
+    public function del()
+    {
+
+    }
+
+    public function check()
+    {
+
+    }
+
+    public function up()
+    {
+
+    }
 }
