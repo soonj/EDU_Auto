@@ -215,50 +215,50 @@
                         </div>
                     </div>
                     <div class="col-lg-9">
-                        <h2>{name}</h2>
+                        <h2>{$_SESSION['think']['uname']}</h2>
                         <div class="table-responsive">
                             <table class="table table-hover table-striped">
                                
                                 <tbody>
                                     <tr>
                                         <td>身份证</td>
-                                        <td>111110101010101010</td>
+                                        <td>{$userinfo['id_card']}</td>
                                         <td>教师证</td>
-                                        <td>111110101010101010</td>
+                                        <td>{$userinfo['id_teach']}</td>
                                     </tr>
                                     <tr>
                                         <td>手机号</td>
-                                        <td>13616166666</td>
+                                        <td>{$userinfo['phone']}</td>
                                         <td>qq号</td>
-                                        <td>11223344</td>
+                                        <td>{$userinfo['qq']}</td>
                                     </tr>
                                     <tr>
                                         <td>住址街道</td>
-                                        <td>北京市海淀区</td>
+                                        <td>{$userinfo['add']}</td>
                                         <td>详细地址</td>
-                                        <td>外馆斜街1号甲</td>
+                                        <td>{$userinfo['dizhi']}</td>
                                     </tr>
                                     <tr>
                                         <td>学历</td>
-                                        <td>研究生</td>
+                                        <td>{$userinfo['xueli']}</td>
                                         <td>职称</td>
-                                        <td>教授</td>
+                                        <td>{$userinfo['zhicheng']}</td>
                                     </tr>
                                     <tr>
                                         <td>毕业院校</td>
-                                        <td>哈尔滨佛学院</td>
+                                        <td>{$userinfo['biye']}</td>
                                         <td>专业</td>
-                                        <td>藏传佛教</td>
+                                        <td>{$userinfo['zhuanye']}</td>
                                     </tr>
                                     <tr>
                                         <td>任职院系</td>
-                                        <td>人文学院</td>
+                                        <td>{$userinfo['yuanxi']}</td>
                                         <td>执教科目</td>
-                                        <td>藏传佛教</td>
+                                        <td>{$userinfo['kemu']}</td>
                                     </tr>
                                     <tr>
                                         <td>执教班级</td>
-                                        <td colspan="3">16050431班， 16050432班， 16050433班，</td>
+                                        <td colspan="3">{$userinfo['class']}</td>
                                         
                                     </tr>
                                 </tbody>
@@ -277,16 +277,16 @@
                         </div>
                     </div>
                     <div class="col-lg-9">
-                        <h2>{name}</h2>
+                        <h2>{$_SESSION['think']['uname']}</h2>
                         <div class="table-responsive">
                             <table class="table table-hover table-striped">
                                <form id="fix_put" method="post">
                                 <tbody>
                                     <tr>
                                         <td>身份证</td>
-                                        <td>111110101010101010</td>
+                                        <td>{$userinfo['id_card']}</td>
                                         <td>教师证</td>
-                                        <td>111110101010101010</td>
+                                        <td>{$userinfo['id_teach']}</td>
                                     </tr>
                                     <tr>
                                         <td>手机号</td>
@@ -302,15 +302,15 @@
                                     </tr>
                                     <tr>
                                         <td>学历</td>
-                                        <td>本科</td>
+                                        <td>{$userinfo['xueli']}</td>
                                         <td>职称</td>
-                                        <td>副教授</td>
+                                        <td>{$userinfo['zhicheng']}</td>
                                     </tr>
                                     <tr>
                                         <td>毕业院校</td>
-                                        <td>联大</td>
+                                        <td>{$userinfo['biye']}</td>
                                         <td>专业</td>
-                                        <td>计算机</td>
+                                        <td>{$userinfo['zhuanye']}</td>
                                     </tr>
                                     <tr>
                                         <td>任职院系</td>
