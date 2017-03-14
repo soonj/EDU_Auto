@@ -3,6 +3,12 @@ namespace app\index\controller;
 
 use app\common\controller\Common;
 use think\Loader;
+
+/**
+ * Class Assis
+ * @package app\index\controller
+ * 助教控制器
+ */
 class Assis extends Common
 {
     public function _initialize()

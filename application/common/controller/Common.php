@@ -8,12 +8,22 @@ use think\Session;
 class Common extends Controller
 {
     protected $uid;
-    public function _initialize(){
+    protected $uname;
+    public function _initialize()
+    {
 
         if( !Cookie::has('uname') || !Session::has('uid')) {
             $this->error('Please login first', '/signin');
         }
 
         $this->uid = Session::get('uid');
+        $this->uname = Session::get('uname');
+    }
+
+    public function verify($uname)
+    {
+        if( $uname != $this->uname) {
+            $this->error('Please login first', '/signin');
+        }
     }
 }

@@ -19,9 +19,11 @@ return [
     ],
     'login'         => 'index/auth/login',
     'reg'           => 'index/auth/reg',
-    'signup'        => 'index/signup',
+    'signup'        => 'signup/signup',
+    'signin'        => 'signin/signin',
     'stu/:uname'    => 'index/stu/index',
     'teach/:uname'  => 'index/teach/index',
     'assis/:uname'  => 'index/assis/index',
     'admin/:uname'  => 'admin/index',
+    'vst/:uname/[:func]'    => 'index/vst/index',
 ];

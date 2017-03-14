@@ -6,6 +6,11 @@ use think\Cookie;
 use think\Loader;
 use think\Session;
 
+/**
+ * Class Auth
+ * @package app\index\controller
+ * 登录注册验证控制器
+ */
 class Auth extends Controller
 {
 
@@ -26,8 +31,9 @@ class Auth extends Controller
             //注册成功
             Cookie::set('uname' , $result['uname'] , 3600);
             Session::set('uid' , $result['uid']);
-            //跳转至个人页面
-            $this->success($result['msg'] , '/index/'.$result['uname']);
+
+            //默认跳转至访客页面
+            $this->success($result['msg'] , '/vst/'.$result['uname']);
         }else {
             //注册失败
             $this->error($result['msg']);
@@ -49,6 +55,7 @@ class Auth extends Controller
         if ($result[0] == 0){
             Cookie::set('uname' , $result['uname'] , 3600);
             Session::set('uid' , $result['uid']);
+            Session::set('uname' , $result['uname']);
             switch ($result['role']){
                 case 0:
                     $this->success($result['msg'] , '/stu/'.$result['uname']);
@@ -62,6 +69,8 @@ class Auth extends Controller
                 case 3:
                     $this->success($result['msg'] , '/admin/'.$result['uname']);
                     break;
+                case 4:
+                    $this->success($result['msg'] , '/vst/'.$result['uname']);
             }
         }else{
             $this->error($result['msg']);

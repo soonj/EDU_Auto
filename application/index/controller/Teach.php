@@ -3,6 +3,12 @@ namespace app\index\controller;
 
 use app\common\controller\Common;
 use think\Loader;
+
+/**
+ * Class Teach
+ * @package app\index\controller
+ * 教师控制器
+ */
 class Teach extends Common
 {
     public function _initialize()
