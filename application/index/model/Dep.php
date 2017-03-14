@@ -3,24 +3,19 @@ namespace app\index\model;
 
 use think\Model;
 
-class Score extends Model
+class Dep extends Model
 {
     protected function initialize()
     {
         parent::initialize();
     }
 
-    public function getScore()
+    public function getDep()
     {
 
     }
 
-    public function setScore()
-    {
-
-    }
-
-    public function addScore()
+    public function setDep()
     {
 
     }

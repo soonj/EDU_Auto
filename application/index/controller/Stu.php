@@ -21,9 +21,31 @@ class Stu extends Common
         }
     }
 
-    public function index($uname)
+    public function index($uname , $func = null)
     {
-        //TODO:展示学生用户页
+        //访客是否登录验证
+        parent::verify($uname);
+
+        //方法跳转
+        if (!is_null($func)){
+            return $this->$func();
+        }
+
+        return $this->fetch('bgd_index');
     }
 
+    public function homework()
+    {
+        $this->fetch('Homework');
+    }
+
+    public function profile()
+    {
+        $this->fetch('profile');
+    }
+
+    public function res()
+    {
+        $this->fetch('res');
+    }
 }
