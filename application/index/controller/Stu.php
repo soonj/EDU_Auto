@@ -3,6 +3,12 @@ namespace app\index\controller;
 
 use app\common\controller\Common;
 use think\Loader;
+
+/**
+ * Class Stu
+ * @package app\index\controller
+ * 学生控制器
+ */
 class Stu extends Common
 {
     public function _initialize()
@@ -18,7 +24,6 @@ class Stu extends Common
     public function index($uname)
     {
         //TODO:展示学生用户页
-        echo $uname;
     }
 
 }
