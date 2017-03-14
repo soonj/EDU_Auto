@@ -66,7 +66,7 @@ class Auth extends Controller
                     $this->success($result['msg'] , '/assis/index/'.$result['uname']);
                     break;
                 case 2:
-                    $this->success($result['msg'] , '/teach/index/'.$result['uname']);
+                    $this->success($result['msg'] , '/teach/'.$result['uname']);
                     break;
                 case 3:
                     $this->success($result['msg'] , '/admin/index/'.$result['uname']);

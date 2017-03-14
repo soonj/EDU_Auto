@@ -19,20 +19,26 @@ class Teach extends Common
         if ($role != 2){
             $this->error('权限不正确');
         }
-        //$Session::set('name', "$name");
     }
 
-    public function bgd_index($uname)
-    {
-        //TODO:展示教师用户页
 
-        return $this->fetch();
+    public function index($uname , $func = null)
+    {
+        //访客是否登录验证
+        parent::verify($uname);
+
+        //方法跳转
+        if (!is_null($func)){
+            return $this->$func();
+        }
+        return $this->fetch('index');
     }
 
-    public function homework($uname)
+    public function homework()
     {
+        //方法跳转
         
-        return $this->fetch();
+        return $this->fetch('homework');
     }
 
     public function Blankpage()
@@ -62,10 +68,10 @@ class Teach extends Common
 
     public function Fixinfo()
     {
-        
         $data = db('profile')->where('pid', $_SESSION['think']['uid'])->find();
         $this->assign('userinfo', $data);
-        return $this->fetch();
+        return $this->fetch('Fixinfo');
+        
     }
 
     public function Forms()

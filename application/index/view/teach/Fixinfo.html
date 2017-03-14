@@ -45,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://fuck.io/index/index/index">WTF University</a>
+                <a class="navbar-brand" href="http://fuck.io/teach/{$_SESSION['think']['uname']}"">WTF University</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -133,10 +133,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uname']} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="http://fuck.io/teach/fixinfo/{$_SESSION['think']['uid']}"><i class="fa fa-fw fa-user"></i> 个人信息</a>
+                            <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/fixinfo"><i class="fa fa-fw fa-user"></i> 个人信息</a>
                         </li>
                         <li>
-                            <a href="http://fuck.io/teach/homework/admin1"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
+                            <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -284,7 +284,7 @@
                                 <tbody>
                                     <tr>
                                         <td>身份证</td>
-                                        <td>{$userinfo['id_card']}</td>
+                                        <td id="teach_id" value="{$_SESSION['think']['uname']}">{$userinfo['id_card']}</td>
                                         <td>教师证</td>
                                         <td>{$userinfo['id_teach']}</td>
                                     </tr>
@@ -314,7 +314,7 @@
                                     </tr>
                                     <tr>
                                         <td>任职院系</td>
-                                        <td><input class="form-control" id="fix_xueyuan" style="height:20px;width:150px;"></td>
+                                        <td><input class="form-control" id="fix_yuanxi" style="height:20px;width:150px;"></td>
                                         <td>执教科目</td>
                                         <td><input class="form-control" id="fix_kemu" style="height:20px;width:150px;"></td>
                                     </tr>
@@ -329,6 +329,7 @@
                             <div class="text-right col-lg-12" style="margin-left: -15px;">
                                 <a id="update_userinfo" class="col-lg-2"><input type="file"></a>
                                 <a id="update_userinfo" class="col-lg-6"><button type="submit" class="btn btn-default" id="push_data">提交更新</button></a>
+
                             </div>
                         </div>
                     </div>
@@ -346,25 +347,24 @@
                                 type: "POST",
                                 url:"http://fuck.io/index/userinfo/userinfo",
                                 data:{
-                                  "fix_phone":$("#fix_phone").val(),
-                                  "fix_qq":$("#fix_qq").val(), 
-                                  "fix_add":$("#fix_add").val(),
-                                  "fix_dizhi":$("#fix_dizhi").val(),
-                                  "fix_xueyuan":$("#fix_xueyuan").val(),
-                                  "fix_kemu":$("#fix_kemu").val(),
-                                  "fix_class":$("#fix_class").val(),                      
+                                  "phone":$("#fix_phone").val(),
+                                  "qq":$("#fix_qq").val(), 
+                                  "add":$("#fix_add").val(),
+                                  "dizhi":$("#fix_dizhi").val(),
+                                  "yuanxi":$("#fix_yuanxi").val(),
+                                  "kemu":$("#fix_kemu").val(),
+                                  "class":$("#fix_class").val(),                      
                                 },
                                 async: false,
                                 error: function(request) {
                                     alert("Connection error");
                                 },
                                 success: function(result) {
-                                    //$("#commonLayout_appcreshi").parent().html(data);
-                                    //alert(result);
-                                    $("#userinfo_fix").hide();
-                                    $("#userinfo_show").show();
+                                    var url = "http://fuck.io/teach/" + result + "/fixinfo";
+                                    url = url.replace(/\"/g, ""); 
                                 }
                             });
+                            location.reload(false); 
                         });
                     });
                     
