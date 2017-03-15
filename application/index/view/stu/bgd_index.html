@@ -153,22 +153,22 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="http://fuck.io/index/teach/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
+                        <a href="http://fuck.io/stu/{$Think.session.uname}/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
+                        <a href="http://fuck.io/stu/{$Think.session.uname}/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
+                        <a href="http://fuck.io/stu/{$Think.session.uname}/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                        <a href="http://fuck.io/stu/{$Think.session.uname}/profile"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
+                        <a href="http://fuck.io/stu/{$Think.session.uname}/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+                        <a href="http://fuck.io/stu/{$Think.session.uname}/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
@@ -182,7 +182,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+                        <a href="http://fuck.io/stu/{$Think.session.uname}/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
                     </li>
                 </ul>
             </div>
@@ -197,7 +197,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            WTF(world technology Franklyn) University <small>教务管理系统</small>
+                            WTF(world technology Franklyn) University <small>{$notice[0]->content}</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
