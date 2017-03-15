@@ -13,10 +13,8 @@ class Userinfo extends Common
 
         $profile = Loader::model('Profile')->updateProfile($fixdata);
 
-        $uname = $_SESSION['think']['uname'];
-
         if ($profile) {
-            echo $result = json_encode($uname);
+            echo $result = json_encode(true);
         }
     }
 }

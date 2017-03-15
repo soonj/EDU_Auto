@@ -12,13 +12,15 @@ class Profile extends Model
     //更新个人信息方法
     public function updateProfile($data)
     {
-    	 $update = db('profile')
+    	//去除数组中空值得元素
+    	$newdata=array_filter ($data);
+
+    	$update = db('profile')
                     ->where('pid',$_SESSION['think']['uid'])
-                    ->update($data);
+                    ->update($newdata);
         if (!$update) {
             return false;
         } else {
-            //echo $result = json_encode(['更新成功']);
             return true;
         }
     }

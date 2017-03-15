@@ -37,9 +37,19 @@ class Teach extends Common
     public function homework()
     {
         //方法跳转
-        
         return $this->fetch('homework');
     }
+
+    public function doHomework()
+    {
+        $sdata = input('post.');
+        if (!empty($sdata['subject_type'])) {
+            //dump($sdata['subject_type']);
+            $homework = Loader::model('Homework')->setSubject($sdata);
+        }
+        
+    }
+
 
     public function Blankpage()
     {
