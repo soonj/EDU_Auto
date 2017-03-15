@@ -9,4 +9,19 @@ class Score extends Model
     {
         parent::initialize();
     }
+
+    public function getScore()
+    {
+
+    }
+
+    public function setScore()
+    {
+
+    }
+
+    public function addScore()
+    {
+
+    }
 }

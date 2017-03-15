@@ -3,29 +3,19 @@ namespace app\index\model;
 
 use think\Model;
 
-class Res extends Model
+class Dep extends Model
 {
     protected function initialize()
     {
         parent::initialize();
     }
 
-    public function add()
+    public function getDep()
     {
 
     }
 
-    public function del()
-    {
-
-    }
-
-    public function check()
-    {
-
-    }
-
-    public function up()
+    public function setDep()
     {
 
     }
