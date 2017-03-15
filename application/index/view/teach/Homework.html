@@ -258,8 +258,11 @@
                     <div class="col-lg-3" style="">
                         <div>
                             <h3>{作业名字}</h3>
-                                <input class="form-control" id="pick_main" style="margin-bottom:15px;">
-                                <button type="submit" class="btn btn-success" id="hw_rname" style="margin-top:20px;margin-bottom:40px;">更改名字</button>
+                                <input class="form-control" id="hm_title" style="margin-bottom:15px;">
+
+                                <input hidden id="subject_title" value="title">
+
+                                <button type="submit" class="btn btn-success" id="put_rename" style="margin-top:20px;margin-bottom:40px;">更改名字</button>
                         </div>
                         <div style="margin-bottom: 30px;">
                             <label>已经出好的题目：</label>
@@ -279,7 +282,7 @@
                         //页面默认为选择题界面
                         $('#hw_panduan').hide();
                         $('#hw_jianda').hide();
-                        $('#put_xuanze').click(function(){
+                        $('#put_xuanze').unbind('click').click(function(){
                                 $.ajax({
                                     cache: true,
                                     type: "POST",
@@ -307,7 +310,7 @@
                             $('#hw_panduan').show();
                             $('#hw_jianda').hide();
                             $("#hw_pick").hide();
-                            $('#put_panduan').click(function(){
+                            $('#put_panduan').unbind('click').click(function(){
                                 $.ajax({
                                     cache: true,
                                     type: "POST",
@@ -332,7 +335,7 @@
                             $('#hw_jianda').show();
                             $('#hw_panduan').hide();
                             $("#hw_pick").hide();
-                            $('#put_jianda').click(function(){
+                            $('#put_jianda').unbind('click').click(function(){
                                 $.ajax({
                                     cache: true,
                                     type: "POST",
@@ -356,7 +359,7 @@
                             $('#hw_pick').show();
                             $('#hw_panduan').hide();
                             $("#hw_jianda").hide();
-                            $('#put_xuanze').click(function(){
+                            $('#put_xuanze').unbind('click').click(function(){
                                 $.ajax({
                                     cache: true,
                                     type: "POST",
@@ -380,7 +383,26 @@
                                 });
                             });
                         });
-                        
+
+                        $('#put_rename').unbind('click').click(function(){
+                            $.ajax({
+                                cache: true,
+                                type: "POST",
+                                url:"http://fuck.io/index/teach/doHomework",
+                                data:{
+                                      "pick_main":$("#hm_title").val(),
+                                      "subject_type":$("#subject_title").val(),                     
+                                },
+                                async: false,
+                                error: function(request) {
+                                    alert("Connection error");
+                                },
+                                success: function(result) {
+
+                                }
+                                //location.reload(false); 
+                            });
+                        });
                     });
                 </script>
 
