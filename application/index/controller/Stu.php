@@ -3,6 +3,7 @@ namespace app\index\controller;
 
 use app\common\controller\Common;
 use think\Loader;
+use think\Request;
 
 /**
  * Class Stu
@@ -16,6 +17,7 @@ class Stu extends Common
     {
         parent::_initialize();
         //角色权限检查
+        //todo:角色检查代码冗余度高，需修改
         $role = Loader::model('Role')->getRole($this->uid);
         if ($role != 0){
             $this->error('权限不正确');
@@ -42,7 +44,7 @@ class Stu extends Common
     private function homework()
     {
         $data = Loader::model('Homework')->getHomework($this->uid);
-        $this->fetch('homework' , $data);
+        return $this->fetch('homework' , $data);
     }
 
     //提交完成作业
@@ -58,13 +60,13 @@ class Stu extends Common
         $data = Loader::model('Profile')->getProfile($this->uid);
         $this->assign('userinfo', $data);
 
-        $this->fetch('Fixinfo');
+        return $this->fetch('Fixinfo');
     }
 
     //修改用户详情
     protected function setProfile()
     {
-        $data = input('post');
+        $data = Request::instance()->post();
         Loader::model('Profile')->setProfile($data);
     }
 
@@ -73,6 +75,13 @@ class Stu extends Common
     {
         $data = Loader::model('Res')->getRes($this->uid);
         $this->assign('ures' , $data);
-        $this->fetch('res');
+        return $this->fetch('res');
     }
+
+//    protected function dotest()
+//    {
+//        $data = Request::instance()->post();
+//        Loader::model('Notice')->announce($data);
+//    }
+
 }
