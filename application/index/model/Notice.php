@@ -7,6 +7,7 @@ use think\Model;
 class Notice extends Model
 {
     protected $autoWriteTimestamp = true;
+
     public function initialize()
     {
         parent::initialize();
@@ -28,12 +29,30 @@ class Notice extends Model
         $users = Db::name('user')->select();
         //遍历用户，写入noticeList的uid
         $list = [];
-        foreach($users as $user){
+        foreach ($users as $user) {
             $list[] = [
-                'uid'=>$user['uid'],
-                'nid'=>$nid,
+                'uid' => $user['uid'],
+                'nid' => $nid,
             ];
         }
+        $noticeList->saveAll($list, false);
+    }
+
+    //新注册用户写入通知noticeList
+    public function regAnnounce($uid)
+    {
+        //获取当前生效的通知
+        $notices = Db::name('notice')->where('end_time' , '>' , time())->select();
+
+        //遍历写入数组
+        $list = [];
+        foreach ($notices as $notice) {
+            $list[] = [
+                'uid' => $uid,
+                'nid' => $notice['nid'],
+            ];
+        }
+        $noticeList = new NoticeList;
         $noticeList->saveAll($list , false);
     }
 
@@ -69,7 +88,6 @@ class Notice extends Model
             $content[] = Notice::get($nid);
         }
         return $content;
-
     }
 
     public function delNtc()

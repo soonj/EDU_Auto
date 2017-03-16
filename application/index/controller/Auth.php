@@ -17,7 +17,7 @@ class Auth extends Controller
     //注册
     public function reg()
     {
-
+        self::logout();
         $regData = input('post.');
         $data = [
             'uname' =>$regData['uname'],
@@ -33,8 +33,6 @@ class Auth extends Controller
             Session::set('uid' , $result['uid']);
             Session::set('uname' , $result['uname']);
 
-            //跳转至个人页面
-            //$this->success($result['msg'] , '/index/'.$result['uname']);
             //默认跳转至访客页面
             $this->success($result['msg'] , '/vst/'.$result['uname']);
         }else {
@@ -46,6 +44,7 @@ class Auth extends Controller
     //登录
     public function login()
     {
+        self::logout();
         $loginData = input('post.');
 
         $data = [
@@ -86,5 +85,6 @@ class Auth extends Controller
     public function logout()
     {
         Cookie::delete('uname');
+        Session::clear();
     }
 }

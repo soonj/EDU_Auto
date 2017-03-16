@@ -3,6 +3,7 @@ namespace app\index\controller;
 
 use app\common\controller\Common;
 use think\Loader;
+use think\Request;
 
 /**
  * Class Vst
@@ -41,8 +42,18 @@ class Vst extends Common
         return $this->fetch('profile');
     }
 
-    public function doadd($data)
+    public function setProfile()
     {
+        $data = Request::instance()->post();
+        $result = Loader::model('Profile')->setProfile($data);
+        if ($result){
+            $stuRole = ['role'=>'0'];
+            Loader::model('Role')->setRole($stuRole , $this->uid);
+            Loader::model('Notice')->regAnnounce($this->uid);
+            $this->success('修改成功' , '/stu/'.$this->uname);
+        }else{
+            $this->error('修改失败');
+        }
 
     }
 }
