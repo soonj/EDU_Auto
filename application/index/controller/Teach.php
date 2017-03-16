@@ -21,7 +21,7 @@ class Teach extends Common
     }
 
 
-    public function index($uname = 'admin1' , $func = null)
+    public function index($uname , $func = null)
     {
         //访客是否登录验证
         //dump($_SESSION);
@@ -75,32 +75,32 @@ class Teach extends Common
     }
 	
 
-    public function Blankpage()
+    public function blankpage()
     {
-        return $this->fetch();
+        return $this->fetch('blankpage');
     }
 
-    public function Bootstrapelements()
+    public function bootstrapelements()
     {
-        return $this->fetch();
+        return $this->fetch('bootstrapelements');
     }
 
-    public function Bootstrapgrid()
+    public function bootstrapgrid()
     {
-        return $this->fetch();
+        return $this->fetch('bootstrapgrid');
     }
 
-    public function Mywork()
+    public function mywork()
     {
-        return $this->fetch();
+        return $this->fetch('mywork');
     }
 
     public function charts()
     {
-        return $this->fetch();
+        return $this->fetch('charst');
     }
 	
-    public function Fixinfo()
+    public function fixinfo()
     {
         $data = db('profile')->where('pid', $_SESSION['think']['uid'])->find();
         $this->assign('userinfo', $data);
@@ -108,14 +108,14 @@ class Teach extends Common
         
     }
 	
-    public function Forms()
+    public function forms()
     {
-        return $this->fetch();
+        return $this->fetch('form');
     }
 
-    public function Tables()
+    public function tables()
     {
-        return $this->fetch();
+        return $this->fetch('table');
     }
 
 }

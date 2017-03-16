@@ -31,8 +31,8 @@ return [
     'signup'                => 'signup/signup',
     'signin'                => 'signin/signin',
     'stu/:uname/[:func]'    => 'index/stu/index',
-    'teach/:uname[:func]'   => 'index/teach/index',
-    'assis/:uname[:func]'   => 'index/assis/index',
-    'admin/:uname[:func]'   => 'admin/index',
+    'teach/:uname/[:func]'   => 'index/teach/index',
+    'assis/:uname/[:func]'   => 'index/assis/index',
+    'admin/:uname/[:func]'   => 'admin/index',
     'vst/:uname/[:func]'    => 'index/vst/index',
 ];
