@@ -11,7 +11,7 @@ use think\Loader;
 class Teach extends Common
 {
     public function _initialize()
-    {
+    {	
         parent::_initialize();
         //角色权限检查
         $role = Loader::model('Role')->getRole($this->uid);
@@ -21,18 +21,19 @@ class Teach extends Common
     }
 
 
-    public function index($uname , $func = null)
+    public function index($uname = 'admin1' , $func = null)
     {
         //访客是否登录验证
+        //dump($_SESSION);
         parent::verify($uname);
-
+        
         //方法跳转
         if (!is_null($func)){
             return $this->$func();
         }
         return $this->fetch('index');
     }
-
+	
     public function homework()
     {
         $teach_info = db('profile')
@@ -72,7 +73,7 @@ class Teach extends Common
         }
         
     }
-
+	
 
     public function Blankpage()
     {
@@ -98,7 +99,7 @@ class Teach extends Common
     {
         return $this->fetch();
     }
-
+	
     public function Fixinfo()
     {
         $data = db('profile')->where('pid', $_SESSION['think']['uid'])->find();
@@ -106,7 +107,7 @@ class Teach extends Common
         return $this->fetch('Fixinfo');
         
     }
-
+	
     public function Forms()
     {
         return $this->fetch();
