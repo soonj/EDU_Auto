@@ -5,6 +5,7 @@ use think\Model;
 
 class Profile extends Model
 {
+    protected $profile;
     protected function initialize()
     {
         parent::initialize();

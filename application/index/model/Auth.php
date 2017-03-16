@@ -67,7 +67,7 @@ class Auth extends Model
                 //默认权限添加
                 $user->role()->save([
                     'roleid'=> $user->uid,
-                    'role'  => 4
+                    'role'  => 4,
                 ]);
 
                 //默认详情添加
@@ -81,7 +81,7 @@ class Auth extends Model
                     'msg'       => 'success',
                     'uid'       => $user->uid,
                     'uname'     => $user->uname,
-                    'profile'   => $user->profile,
+                    'profile'   => $user->profile->profile,
                     'role'      => $user->role->role,
                 );
             }

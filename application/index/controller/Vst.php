@@ -42,12 +42,13 @@ class Vst extends Common
     }
 
     //访客修改个人信息
+    /*
     public function Fixinfo()
     {
         $data = db('profile')->where('pid', $_SESSION['think']['uid'])->find();
         $this->assign('userinfo', $data);
         return $this->fetch('Fixinfo');
-        
+
     }
 
     //
@@ -57,7 +58,7 @@ class Vst extends Common
                         ->where('pid', $_SESSION['think']['uid'])
                         ->find();
 
-        $this->assign('class', $class); 
+        $this->assign('class', $class);
 
         //如果有正在布置的作业，获取之
         if (!empty($_SESSION['think']['workcacheid'])) {
@@ -66,12 +67,12 @@ class Vst extends Common
                         ->where('del_work', 1)
                         ->find();
             if ($data) {
-               $this->assign('homeworkcache', $data); 
+               $this->assign('homeworkcache', $data);
             }
         }
         return $this->fetch('homework');
     }
-
+*/
     public function doadd($data)
     {
 
