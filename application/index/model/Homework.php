@@ -12,6 +12,13 @@ class Homework extends Model
     {
         parent::initialize();
     }
+
+    //学生载入作业方法！
+    public function stu_homework()
+    {
+        echo 11111111;
+    }
+
     //发布作业方法
     public function sendHomework($data)
     {
