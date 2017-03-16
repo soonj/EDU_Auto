@@ -82,11 +82,4 @@ class Stu extends Common
         $this->assign('ures' , $data);
         return $this->fetch('res');
     }
-
-//    protected function dotest()
-//    {
-//        $data = Request::instance()->post();
-//        Loader::model('Notice')->announce($data);
-//    }
-
 }

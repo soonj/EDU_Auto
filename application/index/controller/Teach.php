@@ -3,6 +3,9 @@ namespace app\index\controller;
 
 use app\common\controller\Common;
 use think\Loader;
+use think\Request;
+use think\Session;
+
 /**
  * Class Teach
  * @package app\index\controller
@@ -29,7 +32,24 @@ class Teach extends Common
         if (!is_null($func)){
             return $this->$func();
         }
-        return $this->fetch('bgd_index');
+        return $this->fetch('index');
+    }
+
+    //发布通知页面显示
+    public function announce()
+    {
+        return $this->fetch('announce');
+    }
+
+    //发布全站通知，旋转吧小陀螺！！
+    public function doAnnounce()
+    {
+        $data = Request::instance()->post();
+        $data['sender_id'] = $this->uid;
+        $result = Loader::model('Notice')->announce($data);
+        if ($result){
+            $this->success('发布成功');
+        }
     }
 
     public function homework()
@@ -71,7 +91,6 @@ class Teach extends Common
         }
 
     }
-
 
     public function Blankpage()
     {

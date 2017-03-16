@@ -35,7 +35,7 @@ class Notice extends Model
                 'nid' => $nid,
             ];
         }
-        $noticeList->saveAll($list, false);
+        return $noticeList->saveAll($list, false);
     }
 
     //新注册用户写入通知noticeList
