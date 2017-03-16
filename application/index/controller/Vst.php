@@ -39,7 +39,7 @@ class Vst extends Common
     //访客信息添加界面显示
     protected function profile()
     {
-        //todo:ajax返回班级信息
+        //todo:ajax返回专业班级学号等信息
         return $this->fetch('profile');
     }
 

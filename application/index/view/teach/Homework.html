@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://fuck.io/teach/index/index">WTF University</a>
+                <a class="navbar-brand" href="http://fuck.io/teach/{$_SESSION['think']['uname']}">WTF University</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -131,20 +131,17 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {name} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uname']} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/fixinfo"><i class="fa fa-fw fa-user"></i> 个人信息</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> 退出</a>
                         </li>
                     </ul>
                 </li>
@@ -211,17 +208,70 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row" style="background:yellow;margin-bottom: 30px;">
-                    <button type="submit" class="btn btn-default" style="margin-left:20px;" id="click_pick">来点选择题？</button>
-                    <button type="submit" class="btn btn-default" style="margin-left:20px;" id="click_panduan">来点判断题？</button>
-                    <button type="submit" class="btn btn-default" style="margin-left:20px;" id="click_jianda">来点简答题？</button>
-                    <button type="submit" class="btn btn-default" style="margin-left:20px;" id="click_yulan">预览一下？</button>
+                <div class="row" style="margin-bottom: 30px;">
+                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_pick">来点选择题？</button>
+                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_panduan">来点判断题？</button>
+                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_jianda">来点简答题？</button>
+                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_yulan">预览一下？</button>
                 </div>
 
 <!--**********************************************个人资料部分结束*******************************************-->
 
                 <div class="row">
-                    <div class="col-lg-9" style="background:yellow;margin-bottom: 30px;">
+                    <div class="col-lg-9" style="margin-bottom: 30px;display:none;" id="edit_show">
+                        {if !empty($homeworkcache['xuanze'])}
+                            {$homeworkcache['xuanze']}
+                        {else}
+                            <h3>您还没出选择题</h3>
+                        {/if}
+
+                        {if !empty($homeworkcache['panduan'])}
+                            {$homeworkcache['panduan']}
+                        {else}
+                            <h3>您还没出判断题</h3>
+                        {/if}
+
+                        {if !empty($homeworkcache['jianda'])}
+                            {$homeworkcache['jianda']}
+                        {else}
+                            <h3>您还没出简答题</h3>
+                        {/if}
+                    </div>
+
+                    <div class="col-lg-9" style="margin-bottom: 30px;display:none;" id="edit_send">
+                        <div class="alert alert-info col-lg-10" style="height:50px;">
+                            <div class="form-group">
+                                <label style="margin-right:20px;">给哪些班布置作业：</label>
+                                {foreach $class as $val}
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="class_homework" value="{$val}">{$val}
+                                    </label>
+                                {/foreach}
+                            </div>
+                        </div>
+                        <div class="alert alert-info col-lg-10" style="height:50px;">
+                            <div class="form-group">
+                                <label>什么时候交作业？：</label>
+                                <label>
+                                    <input type="radio" name="work_time" id="optionsRadios1" value="1" checked>1天
+                                </label>
+                                <label>
+                                    <input type="radio" name="work_time" id="optionsRadios1" value="2" checked>2天
+                                </label>
+                                <label>
+                                    <input type="radio" name="work_time" id="optionsRadios1" value="3" checked>3天
+                                </label>
+                                <label>
+                                    <input type="radio" name="work_time" id="optionsRadios1" value="7" checked>1周
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-10" style="height:50px;">
+                            <button type="submit" class="btn btn-success" id="gogogo" style="margin-left:-15px;">发布！</button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-9" style="margin-bottom: 30px;" id="edit_work">
                         <div class="table-responsive" id="hw_pick">
                             <h3>选择题题目</h3>
                                 <input class="form-control" id="pick_main" style="margin-bottom: 10px;">
@@ -233,55 +283,291 @@
                                 <input class="form-control" id="pick_3" style="margin-bottom: 10px;">
                             <label>选项4</label>
                                 <input class="form-control" id="pick_4" style="margin-bottom: 10px;">
-                            <button type="submit" class="btn btn-default" style="margin-top:20px;margin-bottom:20px;">提交</button>
+
+                                <input hidden id="subject_type" value="xuanze">
+
+                            <button type="submit" class="btn btn-success" id="put_xuanze" style="margin-top:20px;margin-bottom:20px;">提交</button>
+                            
                         </div>
+
                         <div class="table-responsive" id="hw_panduan">
                             <h3>判断题题目</h3>
-                                <input class="form-control" id="pick_main">
-                            <button type="submit" class="btn btn-default" style="margin-top:20px;margin-bottom:20px;">提交</button>
+                                <input class="form-control" id="panduan_main">
+
+                                <input hidden id="subject_panduan" value="panduan">
+
+                            <button type="submit" class="btn btn-success" id="put_panduan" style="margin-top:20px;margin-bottom:20px;">提交</button>
                         </div>
                         <div class="table-responsive" id="hw_jianda">
                             <h3>简答题题目</h3>
-                                <input class="form-control" id="pick_main">
-                            <button type="submit" class="btn btn-default" style="margin-top:20px;margin-bottom:20px;">提交</button>
+                                <input class="form-control" id="jianda_main">
+
+                                <input hidden id="subject_jianda" value="jianda">
+
+                            <button type="submit" class="btn btn-success" id="put_jianda" style="margin-top:20px;margin-bottom:20px;">提交</button>
                         </div>
                         
                     </div>
-                    <div class="col-lg-3" style="background:yellow;">
+                    <div class="col-lg-3" style="">
                         <div>
-                            <h3>{作业名字}</h3>
-                                <input class="form-control" id="pick_main" style="margin-bottom:15px;">
-                                <button type="submit" class="btn btn-default" style="margin-top:20px;margin-bottom:40px;">更改名字</button>
+                            {if !empty($homeworkcache['title'])}
+                                <h3>{$homeworkcache['title']}</h3>
+                            {else}
+                                <h3>未命名作业</h3>
+                            {/if}
+                                <input class="form-control" id="hm_title" style="margin-bottom:15px;">
+
+                                <input hidden id="subject_title" value="title">
+
+                                <button type="submit" class="btn btn-success" id="put_rename" style="margin-top:20px;margin-bottom:40px;">更改名字</button>
+                        </div>
+                        <div style="margin-bottom: 30px;">
+                            <label>已经出好的题目：</label>
+                            {if !empty($homeworkcache['xuanzenum'])}
+                                <h4>选择题：{$homeworkcache['xuanzenum']}道</h4>
+                            {else}
+                                <h4>选择题：0道</h4>
+                            {/if}
+                            {if !empty($homeworkcache['panduannum'])}
+                                <h4>判断题：{$homeworkcache['panduannum']}道</h4>
+                            {else}
+                                <h4>判断题：0道</h4>
+                            {/if}
+                            {if !empty($homeworkcache['jiandanum'])}
+                                <h4>简答题：{$homeworkcache['jiandanum']}道</h4>
+                            {else}
+                                <h4>简答题：0道</h4>
+                            {/if}
+
                         </div>
                         <div style="margin-bottom: 200px;">
-                            <label>已经出好的题目：</label>
-                                <h3>选择题：{number}道</h3>
-                                <h3>判断题：{number}道</h3>
-                                <h3>简答题：{number}道</h3>
+                            <button type="submit" class="btn btn-warning" id="send_work" style="margin-left:10px;margin-top:50px;margin-bottom:40px;margin-right: 30px;">准备发布</button>
+
+                            <input hidden id="subject_send" value="send_work">
+
+                            <button type="submit" class="btn btn-warning" id="del_work" style="margin-top:50px;margin-bottom:40px;">放弃编辑</button>
+
+                            <input hidden id="subject_del" value="del_work">
                         </div>
                     </div>  
                 </div>
 
                 <script>
                     $(function(){
+                        //页面默认为选择题界面
+                        //$('#edit_work')
+                        $('#edit_work').show();
+                        $('#edit_send').hide();
+                        $('#edit_show').hide();
+                        $('#click_yulan').unbind('click').click(function(){
+                            $('#edit_work').hide();
+                            $('#edit_send').hide();
+                            $('#edit_show').show();
+                        });
                         $('#hw_panduan').hide();
                         $('#hw_jianda').hide();
+                        $('#put_xuanze').unbind('click').click(function(){
+                                $.ajax({
+                                    cache: true,
+                                    type: "POST",
+                                    url:"http://fuck.io/index/teach/doHomework",
+                                    data:{
+                                      "pick_main":$("#pick_main").val(),
+                                      "pick_1":$("#pick_1").val(), 
+                                      "pick_2":$("#pick_2").val(),
+                                      "pick_3":$("#pick_3").val(),
+                                      "pick_4":$("#pick_4").val(),
+                                      "subject_type":$("#subject_type").val(),                     
+                                    },
+                                    async: false,
+                                    error: function(request) {
+                                        alert("Connection error");
+                                    },
+                                    success: function(result) {
+
+                                    }
+                                    
+                                });
+                                location.reload(false); 
+                            });
+
                         $('#click_panduan').click(function(){
+                            $('#edit_work').show();
+                            $('#edit_show').hide();
                             $('#hw_panduan').show();
                             $('#hw_jianda').hide();
                             $("#hw_pick").hide();
+                            $('#put_panduan').unbind('click').click(function(){
+                                $.ajax({
+                                    cache: true,
+                                    type: "POST",
+                                    url:"http://fuck.io/index/teach/doHomework",
+                                    data:{
+                                      "pick_main":$("#panduan_main").val(),
+                                      "subject_type":$("#subject_panduan").val(),                     
+                                    },
+                                    async: false,
+                                    error: function(request) {
+                                        alert("Connection error");
+                                    },
+                                    success: function(result) {
+
+                                    }
+                                     
+                                });
+                                location.reload(false);
+                            });
+                            
                         });
                         $('#click_jianda').click(function(){
+                            $('#edit_work').show();
+                            $('#edit_show').hide();
                             $('#hw_jianda').show();
                             $('#hw_panduan').hide();
                             $("#hw_pick").hide();
+                            $('#put_jianda').unbind('click').click(function(){
+                                $.ajax({
+                                    cache: true,
+                                    type: "POST",
+                                    url:"http://fuck.io/index/teach/doHomework",
+                                    data:{
+                                      "pick_main":$("#jianda_main").val(),
+                                      "subject_type":$("#subject_jianda").val(),                     
+                                    },
+                                    async: false,
+                                    error: function(request) {
+                                        alert("Connection error");
+                                    },
+                                    success: function(result) {
+
+                                    }
+                                    
+                                });
+                                location.reload(false); 
+                            });
                         });
                         $('#click_pick').click(function(){
+                            $('#edit_work').show();
+                            $('#edit_show').hide();
                             $('#hw_pick').show();
                             $('#hw_panduan').hide();
                             $("#hw_jianda").hide();
+                            $('#put_xuanze').unbind('click').click(function(){
+                                $.ajax({
+                                    cache: true,
+                                    type: "POST",
+                                    url:"http://fuck.io/index/teach/doHomework",
+                                    data:{
+                                      "pick_main":$("#pick_main").val(),
+                                      "pick_1":$("#pick_1").val(), 
+                                      "pick_2":$("#pick_2").val(),
+                                      "pick_3":$("#pick_3").val(),
+                                      "pick_4":$("#pick_4").val(),
+                                      "subject_type":$("#subject_type").val(),                     
+                                    },
+                                    async: false,
+                                    error: function(request) {
+                                        alert("Connection error");
+                                    },
+                                    success: function(result) {
+
+                                    }
+                                    
+                                });
+                                location.reload(false); 
+                            });
                         });
-                        
+
+                        $('#put_rename').unbind('click').click(function(){
+                            $.ajax({
+                                cache: true,
+                                type: "POST",
+                                url:"http://fuck.io/index/teach/doHomework",
+                                data:{
+                                      "pick_main":$("#hm_title").val(),
+                                      "subject_type":$("#subject_title").val(),                     
+                                },
+                                async: false,
+                                error: function(request) {
+                                    alert("Connection error");
+                                },
+                                success: function(result) {
+
+                                }
+                                
+                            });
+                            location.reload(false); 
+                        });
+
+                        $('#del_work').unbind('click').click(function(){
+                            $.ajax({
+                                cache: true,
+                                type: "POST",
+                                url:"http://fuck.io/index/teach/doHomework",
+                                data:{
+                                      "subject_type":$("#subject_del").val(),                     
+                                },
+                                async: false,
+                                error: function(request) {
+                                    alert("Connection error");
+                                },
+                                success: function(result) {
+
+                                }
+                                
+                            });
+                            location.reload(false); 
+                        });
+                        /*
+                        $('#send_work').unbind('click').click(function(){
+                            $.ajax({
+                                cache: true,
+                                type: "POST",
+                                url:"http://fuck.io/index/teach/doHomework",
+                                data:{
+                                      "subject_type":$("#subject_send").val(),                     
+                                },
+                                async: false,
+                                error: function(request) {
+                                    alert("Connection error");
+                                },
+                                success: function(result) {
+
+                                }
+                                
+                            });
+                            //location.reload(false); 
+                        });*/
+                        $('#send_work').unbind('click').click(function(){
+                            $('#edit_work').hide();
+                            $('#edit_show').hide();
+                            $('#edit_send').show();
+                            
+                            $('#gogogo').unbind('click').click(function(){
+                                var chk_value =[];
+                                $('input[name="class_homework"]:checked').each(function(){    
+                                    chk_value.push($(this).val());    
+                                });  
+                                var work_time = $("input[name='work_time']:checked").val();
+                                $.ajax({
+                                    cache: true,
+                                    type: "POST",
+                                    url:"http://fuck.io/index/teach/doHomework",
+                                    data:{
+                                          "class":chk_value,
+                                          "work_time":work_time,  
+                                          "subject_type":'send_work',                   
+                                    },
+                                    async: false,
+                                    error: function(request) {
+                                        alert("Connection error");
+                                    },
+                                    success: function(result) {
+
+                                    }
+                                });  
+                            });
+                        });
                     });
                 </script>
 
