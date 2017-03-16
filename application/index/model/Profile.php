@@ -10,19 +10,15 @@ class Profile extends Model
     {
         parent::initialize();
     }
-    //更新个人信息方法
-    public function updateProfile($data)
-    {
-    	//去除数组中空值得元素
-    	$newdata=array_filter ($data);
 
-    	$update = db('profile')
-                    ->where('pid',$_SESSION['think']['uid'])
-                    ->update($newdata);
-        if (!$update) {
-            return false;
-        } else {
-            return true;
-        }
+    public function getProfile($id)
+    {
+        $this->profile = Profile::get($id);
+        return $this->profile;
+    }
+
+    public function setProfile($data)
+    {
+        Profile::update($data);
     }
 }

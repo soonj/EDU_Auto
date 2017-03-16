@@ -36,7 +36,7 @@ class Vst extends Common
     }
 
     //访客信息添加
-    public function profile()
+    protected function profile()
     {
         return $this->fetch('profile');
     }

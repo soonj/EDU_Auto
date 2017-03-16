@@ -27,7 +27,7 @@ class Auth extends Model
                         'msg'       => 'success',
                         'uid'       => $user->uid,
                         'uname'     => $user->uname,
-                        //'profile'   => $user->profile,
+                        'profile'   => $user->profile->profile,
                         'role'      => $user->role->role,
                     );
                 } else {
@@ -61,6 +61,7 @@ class Auth extends Model
             }else{
 
                 //基本信息添加
+
                 $user = new User($data);
                 $user->allowField(true)->save();
 
