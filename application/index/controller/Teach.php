@@ -15,7 +15,6 @@ class Teach extends Common
         parent::_initialize();
         //角色权限检查
         $role = Loader::model('Role')->getRole($this->uid);
-        //var_dump($role);die;
         if ($role != 2){
             $this->error('权限不正确');
         }
@@ -36,16 +35,40 @@ class Teach extends Common
 
     public function homework()
     {
-        //方法跳转
+        $teach_info = db('profile')
+                        ->where('pid', $_SESSION['think']['uid'])
+                        ->find();
+        // 查询单个数据
+
+        $class = explode('/' , $teach_info['class']);
+        //dump($class);
+        $this->assign('class', $class); 
+
+        //如果有正在布置的作业，获取之
+        if (!empty($_SESSION['think']['workcacheid'])) {
+                $data = db('homeworkcache')
+                        ->where('keyid', $_SESSION['think']['workcacheid'])
+                        ->where('del_work', 1)
+                        ->find();
+            if ($data) {
+               $this->assign('homeworkcache', $data); 
+            }
+        }
         return $this->fetch('homework');
     }
 
     public function doHomework()
     {
         $sdata = input('post.');
+        
         if (!empty($sdata['subject_type'])) {
-            //dump($sdata['subject_type']);
-            $homework = Loader::model('Homework')->setSubject($sdata);
+            if ($sdata['subject_type'] == 'del_work') {
+                $homework = Loader::model('Homework')->delHomework();
+            } elseif ($sdata['subject_type'] == 'send_work') {
+                $homework = Loader::model('Homework')->sendHomework($sdata);
+            } else {
+                $homework = Loader::model('Homework')->setSubject($sdata);
+            }
         }
         
     }

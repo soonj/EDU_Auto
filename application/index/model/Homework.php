@@ -15,9 +15,49 @@ class Homework extends Model
     //发布作业方法
     public function sendHomework($data)
     {
-    	
+    	if (!empty($_SESSION['think']['workcacheid'])) {
+            $cache = db('homeworkcache')
+                    ->where('uid',$_SESSION['think']['uid'])
+                    ->where('keyid', $_SESSION['think']['workcacheid'])
+                    ->where('del_work', 1)
+                    ->select();
+            if ($cache) {
+                $homework = true;
+            } else {
+                $homework = false;
+            }
+        } else {
+            $homework = false;
+        }
+        if(!empty($data['class'])) {
+            $string = join('/', $data['class']);
+        }
+
+        $senddata['end_time'] = $data['work_time']*3600*24 + time();
+        $senddata['class_id'] = $string;
+        $senddata['content'] = '<div class="jumbotron">'.$cache[0]['xuanze'].$cache[0]['panduan'].$cache[0]['jianda'].'</div>';
+        $senddata['teach_id'] = $_SESSION['think']['uid'];
+
+        $result = db('homework')->insert($senddata);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+        
     }
 
+    //删除作业方法
+    public function delHomework()
+    {
+        $deldata = ['del_work' => '0'];
+        $result = db('homeworkcache')
+                    ->where('uid',$_SESSION['think']['uid'])
+                    ->where('keyid', $_SESSION['think']['workcacheid'])
+                    ->update($deldata);
+    }
+
+    //编辑作业方法
     public function setSubject($data)
     {
         //Session::delete('workcacheid', 'think');
@@ -27,6 +67,7 @@ class Homework extends Model
             $cache = db('homeworkcache')
                     ->where('uid',$_SESSION['think']['uid'])
                     ->where('keyid', $_SESSION['think']['workcacheid'])
+                    ->where('del_work', 1)
                     ->select();
             if ($cache) {
                 $homework = true;
