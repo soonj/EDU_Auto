@@ -12,13 +12,15 @@
     <title>SB Admin - Bootstrap Admin Template</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="/index/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="/index/css/sb-admin.css" rel="stylesheet">
+    <link href="/static/css/sb-admin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="/index/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script src="/static/js/jquery.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://www.tp5.com/index/index/index">WTF University</a>
+                <a class="navbar-brand" href="http://fuck.io/vst/{$_SESSION['think']['uname']}"">WTF University</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -128,20 +130,17 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {name} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uname']} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="http://fuck.io/vst/{$_SESSION['think']['uname']}/fixinfo"><i class="fa fa-fw fa-user"></i> 个人信息</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            <a href="http://fuck.io/vst/{$_SESSION['think']['uname']}/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> 退出</a>
                         </li>
                     </ul>
                 </li>
@@ -150,22 +149,22 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="http://www.tp5.com/index/index/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
+                        <a href="http://fuck.io/index/teach/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
                     </li>
                     <li>
-                        <a href="http://www.tp5.com/index/index/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
+                        <a href="http://fuck.io/index/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
                     </li>
                     <li>
-                        <a href="http://www.tp5.com/index/index/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
+                        <a href="http://fuck.io/index/teach/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
                     </li>
                     <li>
-                        <a href="http://www.tp5.com/index/index/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                        <a href="http://fuck.io/index/teach/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                     </li>
                     <li>
-                        <a href="http://www.tp5.com/index/index/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
+                        <a href="http://fuck.io/index/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
                     </li>
                     <li>
-                        <a href="http://www.tp5.com/index/index/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+                        <a href="http://fuck.io/index/teach/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
@@ -179,7 +178,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="http://www.tp5.com/index/index/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+                        <a href="http://fuck.io/index/teach/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
                     </li>
                 </ul>
             </div>
@@ -198,7 +197,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="bgd_index.html">首页</a>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">首页</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-edit"></i> 个人信息
@@ -208,58 +207,58 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row" style="margin-bottom: 30px;display:block;" id="userinfo_list">
+                <div class="row" style="margin-bottom: 30px;display:block;" id="userinfo_list" >
                     <div class="col-lg-3">
                         <h2></h2>
                         <div class="table-responsive">
-                            <img src="/index/image/ROTK.jpg" width="" height="100%">
+                            <img src="/static/image/ROTK.jpg" width="" height="100%">
                         </div>
                     </div>
                     <div class="col-lg-9">
-                        <h2>{name}</h2>
+                        <h2>{$_SESSION['think']['uname']}</h2>
                         <div class="table-responsive">
                             <table class="table table-hover table-striped">
                                
                                 <tbody>
                                     <tr>
                                         <td>身份证</td>
-                                        <td>111110101010101010</td>
+                                        <td>{$userinfo['id_card']}</td>
                                         <td>教师证</td>
-                                        <td>111110101010101010</td>
+                                        <td>{$userinfo['id_teach']}</td>
                                     </tr>
                                     <tr>
                                         <td>手机号</td>
-                                        <td>13616166666</td>
+                                        <td>{$userinfo['phone']}</td>
                                         <td>qq号</td>
-                                        <td>11223344</td>
+                                        <td>{$userinfo['qq']}</td>
                                     </tr>
                                     <tr>
                                         <td>住址街道</td>
-                                        <td>北京市海淀区</td>
+                                        <td>{$userinfo['add']}</td>
                                         <td>详细地址</td>
-                                        <td>外馆斜街1号甲</td>
+                                        <td>{$userinfo['dizhi']}</td>
                                     </tr>
                                     <tr>
                                         <td>学历</td>
-                                        <td>研究生</td>
+                                        <td>{$userinfo['xueli']}</td>
                                         <td>职称</td>
-                                        <td>教授</td>
+                                        <td>{$userinfo['zhicheng']}</td>
                                     </tr>
                                     <tr>
                                         <td>毕业院校</td>
-                                        <td>哈尔滨佛学院</td>
+                                        <td>{$userinfo['biye']}</td>
                                         <td>专业</td>
-                                        <td>藏传佛教</td>
+                                        <td>{$userinfo['zhuanye']}</td>
                                     </tr>
                                     <tr>
                                         <td>任职院系</td>
-                                        <td>人文学院</td>
+                                        <td>{$userinfo['yuanxi']}</td>
                                         <td>执教科目</td>
-                                        <td>藏传佛教</td>
+                                        <td>{$userinfo['kemu']}</td>
                                     </tr>
                                     <tr>
                                         <td>执教班级</td>
-                                        <td colspan="3">16050431班， 16050432班， 16050433班，</td>
+                                        <td colspan="3">{$userinfo['class']}</td>
                                         
                                     </tr>
                                 </tbody>
@@ -270,24 +269,104 @@
                         </div>
                     </div>
                 </div>
+                <div class="row" style="margin-bottom: 30px;display:block;" id="userinfo_fix">
+                    <div class="col-lg-3">
+                        <h2></h2>
+                        <div class="table-responsive">
+                            <img src="/static/image/ROTK.jpg" width="" height="100%">
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <h2>{$_SESSION['think']['uname']}</h2>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped">
+                               <form id="fix_put" method="post">
+                                <tbody>
+                                    <tr>
+                                        <td>身份证</td>
+                                        <td id="teach_id" value="{$_SESSION['think']['uname']}">{$userinfo['id_card']}</td>
+                                        <td>教师证</td>
+                                        <td>{$userinfo['id_teach']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>手机号</td>
+                                        <td><input class="form-control" id="fix_phone" style="height:20px;width:150px;"></td>
+                                        <td>qq号</td>
+                                        <td><input class="form-control" id="fix_qq" style="height:20px;width:150px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>住址街道</td>
+                                        <td><input class="form-control" id="fix_add" style="height:20px;width:150px;"></td>
+                                        <td>详细地址</td>
+                                        <td><input class="form-control" id="fix_dizhi" style="height:20px;width:150px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>学历</td>
+                                        <td>{$userinfo['xueli']}</td>
+                                        <td>职称</td>
+                                        <td>{$userinfo['zhicheng']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>毕业院校</td>
+                                        <td>{$userinfo['biye']}</td>
+                                        <td>专业</td>
+                                        <td>{$userinfo['zhuanye']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>任职院系</td>
+                                        <td><input class="form-control" id="fix_yuanxi" style="height:20px;width:150px;"></td>
+                                        <td>执教科目</td>
+                                        <td><input class="form-control" id="fix_kemu" style="height:20px;width:150px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>执教班级</td>
+                                        <td colspan="3"><input class="form-control" id="fix_class" style="height:20px;width:300px;"></td>
+                                        
+                                    </tr>
+                                </tbody>
+                                </form>
+                            </table>
+                            <div class="text-right col-lg-12" style="margin-left: -15px;">
+                                <a id="update_userinfo" class="col-lg-2"><input type="file"></a>
+                                <a id="update_userinfo" class="col-lg-6"><button type="submit" class="btn btn-default" id="push_data">提交更新</button></a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <script>
                     $(function(){
-                        alert('111');
+                        $("#userinfo_fix").hide();
                         $('#update_userinfo').click(function(){
-                            alert('1111');
                             $("#userinfo_list").hide();
-                            //$('#pic li').eq($(this).index()).stop().animate({'opacity':1} , 500);
+                            $("#userinfo_fix").show();
+                        });
+                        $('#push_data').click(function(){
+                            $.ajax({
+                                cache: true,
+                                type: "POST",
+                                url:"http://fuck.io/index/userinfo/userinfo",
+                                data:{
+                                  "phone":$("#fix_phone").val(),
+                                  "qq":$("#fix_qq").val(), 
+                                  "add":$("#fix_add").val(),
+                                  "dizhi":$("#fix_dizhi").val(),
+                                  "yuanxi":$("#fix_yuanxi").val(),
+                                  "kemu":$("#fix_kemu").val(),
+                                  "class":$("#fix_class").val(),                      
+                                },
+                                async: false,
+                                error: function(request) {
+                                    alert("Connection error");
+                                },
+                                success: function(result) {
+                                    //var url = "http://fuck.io/teach/" + result + "/fixinfo";
+                                    //url = url.replace(/\"/g, ""); 
+                                }
+                            });
+                            location.reload(false); 
                         });
                     });
-                    /*window.onload = function()
-                    {
-                        var oUpdate = document.getElementById('update_userinfo');
-
-                        oUpdate.onclick = function()
-                        {
-                            alert('111');
-                        }
-                    }*/
                     
                 </script>
                 <div class="row">
@@ -513,10 +592,10 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="/index/js/jquery.js"></script>
+
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="/index/js/bootstrap.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
 
 </body>
 

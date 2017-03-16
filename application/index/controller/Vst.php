@@ -32,7 +32,7 @@ class Vst extends Common
             return $this->$func();
         }
 
-        return $this->fetch('bgd_index');
+        return $this->fetch('v_index');
     }
 
     //访客信息添加
@@ -41,6 +41,38 @@ class Vst extends Common
         return $this->fetch('profile');
     }
 
+    //访客修改个人信息
+    /*
+    public function Fixinfo()
+    {
+        $data = db('profile')->where('pid', $_SESSION['think']['uid'])->find();
+        $this->assign('userinfo', $data);
+        return $this->fetch('Fixinfo');
+
+    }
+
+    //
+    public function homework()
+    {
+        $stu_info = db('profile')
+                        ->where('pid', $_SESSION['think']['uid'])
+                        ->find();
+
+        $this->assign('class', $class);
+
+        //如果有正在布置的作业，获取之
+        if (!empty($_SESSION['think']['workcacheid'])) {
+                $data = db('homeworkcache')
+                        ->where('keyid', $_SESSION['think']['workcacheid'])
+                        ->where('del_work', 1)
+                        ->find();
+            if ($data) {
+               $this->assign('homeworkcache', $data);
+            }
+        }
+        return $this->fetch('homework');
+    }
+*/
     public function doadd($data)
     {
 
