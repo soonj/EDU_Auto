@@ -15,18 +15,22 @@ class Teach extends Common
         parent::_initialize();
         //角色权限检查
         $role = Loader::model('Role')->getRole($this->uid);
-        //var_dump($role);die;
         if ($role != 2){
             $this->error('权限不正确');
         }
         //$Session::set('name', "$name");
     }
 
-    public function bgd_index($uname)
+    public function index($uname , $func = null)
     {
-        //TODO:展示教师用户页
+        //访客是否登录验证
+        parent::verify($uname);
 
-        return $this->fetch();
+        //方法跳转
+        if (!is_null($func)){
+            return $this->$func();
+        }
+        return $this->fetch('bgd_index');
     }
 
     public function homework($uname)

@@ -36,19 +36,26 @@ class Vst extends Common
         return $this->fetch('bgd_index');
     }
 
-    //访客信息添加
+    //访客信息添加界面显示
     protected function profile()
     {
+        //todo:ajax返回班级信息
         return $this->fetch('profile');
     }
 
+    //提交信息添加
     public function setProfile()
     {
         $data = Request::instance()->post();
+//         输入信息验证
+//        $validate = Loader::validate('Profile');
+//        if (!$validate->check($data)){
+//            dump($validate->getError());
+//            $this->error();
+//        }
         $result = Loader::model('Profile')->setProfile($data);
         if ($result){
-            $stuRole = ['role'=>'0'];
-            Loader::model('Role')->setRole($stuRole , $this->uid);
+            Loader::model('Role')->setRole(['role'=>'0'] , $this->uid);
             Loader::model('Notice')->regAnnounce($this->uid);
             $this->success('修改成功' , '/stu/'.$this->uname);
         }else{

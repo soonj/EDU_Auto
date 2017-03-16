@@ -85,6 +85,7 @@ class Notice extends Model
         //查询指定用户下的所有通知
         $nids = $user->notices()->where('status',0)->column('nid');
         foreach ($nids as $nid){
+            //todo:返回的内容需要截取，需要增加处理类
             $content[] = Notice::get($nid);
         }
         return $content;

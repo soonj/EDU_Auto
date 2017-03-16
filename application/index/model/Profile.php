@@ -22,11 +22,6 @@ class Profile extends Model
 
     public function setProfile($data)
     {
-//        $validate = Loader::validate('Profile');
-//        if (!$validate->check($data)){
-//            dump($validate->getError());
-//            return false;
-//        }
         $uid = Session::get('uid');
         $user = User::get($uid);
         $user->profile->save($data);
