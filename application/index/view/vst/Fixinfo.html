@@ -149,22 +149,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="http://fuck.io/index/teach/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
-                    </li>
-                    <li>
-                        <a href="http://fuck.io/index/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
-                    </li>
-                    <li>
-                        <a href="http://fuck.io/index/teach/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
-                    </li>
-                    <li>
-                        <a href="http://fuck.io/index/teach/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
-                    </li>
-                    <li>
-                        <a href="http://fuck.io/index/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
-                    </li>
-                    <li>
-                        <a href="http://fuck.io/index/teach/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+                        <a href="http://fuck.io/vst/{$_SESSION['think']['uname']}/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
@@ -178,7 +163,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+                        <a href="http://fuck.io/vst/{$_SESSION['think']['uname']}/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
                     </li>
                 </ul>
             </div>
@@ -206,6 +191,7 @@
                     </div>
                 </div>
                 <!-- /.row -->
+                
 
                 <div class="row" style="margin-bottom: 30px;display:block;" id="userinfo_list" >
                     <div class="col-lg-3">
@@ -217,48 +203,47 @@
                     <div class="col-lg-9">
                         <h2>{$_SESSION['think']['uname']}</h2>
                         <div class="table-responsive">
-                            <table class="table table-hover table-striped">
-                               
+                            <table class="table table-hover table-striped">                             
                                 <tbody>
                                     <tr>
                                         <td>身份证</td>
-                                        <td>{$userinfo['id_card']}</td>
+                                        <td>1</td>
                                         <td>教师证</td>
-                                        <td>{$userinfo['id_teach']}</td>
+                                        <td>1</td>
                                     </tr>
                                     <tr>
                                         <td>手机号</td>
-                                        <td>{$userinfo['phone']}</td>
+                                        <td>1</td>
                                         <td>qq号</td>
-                                        <td>{$userinfo['qq']}</td>
+                                        <td>1</td>
                                     </tr>
                                     <tr>
                                         <td>住址街道</td>
-                                        <td>{$userinfo['add']}</td>
+                                        <td>1</td>
                                         <td>详细地址</td>
-                                        <td>{$userinfo['dizhi']}</td>
+                                        <td>1</td>
                                     </tr>
                                     <tr>
                                         <td>学历</td>
-                                        <td>{$userinfo['xueli']}</td>
+                                        <td>1</td>
                                         <td>职称</td>
-                                        <td>{$userinfo['zhicheng']}</td>
+                                        <td>1</td>
                                     </tr>
                                     <tr>
                                         <td>毕业院校</td>
-                                        <td>{$userinfo['biye']}</td>
+                                        <td>1</td>
                                         <td>专业</td>
-                                        <td>{$userinfo['zhuanye']}</td>
+                                        <td>1</td>
                                     </tr>
                                     <tr>
                                         <td>任职院系</td>
-                                        <td>{$userinfo['yuanxi']}</td>
+                                        <td>1</td>
                                         <td>执教科目</td>
-                                        <td>{$userinfo['kemu']}</td>
+                                        <td>1</td>
                                     </tr>
                                     <tr>
                                         <td>执教班级</td>
-                                        <td colspan="3">{$userinfo['class']}</td>
+                                        <td colspan="3">1</td>
                                         
                                     </tr>
                                 </tbody>
@@ -284,9 +269,9 @@
                                 <tbody>
                                     <tr>
                                         <td>身份证</td>
-                                        <td id="teach_id" value="{$_SESSION['think']['uname']}">{$userinfo['id_card']}</td>
+                                        <td id="teach_id">1</td>
                                         <td>教师证</td>
-                                        <td>{$userinfo['id_teach']}</td>
+                                        <td>1</td>
                                     </tr>
                                     <tr>
                                         <td>手机号</td>
@@ -302,15 +287,15 @@
                                     </tr>
                                     <tr>
                                         <td>学历</td>
-                                        <td>{$userinfo['xueli']}</td>
+                                        <td>1</td>
                                         <td>职称</td>
-                                        <td>{$userinfo['zhicheng']}</td>
+                                        <td>1</td>
                                     </tr>
                                     <tr>
                                         <td>毕业院校</td>
-                                        <td>{$userinfo['biye']}</td>
+                                        <td>1</td>
                                         <td>专业</td>
-                                        <td>{$userinfo['zhuanye']}</td>
+                                        <td>1</td>
                                     </tr>
                                     <tr>
                                         <td>任职院系</td>
@@ -328,7 +313,10 @@
                             </table>
                             <div class="text-right col-lg-12" style="margin-left: -15px;">
                                 <a id="update_userinfo" class="col-lg-2"><input type="file"></a>
-                                <a id="update_userinfo" class="col-lg-6"><button type="submit" class="btn btn-default" id="push_data">提交更新</button></a>
+                                <span id="update_userinfo" class="col-lg-8" style="margin-top:-10px;">
+                                    <button type="submit" class="btn btn-default" id="push_data">提交更新</button>
+                                    <button type="submit" class="btn btn-default" id="return_data" style="margin-left:50px;">返回</button>
+                                </span>
 
                             </div>
                         </div>
@@ -337,11 +325,11 @@
                 <script>
                     $(function(){
                         $("#userinfo_fix").hide();
-                        $('#update_userinfo').click(function(){
+                        $('#update_userinfo').unbind('click').click(function(){
                             $("#userinfo_list").hide();
                             $("#userinfo_fix").show();
                         });
-                        $('#push_data').click(function(){
+                        $('#push_data').unbind('click').click(function(){
                             $.ajax({
                                 cache: true,
                                 type: "POST",
@@ -365,6 +353,10 @@
                                 }
                             });
                             location.reload(false); 
+                        });
+                        $('#return_data').unbind('click').click(function(){
+                            $("#userinfo_fix").hide();
+                            $("#userinfo_list").show();
                         });
                     });
                     

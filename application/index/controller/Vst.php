@@ -36,9 +36,15 @@ class Vst extends Common
     }
 
     //访客信息添加
-    protected function profile()
+    protected function fixinfo()
     {
-        return $this->fetch('profile');
+        return $this->fetch('fixinfo');
+    }
+
+
+    protected function mywork()
+    {
+        return $this->fetch('mywork');
     }
 
     //访客修改个人信息

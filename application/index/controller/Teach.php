@@ -97,7 +97,7 @@ class Teach extends Common
 
     public function charts()
     {
-        return $this->fetch('charst');
+        return $this->fetch('charts');
     }
 	
     public function fixinfo()
@@ -110,12 +110,12 @@ class Teach extends Common
 	
     public function forms()
     {
-        return $this->fetch('form');
+        return $this->fetch('forms');
     }
 
     public function tables()
     {
-        return $this->fetch('table');
+        return $this->fetch('tables');
     }
 
 }
