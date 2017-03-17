@@ -78,8 +78,8 @@ class Stu extends Common
     //查看用户资源
     private function res()
     {
-        $data = Loader::model('Res')->getRes($this->uid);
-        $this->assign('ures' , $data);
+        $data = Loader::model('Res')->getRes();
+        $this->assign('res' , $data);
         return $this->fetch('res');
     }
 }

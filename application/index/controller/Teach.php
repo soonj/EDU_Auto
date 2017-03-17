@@ -92,9 +92,38 @@ class Teach extends Common
 
     }
 
-    public function Blankpage()
+    //显示上传页面，查看资源库
+    public function upload()
     {
-        return $this->fetch();
+        $res = Loader::model('Res')->getRes();
+        $this->assign('res' , $res);
+        return $this->fetch('upload');
+    }
+
+    //上传文件
+    public function doupload()
+    {
+        $files = request()->file('file-zh');
+        $title = Request::instance()->post();
+        foreach($files as $file){
+            // 移动到框架应用根目录/public/uploads/ 目录下
+            $info = $file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'uploads');
+            if($info){
+            //上传成功
+                $data = [
+                    'path'      => ROOT_PATH . 'public' . DS . 'uploads\\' . $info->getFilename(),
+                    'uid'       => $this->uid,
+                    'filename'  => $info->getFilename(),
+                    'type'      => $info->getExtension(),
+                    'title'     => $title['title'],
+                ];
+                Loader::model('Res')->upload($data);
+                echo json_encode($title['title']);
+            }else{
+            // 上传失败获取错误信息
+                echo json_encode($file->getError());
+            }
+        }
     }
 
     public function Bootstrapelements()
