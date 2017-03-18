@@ -36,25 +36,20 @@ class Teach extends Common
 	
     public function homework()
     {
-        $teach_info = db('profile')
-                        ->where('pid', $_SESSION['think']['uid'])
-                        ->find();
-        // 查询单个数据
+        $homework = Loader::model('Homework')->showHomework();
 
+        $homeworkNum = Loader::model('Homework')->homeworkNum();
+
+        $teach_info = db('profile')
+                    ->where('pid', $_SESSION['think']['uid'])
+                    ->find();
+
+        //处理拼接的班级字符串           
         $class = explode('/' , $teach_info['class']);
         //dump($class);
-        $this->assign('class', $class); 
-
-        //如果有正在布置的作业，获取之
-        if (!empty($_SESSION['think']['workcacheid'])) {
-                $data = db('homeworkcache')
-                        ->where('keyid', $_SESSION['think']['workcacheid'])
-                        ->where('del_work', 1)
-                        ->find();
-            if ($data) {
-               $this->assign('homeworkcache', $data); 
-            }
-        }
+        $this->assign('class', $class);
+        $this->assign('homeworkNum', $homeworkNum);
+        $this->assign('homework', $homework);
         return $this->fetch('homework');
     }
 
@@ -67,6 +62,8 @@ class Teach extends Common
                 $homework = Loader::model('Homework')->delHomework();
             } elseif ($sdata['subject_type'] == 'send_work') {
                 $homework = Loader::model('Homework')->sendHomework($sdata);
+            } elseif ($sdata['subject_type'] == 'deltimu') {
+                $homework = Loader::model('Homework')->deltimu($sdata);
             } else {
                 $homework = Loader::model('Homework')->setSubject($sdata);
             }
@@ -95,8 +92,23 @@ class Teach extends Common
         return $this->fetch('mywork');
     }
 
+    //提升助教权限页面
     public function charts()
     {
+        $class = Loader::model('profile')->getProfile($_SESSION['think']['uid']);
+        
+        $user = Loader::model('user')->where('uid', '>', 0)->select();
+        foreach($user as $val) {
+            $uid[] = $val['uid'];
+        }
+
+        $homeworkNum = Loader::model('role')->userRole($uid, '0');
+
+        dump($role);
+        die;
+
+        $this->assign('class', $user['class']);
+
         return $this->fetch('charts');
     }
 	

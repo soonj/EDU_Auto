@@ -3,7 +3,7 @@ namespace app\index\model;
 
 use think\Model;
 use traits\model\SoftDelete;
-class User extends Model
+class Cla extends Model
 {
     protected $autoWriteTimestamp = true;
     protected function initialize()
@@ -22,33 +22,9 @@ class User extends Model
         return $this->hasOne('Role' , 'roleid')->field('roleid , role');
     }
 
-    //关联资源表，外键为rid
-    public function res()
+    public function getGid($id)
     {
-        return $this->hasMany('Res' , 'rid')->field('path , type , create_time');
-    }
-
-    //关联成绩表，外键为uid
-    public function score()
-    {
-        return $this->hasMany('Score' , 'uid');
-    }
-
-    //关联系名表，外键为xid
-    public function dep()
-    {
-        return $this->hasOne('Dep' , 'xid');
-    }
-
-    //关联消息队列表，外键为uid
-    public function notices()
-    {
-        return $this->hasMany('NoticeList' , 'uid');
-    }
-
-    public function getUser($id)
-    {
-        $result = User::get($id);
+        $result = Cla::get($id);
         //$result = User::get($stuid[], );
         return $result;
     }

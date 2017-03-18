@@ -38,6 +38,14 @@ class Vst extends Common
     //访客信息添加
     protected function fixinfo()
     {
+        $profile = Loader::model('Profile')->getProfile($_SESSION['think']['uid']);
+
+        $data = Loader::model('user')->getUser($_SESSION['think']['uid']);
+        
+        $this->assign('userinfo', $profile);
+
+        $this->assign('user', $data);
+
         return $this->fetch('fixinfo');
     }
 
@@ -47,40 +55,30 @@ class Vst extends Common
         return $this->fetch('mywork');
     }
 
-    //访客修改个人信息
-    /*
-    public function Fixinfo()
+    //提交信息添加
+    public function setProfile()
     {
-        $data = db('profile')->where('pid', $_SESSION['think']['uid'])->find();
-        $this->assign('userinfo', $data);
-        return $this->fetch('Fixinfo');
+        $vstinfo = input('post.');
 
-    }
+        $data = Loader::model('user')->getUser($_SESSION['think']['uid']);
 
-    //
-    public function homework()
-    {
-        $stu_info = db('profile')
-                        ->where('pid', $_SESSION['think']['uid'])
-                        ->find();
+        dump($data);
+        die;
 
-        $this->assign('class', $class);
-
-        //如果有正在布置的作业，获取之
-        if (!empty($_SESSION['think']['workcacheid'])) {
-                $data = db('homeworkcache')
-                        ->where('keyid', $_SESSION['think']['workcacheid'])
-                        ->where('del_work', 1)
-                        ->find();
-            if ($data) {
-               $this->assign('homeworkcache', $data);
-            }
+        $data = Request::instance()->post();
+//         输入信息验证
+//        $validate = Loader::validate('Profile');
+//        if (!$validate->check($data)){
+//            dump($validate->getError());
+//            $this->error();
+//        }
+        $result = Loader::model('Profile')->setProfile($data);
+        if ($result){
+            Loader::model('Role')->setRole(['role'=>'0'] , $this->uid);
+            Loader::model('Notice')->regAnnounce($this->uid);
+            $this->success('修改成功' , '/stu/'.$this->uname);
+        }else{
+            $this->error('修改失败');
         }
-        return $this->fetch('homework');
-    }
-*/
-    public function doadd($data)
-    {
-
     }
 }
