@@ -100,31 +100,6 @@ class Teach extends Common
         return $this->fetch('upload');
     }
 
-    //上传文件
-    public function doupload()
-    {
-        $files = request()->file('file-zh');
-        $title = Request::instance()->post();
-        foreach($files as $file){
-            // 移动到框架应用根目录/public/uploads/ 目录下
-            $info = $file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'uploads');
-            if($info){
-            //上传成功
-                $data = [
-                    'path'      => ROOT_PATH . 'public' . DS . 'uploads\\' . $info->getFilename(),
-                    'uid'       => $this->uid,
-                    'filename'  => $info->getFilename(),
-                    'type'      => $info->getExtension(),
-                    'title'     => $title['title'],
-                ];
-                Loader::model('Res')->upload($data);
-                echo json_encode($title['title']);
-            }else{
-            // 上传失败获取错误信息
-                echo json_encode($file->getError());
-            }
-        }
-    }
 
     public function Bootstrapelements()
     {

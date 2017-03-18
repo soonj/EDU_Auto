@@ -21,6 +21,12 @@ class Res extends Model
         return Res::all();
     }
 
+    public function getResPath($fileNameUrl)
+    {
+        $res = Res::get(['filename' => $fileNameUrl]);
+        return $res->path;
+    }
+
     public function check()
     {
 

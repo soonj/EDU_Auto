@@ -207,7 +207,28 @@
                     <br>
         </div>
         <div>
+            <table class="table">
+                {foreach $res as $val}
 
+                <tr class='
+                {switch name="$val.type"}
+                    {case value="gif|png|jpg"}active{/case}
+                    {case value="js"}warning{/case}
+                    {case value="wmv"}danger{/case}
+                    {case value="ppt"}active{/case}
+                    {case value="doc"}info{/case}
+                    {default /}.info
+                {/switch}
+                '>
+                    <td>{$val.rid}</td>
+                    <td>{$val.title}</td>
+                    <td><a href="http://fuck.io/download/{$val.filename}">{$val.filename}</a></td>
+                    <td>{$val.type}</td>
+                    <td>{$val.create_time}</td>
+                    <td><a href="javascript:;">删除</a></td>
+                </tr>
+                {/foreach}
+            </table>
         </div>
     </div>
                 <!--</div>-->
@@ -222,7 +243,7 @@
         showCaption: true,
         uploadExtraData: {title : title},
         language: 'zh',
-        uploadUrl: 'http://fuck.io/teach/{$Think.session.uname}/doupload',
+        uploadUrl: 'http://fuck.io/upload',
     });
     $("#file-0").fileinput({
         'allowedFileExtensions' : ['jpg', 'png','gif'],

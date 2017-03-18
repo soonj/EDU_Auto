@@ -18,21 +18,16 @@ return [
         ':name' => ['index/hello', ['method' => 'post']],
     ],
 
-//     'stu/index/:uname'       => 'index/stu/index',
-//     'shomework/:uname'       => 'index/stu/homework',
-//     'teach/index/:uname'     => 'index/teach/bgd_index',
-//     'teach/homework/:uname'  => 'index/teach/homework',
-//     'teach/fixinfo/:uname'   => 'index/teach/fixinfo',
-//     'assis/:uname'           => 'index/assis/index',
-//     'admin/:uname'           => 'admin/index',
-
     'login'                 => 'index/auth/login',
     'reg'                   => 'index/auth/reg',
     'signup'                => 'signup/signup',
     'signin'                => 'signin/signin',
     'stu/:uname/[:func]'    => 'index/stu/index',
-    'teach/:uname/[:func]'   => 'index/teach/index',
-    'assis/:uname/[:func]'   => 'index/assis/index',
-    'admin/:uname/[:func]'   => 'admin/index',
+    'teach/:uname/[:func]'  => 'index/teach/index',
+    'assis/:uname/[:func]'  => 'index/assis/index',
+    'admin/:uname/[:func]'  => 'admin/index',
     'vst/:uname/[:func]'    => 'index/vst/index',
+    'download/:fileNameUrl' => 'index/download/download',
+    'upload'                => 'index/upload/upload',
+
 ];
