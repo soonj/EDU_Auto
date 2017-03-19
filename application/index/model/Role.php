@@ -22,14 +22,9 @@ class Role extends Model
 
         //获取单个用户权限
         $user = User::get($id);
-        return $user->role->role;
-    }
-
-    //查询所有等级为$data(学生，老师，助教)的用户
-    public function userRole($id, $type)
-    {
-        dump($id);
-        die;
+        //dump($user->role());
+        //die;
+        return $user->role;
     }
 
     //设置用户权限

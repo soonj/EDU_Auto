@@ -95,19 +95,20 @@ class Teach extends Common
     //提升助教权限页面
     public function charts()
     {
-        $class = Loader::model('profile')->getProfile($_SESSION['think']['uid']);
-        
-        $user = Loader::model('user')->where('uid', '>', 0)->select();
-        foreach($user as $val) {
-            $uid[] = $val['uid'];
+        $class = Loader::model('user')->getUser($_SESSION['think']['uid']);
+
+        $classarr = explode('/', $class['class']);
+
+        foreach($classarr as $value) {
+            $user = Loader::model('user')->where('role', 0)->where('class', $value)->select();
+            foreach($user as $val) {
+                $studens[$value][] = $val;
+            }
         }
 
-        $homeworkNum = Loader::model('role')->userRole($uid, '0');
-
-        dump($role);
-        die;
-
-        $this->assign('class', $user['class']);
+        //dump($studens['1701']['0']['uid']);
+        //die;
+        $this->assign('class', $studens);
 
         return $this->fetch('charts');
     }

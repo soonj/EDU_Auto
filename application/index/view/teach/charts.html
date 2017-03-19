@@ -229,67 +229,45 @@
                         </div>
                     </div>
                 </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <label style="font-size:24px;margin-left:15px;padding-top:5px;">请选择班级：</label>
+                    {foreach $class as $key => $value}
+                    <button type="submit" class="btn btn-info" style="margin-left:20px;margin-top:-8px;" id="click_pick">{$key}</button>
+                    {/foreach}
+                </div>
                 <div class="row">
-                    <div class="col-lg-9 ">
+                    {foreach $class as $keys => $values}
+                    <div class="col-lg-9 " name="{$keys}">
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>班级</th>
-                                        <th>姓名</th>
                                         <th>学号</th>
+                                        <th>姓名</th>
                                         <th>状态</th>
+                                        <th>提升</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                {foreach $values as $val}
                                     <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        
+                                        <td>{$val['uid']}</td>
+                                        <td>{$val['uname']}</td>
+                                        <td>{$val['role']}</td>
+                                        <td><button type="submit" class="btn btn-success" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" name="tisheng_stu" value="{$val['uid']}">提升</button></td>
                                     </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                   
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                       
-                                    </tr>
+                                {/foreach}
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    {/foreach}
                 </div>
                 <!-- /.row -->
+
+                <script>
+                    
+                </script>
 <!--*******************************************选择教师助教*******************************************************-->
                 <!-- Flot Charts -->
                 <div class="row">
