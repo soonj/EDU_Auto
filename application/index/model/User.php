@@ -46,4 +46,18 @@ class User extends Model
         return $this->hasMany('NoticeList' , 'uid');
     }
 
+    public function getUser($id)
+    {
+        $result = User::get($id);
+        //$result = User::get($stuid[], );
+        return $result;
+    }
+
+    public function charts($uid, $class, $type = '1')
+    {   
+        $user = User::get($uid);
+        $user->zhujiao = $type;
+        $user->save();
+    }
+
 }

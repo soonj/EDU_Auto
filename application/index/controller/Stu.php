@@ -12,6 +12,7 @@ use think\Request;
  */
 class Stu extends Common
 {
+    protected $notice;
     public function _initialize()
     {
         parent::_initialize();
@@ -40,8 +41,14 @@ class Stu extends Common
     //查看学生作业
     private function homework()
     {
-        $data = Loader::model('Homework')->getHomework($this->uid);
-        return $this->fetch('homework' , $data);
+        //$data = Loader::model('Homework')->getHomework($this->uid);
+        //return $this->fetch('homework' , $data);
+        return $this->fetch('homework');
+    }
+
+    private function charts()
+    {
+        return $this->fetch('charts');
     }
 
     //提交完成作业
@@ -57,7 +64,7 @@ class Stu extends Common
         $data = Loader::model('Profile')->getProfile($this->uid);
         $this->assign('userinfo', $data);
 
-        return $this->fetch('Fixinfo');
+        return $this->fetch('fixinfo');
     }
 
     //修改用户详情

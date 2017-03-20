@@ -33,18 +33,39 @@ class Vst extends Common
             return $this->$func();
         }
 
-        return $this->fetch('bgd_index');
+        return $this->fetch('v_index');
     }
 
-    //访客信息添加界面显示
-    protected function profile()
+    //访客信息添加
+    protected function fixinfo()
     {
-        return $this->fetch('profile');
+        $profile = Loader::model('Profile')->getProfile($_SESSION['think']['uid']);
+
+        $data = Loader::model('user')->getUser($_SESSION['think']['uid']);
+
+        $this->assign('userinfo', $profile);
+
+        $this->assign('user', $data);
+
+        return $this->fetch('fixinfo');
+    }
+
+
+    protected function mywork()
+    {
+        return $this->fetch('mywork');
     }
 
     //提交信息添加
     public function setProfile()
     {
+        $vstinfo = input('post.');
+
+        $data = Loader::model('user')->getUser($_SESSION['think']['uid']);
+
+        dump($data);
+        die;
+
         $data = Request::instance()->post();
 //         输入信息验证
 //        $validate = Loader::validate('Profile');
@@ -60,6 +81,5 @@ class Vst extends Common
         }else{
             $this->error('修改失败');
         }
-
     }
 }

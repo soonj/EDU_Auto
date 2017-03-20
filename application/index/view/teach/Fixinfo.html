@@ -149,22 +149,22 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="http://fuck.io/index/teach/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
@@ -178,7 +178,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
                     </li>
                 </ul>
             </div>
@@ -224,7 +224,7 @@
                                         <td>身份证</td>
                                         <td>{$userinfo['id_card']}</td>
                                         <td>教师证</td>
-                                        <td>{$userinfo['id_teach']}</td>
+                                        <td>{$userinfo['cid']}</td>
                                     </tr>
                                     <tr>
                                         <td>手机号</td>
@@ -286,7 +286,7 @@
                                         <td>身份证</td>
                                         <td id="teach_id" value="{$_SESSION['think']['uname']}">{$userinfo['id_card']}</td>
                                         <td>教师证</td>
-                                        <td>{$userinfo['id_teach']}</td>
+                                        <td>{$userinfo['cid']}</td>
                                     </tr>
                                     <tr>
                                         <td>手机号</td>
@@ -328,7 +328,10 @@
                             </table>
                             <div class="text-right col-lg-12" style="margin-left: -15px;">
                                 <a id="update_userinfo" class="col-lg-2"><input type="file"></a>
-                                <a id="update_userinfo" class="col-lg-6"><button type="submit" class="btn btn-default" id="push_data">提交更新</button></a>
+                                <span id="update_userinfo" class="col-lg-8" style="margin-top:-10px;">
+                                    <button type="submit" class="btn btn-default" id="push_data">提交更新</button>
+                                    <button type="submit" class="btn btn-default" id="return_data" style="margin-left:50px;">返回</button>
+                                </span>
 
                             </div>
                         </div>
@@ -365,6 +368,10 @@
                                 }
                             });
                             location.reload(false); 
+                        });
+                        $('#return_data').unbind('click').click(function(){
+                            $("#userinfo_fix").hide();
+                            $("#userinfo_list").show();
                         });
                     });
                     

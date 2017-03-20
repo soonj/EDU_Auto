@@ -22,8 +22,9 @@ class Role extends Model
 
         //获取单个用户权限
         $user = User::get($id);
-        return $user->role->role;
-
+        //dump($user->role());
+        //die;
+        return $user->role;
     }
 
     //设置用户权限

@@ -22,9 +22,6 @@ class Teach extends Common
 
     public function index($func = null)
     {
-        //访客是否登录验证
-
-
         //方法跳转
         if (!is_null($func)){
             return $this->$func();
@@ -51,57 +48,124 @@ class Teach extends Common
 
     public function homework()
     {
-        $teach_info = db('profile')
-                        ->where('pid', $_SESSION['think']['uid'])
-                        ->find();
-        // 查询单个数据
+        $homework = Loader::model('Homework')->showHomework();
 
+        $homeworkNum = Loader::model('Homework')->homeworkNum();
+
+        $teach_info = db('profile')
+                    ->where('pid', $_SESSION['think']['uid'])
+                    ->find();
+
+        //处理拼接的班级字符串
         $class = explode('/' , $teach_info['class']);
         //dump($class);
         $this->assign('class', $class);
-
-        //如果有正在布置的作业，获取之
-        if (!empty($_SESSION['think']['workcacheid'])) {
-                $data = db('homeworkcache')
-                        ->where('keyid', $_SESSION['think']['workcacheid'])
-                        ->where('del_work', 1)
-                        ->find();
-            if ($data) {
-               $this->assign('homeworkcache', $data);
-            }
-        }
+        $this->assign('homeworkNum', $homeworkNum);
+        $this->assign('homework', $homework);
         return $this->fetch('homework');
     }
 
     public function doHomework()
     {
         $sdata = input('post.');
-
+        
         if (!empty($sdata['subject_type'])) {
             if ($sdata['subject_type'] == 'del_work') {
                 $homework = Loader::model('Homework')->delHomework();
             } elseif ($sdata['subject_type'] == 'send_work') {
                 $homework = Loader::model('Homework')->sendHomework($sdata);
+            } elseif ($sdata['subject_type'] == 'deltimu') {
+                $homework = Loader::model('Homework')->deltimu($sdata);
             } else {
                 $homework = Loader::model('Homework')->setSubject($sdata);
             }
         }
-
+        
     }
+	
 
-    //显示上传页面，查看资源库
-    public function upload()
+    public function blankpage()
     {
-        $res = Loader::model('Res')->getRes();
-        $this->assign('res' , $res);
-        return $this->fetch('upload');
+        return $this->fetch('blankpage');
     }
 
-    public function Fixinfo()
+    public function bootstrapelements()
+    {
+        return $this->fetch('bootstrapelements');
+    }
+
+    public function bootstrapgrid()
+    {
+        return $this->fetch('bootstrapgrid');
+    }
+
+    public function mywork()
+    {
+        return $this->fetch('mywork');
+    }
+
+    //展示助教权限页面
+    public function charts()
+    {
+        $class = Loader::model('user')->getUser($_SESSION['think']['uid']);
+
+        $classarr = explode('/', $class['class']);
+
+        //按不同班级处理学生数据
+        foreach($classarr as $value) {
+            $user = Loader::model('user')->where('role', 0)->where('class', $value)->select();
+            foreach($user as $val) {
+                $studens[$value][] = $val;
+            }
+        }
+
+        //获取老师的数据
+        $teach = Loader::model('user')->where('role', 2)->select();
+
+        $this->assign('teach', $teach);
+        $this->assign('class', $studens);
+
+        return $this->fetch('charts');
+    }
+
+    //修改助教权限部分
+    public function docharts()
+    {
+        $sdata = input('post.');
+        //dump($sdata);
+        //die;
+        if ($sdata['type'] == 'teach') {
+            $teachdata = explode('/', $sdata['class']);
+
+            $teach = Loader::model('user')->charts($teachdata[1], $teachdata[0]);
+
+            $update = Loader::model('zhujiao')->updatezhujiao($teachdata[1], $teachdata[0]);
+        } else {
+            $studata = explode('/', $sdata['type']);
+
+            $teach = Loader::model('user')->charts($sdata['uid'], $studata[0], $studata[1]);
+
+            $update = Loader::model('zhujiao')->updatezhujiao($sdata['uid'], $studata[0], $studata[1]);
+        }
+
+    }
+	
+    public function fixinfo()
     {
         $data = db('profile')->where('pid', $_SESSION['think']['uid'])->find();
         $this->assign('userinfo', $data);
         return $this->fetch('Fixinfo');
-
+        
     }
+	
+    public function forms()
+    {
+        return $this->fetch('forms');
+    }
+
+    public function tables()
+    {
+        return $this->fetch('tables');
+    }
+
 }

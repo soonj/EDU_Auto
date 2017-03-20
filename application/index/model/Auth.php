@@ -16,7 +16,6 @@ class Auth extends Model
                     'uname' => $data['uname'],
                 ];
         $user = User::get($uname);
-
         if ($data['hidden'] == 1) {
             //登录验证
             if ($user) {
