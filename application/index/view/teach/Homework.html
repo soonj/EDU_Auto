@@ -150,22 +150,22 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="http://fuck.io/index/teach/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/index/teach/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
@@ -215,29 +215,51 @@
                     <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_yulan">预览一下？</button>
                 </div>
 
-<!--**********************************************个人资料部分结束*******************************************-->
+<!--**********************************************作业预览部分*******************************************-->
 
                 <div class="row">
                     <div class="col-lg-9" style="margin-bottom: 30px;display:none;" id="edit_show">
-                        {if !empty($homeworkcache['xuanze'])}
-                            {$homeworkcache['xuanze']}
+                        {if !empty($homework)}
+                            {foreach $homework as $val}
+                                <div class="col-lg-1">
+                                     <button type="submit" class="btn btn-danger" name="deltimu" value="{$val['hcid']}" style="margin-left:-15px;height:30px;margin-top: 24px;">删除</button>
+                                </div>
+                                <div class="col-lg-11" style="margin-top:20px;margin-bottom:20px;">
+                                    {$val['content']}
+                                </div>
+                                
+                            {/foreach}
                         {else}
-                            <h3>您还没出选择题</h3>
+                            <h3>您还没出题</h3>
                         {/if}
+                        <input hidden id="subject_timu" value="deltimu">
+                        <script>
+                            $(function(){
+                                $("button[name='deltimu']").unbind('click').click(function(){
+                                var del_id = $(this).val();
+                                $.ajax({
+                                        cache: true,
+                                        type: "POST",
+                                        url:"http://fuck.io/index/teach/doHomework",
+                                        data:{
+                                            "delid":del_id, 
+                                            "subject_type":$("#subject_timu").val(),                     
+                                            },
+                                        async: false,
+                                        error: function(request) {
+                                            alert("Connection error");
+                                        },
+                                        success: function(result) {
 
-                        {if !empty($homeworkcache['panduan'])}
-                            {$homeworkcache['panduan']}
-                        {else}
-                            <h3>您还没出判断题</h3>
-                        {/if}
+                                        }
+                                    });
+                                    location.reload(false); 
+                                });
+                            });
+                        </script>
 
-                        {if !empty($homeworkcache['jianda'])}
-                            {$homeworkcache['jianda']}
-                        {else}
-                            <h3>您还没出简答题</h3>
-                        {/if}
                     </div>
-
+<!--*********************************************作业发布div***************************************************-->
                     <div class="col-lg-9" style="margin-bottom: 30px;display:none;" id="edit_send">
                         <div class="alert alert-info col-lg-10" style="height:50px;">
                             <div class="form-group">
@@ -270,7 +292,7 @@
                             <button type="submit" class="btn btn-success" id="gogogo" style="margin-left:-15px;">发布！</button>
                         </div>
                     </div>
-                    
+<!--********************************************出题部分********************************************************-->
                     <div class="col-lg-9" style="margin-bottom: 30px;" id="edit_work">
                         <div class="table-responsive" id="hw_pick">
                             <h3>选择题题目</h3>
@@ -308,33 +330,34 @@
                         </div>
                         
                     </div>
+<!--*****************************************右边数量等**********************************************************-->
                     <div class="col-lg-3" style="">
                         <div>
-                            {if !empty($homeworkcache['title'])}
-                                <h3>{$homeworkcache['title']}</h3>
+                            {if !empty($homeworkNum['content'])}
+                                <h3>{$homeworkNum['content']}</h3>
                             {else}
                                 <h3>未命名作业</h3>
                             {/if}
-                                <input class="form-control" id="hm_title" style="margin-bottom:15px;">
+                                <input class="form-control" id="hm_title" style="margin-top:15px;margin-bottom:10px;">
 
                                 <input hidden id="subject_title" value="title">
 
-                                <button type="submit" class="btn btn-success" id="put_rename" style="margin-top:20px;margin-bottom:40px;">更改名字</button>
+                                <button type="submit" class="btn btn-success" id="put_rename" style="margin-top:25px;margin-bottom:40px;">更改名字</button>
                         </div>
                         <div style="margin-bottom: 30px;">
                             <label>已经出好的题目：</label>
-                            {if !empty($homeworkcache['xuanzenum'])}
-                                <h4>选择题：{$homeworkcache['xuanzenum']}道</h4>
+                            {if !empty($homeworkNum['xuanze'])}
+                                <h4>选择题：{$homeworkNum['xuanze']}道</h4>
                             {else}
                                 <h4>选择题：0道</h4>
                             {/if}
-                            {if !empty($homeworkcache['panduannum'])}
-                                <h4>判断题：{$homeworkcache['panduannum']}道</h4>
+                            {if !empty($homeworkNum['panduan'])}
+                                <h4>判断题：{$homeworkNum['panduan']}道</h4>
                             {else}
                                 <h4>判断题：0道</h4>
                             {/if}
-                            {if !empty($homeworkcache['jiandanum'])}
-                                <h4>简答题：{$homeworkcache['jiandanum']}道</h4>
+                            {if !empty($homeworkNum['jianda'])}
+                                <h4>简答题：{$homeworkNum['jianda']}道</h4>
                             {else}
                                 <h4>简答题：0道</h4>
                             {/if}
@@ -391,6 +414,7 @@
                                 location.reload(false); 
                             });
 
+                        //出判断题
                         $('#click_panduan').click(function(){
                             $('#edit_work').show();
                             $('#edit_show').hide();
@@ -419,6 +443,8 @@
                             });
                             
                         });
+
+                        //出简答题
                         $('#click_jianda').click(function(){
                             $('#edit_work').show();
                             $('#edit_show').hide();
@@ -446,6 +472,8 @@
                                 location.reload(false); 
                             });
                         });
+
+                        //出选择题
                         $('#click_pick').click(function(){
                             $('#edit_work').show();
                             $('#edit_show').hide();
@@ -478,6 +506,7 @@
                             });
                         });
 
+                        //作业重命名
                         $('#put_rename').unbind('click').click(function(){
                             $.ajax({
                                 cache: true,
@@ -499,6 +528,7 @@
                             location.reload(false); 
                         });
 
+                        //删除作业
                         $('#del_work').unbind('click').click(function(){
                             $.ajax({
                                 cache: true,
@@ -518,26 +548,8 @@
                             });
                             location.reload(false); 
                         });
-                        /*
-                        $('#send_work').unbind('click').click(function(){
-                            $.ajax({
-                                cache: true,
-                                type: "POST",
-                                url:"http://fuck.io/index/teach/doHomework",
-                                data:{
-                                      "subject_type":$("#subject_send").val(),                     
-                                },
-                                async: false,
-                                error: function(request) {
-                                    alert("Connection error");
-                                },
-                                success: function(result) {
-
-                                }
-                                
-                            });
-                            //location.reload(false); 
-                        });*/
+                       
+                        //发布作业
                         $('#send_work').unbind('click').click(function(){
                             $('#edit_work').hide();
                             $('#edit_show').hide();

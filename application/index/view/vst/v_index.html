@@ -153,7 +153,7 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li>
-                    <a href="http://fuck.io/vst/fffffff/profile"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                    <a href="http://fuck.io/vst/{$_SESSION['think']['uname']}/fixinfo"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                 </li>
                 <li>
                     <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
@@ -167,7 +167,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="http://www.tp5.com/index/index/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+                    <a href="http://fuck.io/vst/{$_SESSION['think']['uname']}/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
                 </li>
             </ul>
         </div>
@@ -204,101 +204,15 @@
             -->
             <!-- /.row -->
             <!--*************************************首页顶部的四个DIV图标方块！***********************************************-->
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>收到的新通知</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">查看详情</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>我的课程</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">查看详情</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>新的任务!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">查看详情</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>技术分享</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">查看详情</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+            <div class="jumbotron">
+                <h1>Hello, {$_SESSION['think']['uname']}!</h1>
+                <p>感谢您使用WTF University。由于您的个人资料并不完善，请您先点击左边导航栏内的资料管理完善个人资料。在完善资料后，我们将进行审核，如果资料无误，将自动为您跳转到您所在的组群，谢谢！</p>
+                
             </div>
             <!-- /.row -->
 
 
-            <!--****************************修改表格的文件目录为JS/plugins/morris/morris-data.js*******************************-->
+<!--****************************修改表格的文件目录为JS/plugins/morris/morris-data.js*******************************-->
 
             <div class="row">
                 <div class="col-lg-12">
@@ -313,7 +227,7 @@
                 </div>
             </div>
             <!-- /.row -->
-            <!--**********************************************************这个是饼状图************************************************-->
+<!--***************************************************这个是饼状图************************************************-->
             <div class="row">
                 <div class="col-lg-4">
                     <div class="panel panel-default">

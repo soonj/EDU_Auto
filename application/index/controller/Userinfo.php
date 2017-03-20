@@ -10,9 +10,7 @@ class Userinfo extends Common
     public function Userinfo()
     {
         $fixdata = input('post.');
-
-        $profile = Loader::model('Profile')->updateProfile($fixdata);
-
+        $profile = Loader::model('Profile')->updateProfile($fixdata, 'pid', $_SESSION['think']['uid']);
         if ($profile) {
             echo $result = json_encode(true);
         }

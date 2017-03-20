@@ -19,6 +19,13 @@ class Profile extends Model
 
     public function setProfile($data)
     {
-        Profile::update($data);
+        $result = Profile::update($data);
+        return $result;
+    }
+
+    public function updateProfile($data, $field = null, $where = null)
+    {
+        $result = Profile::where($field, $where)->update($data);
+        return $result;
     }
 }
