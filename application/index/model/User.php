@@ -22,10 +22,10 @@ class User extends Model
         return $this->hasOne('Role' , 'roleid')->field('roleid , role');
     }
 
-    //关联资源表，外键为rid
+    //关联资源表，外键为uid
     public function res()
     {
-        return $this->hasMany('Res' , 'rid')->field('path , type , create_time');
+        return $this->hasMany('Res' , 'uid')->field('path , type , create_time');
     }
 
     //关联成绩表，外键为uid
@@ -34,7 +34,7 @@ class User extends Model
         return $this->hasMany('Score' , 'uid');
     }
 
-    //关联系名表，外键为xid
+    //关联  系名表，外键为xid
     public function dep()
     {
         return $this->hasOne('Dep' , 'xid');
@@ -44,6 +44,20 @@ class User extends Model
     public function notices()
     {
         return $this->hasMany('NoticeList' , 'uid');
+    }
+
+    public function getUser($id)
+    {
+        $result = User::get($id);
+        //$result = User::get($stuid[], );
+        return $result;
+    }
+
+    public function charts($uid, $class, $type = '1')
+    {   
+        $user = User::get($uid);
+        $user->zhujiao = $type;
+        $user->save();
     }
 
 }

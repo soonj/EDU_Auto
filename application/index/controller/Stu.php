@@ -12,27 +12,20 @@ use think\Request;
  */
 class Stu extends Common
 {
+    protected $notice;
     public function _initialize()
     {
         parent::_initialize();
         //角色权限检查
-        //todo:角色检查代码冗余度高，需修改
-        $role = Loader::model('Role')->getRole($this->uid);
-        if ($role != 0){
-            $this->error('权限不正确');
-        }
+        parent::verify(get_class());
     }
 
-    public function index($uname , $func = null)
+    public function index($func = null)
     {
-        //访客是否登录验证
-        parent::verify($uname);
-
         //方法跳转
         if (!is_null($func)){
             return $this->$func();
         }
-        //$this->assign('notice', $this->notice);
         return $this->fetch('bgd_index');
     }
 
@@ -48,8 +41,14 @@ class Stu extends Common
     //查看学生作业
     private function homework()
     {
-        $data = Loader::model('Homework')->getHomework($this->uid);
-        return $this->fetch('homework' , $data);
+        //$data = Loader::model('Homework')->getHomework($this->uid);
+        //return $this->fetch('homework' , $data);
+        return $this->fetch('homework');
+    }
+
+    private function charts()
+    {
+        return $this->fetch('charts');
     }
 
     //提交完成作业
@@ -65,7 +64,7 @@ class Stu extends Common
         $data = Loader::model('Profile')->getProfile($this->uid);
         $this->assign('userinfo', $data);
 
-        return $this->fetch('Fixinfo');
+        return $this->fetch('fixinfo');
     }
 
     //修改用户详情
@@ -78,15 +77,8 @@ class Stu extends Common
     //查看用户资源
     private function res()
     {
-        $data = Loader::model('Res')->getRes($this->uid);
-        $this->assign('ures' , $data);
+        $data = Loader::model('Res')->getRes();
+        $this->assign('res' , $data);
         return $this->fetch('res');
     }
-
-//    protected function dotest()
-//    {
-//        $data = Request::instance()->post();
-//        Loader::model('Notice')->announce($data);
-//    }
-
 }

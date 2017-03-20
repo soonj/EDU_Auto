@@ -30,6 +30,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+
 </head>
 
 <body>
@@ -46,7 +48,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://www.tp5.com/index/index/index">WTF University</a>
+                <a class="navbar-brand" href="http://fuck.io/teach/{$_SESSION['think']['uname']}">WTF University</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -153,22 +155,22 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="http://www.tp5.com/index/index/teach/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
                     </li>
                     <li class="active">
-                        <a href="http://www.tp5.com/index/index/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
                     </li>
                     <li>
-                        <a href="http://www.tp5.com/index/index/teach/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
                     </li>
                     <li>
-                        <a href="http://www.tp5.com/index/index/teach/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                     </li>
                     <li>
-                        <a href="http://www.tp5.com/index/index/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
                     </li>
                     <li>
-                        <a href="http://www.tp5.com/index/index/teach/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
@@ -182,7 +184,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="http://www.tp5.com/index/index/teach/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
                     </li>
                 </ul>
             </div>
@@ -197,177 +199,271 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Charts
+                            提升助教
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">管理首页</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-bar-chart-o"></i> Charts
+                                <i class="fa fa-bar-chart-o"></i> 提升助教
                             </li>
                         </ol>
                     </div>
                 </div>
+
+                <div class="row" style="margin-bottom: 30px;">
+                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_studen">选择学生为助教</button>
+                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_teach">选择教师为助教</button>
+                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_zhujiao">查看助教情况</button>
+                </div>
+
+<!--**********************************************选择学生助教****************************************************-->
+                <div id="students" >
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="panel panel-yellow ">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">tips:</h3>
+                                </div>
+                                <div class="panel-body">
+                                    如果需要选择学生为助教，将只能认命为该学生所在班级的助教！
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <label style="font-size:24px;margin-left:15px;padding-top:5px;">请选择班级：</label>
+                        {foreach $class as $key => $value}
+                        <button type="submit" class="btn btn-info" style="margin-left:20px;margin-top:-8px;" id="click_pick" value="{$key}" name="click_pick">{$key}</button>
+                        {/foreach}
+                    </div>
+                    <div class="row" id="showclass" value="1111" name="1111">
+                        {foreach $class as $keys => $values}
+                        <input hidden id="classname" value="{$keys}">
+                        <div class="col-lg-9 " name="bianlibanji" class="bianlibanji" value="{$keys}" id="{$keys}" style="display:none;">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>学号</th>
+                                            <th>姓名</th>
+                                            <th>状态</th>
+                                            <th>提升</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {foreach $values as $val}
+                                        <tr>
+                                            <td>{$val['uid']}</td>
+                                            <td>{$val['uname']}</td>
+                                            <td>{$val['role']}</td>
+                                            {if empty($val['zhujiao'])}
+                                                <td><button type="submit" class="btn btn-success" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" name="tisheng_stu" value="{$val['uid']}">提升</button></td>
+                                                <input hidden id="stu{$val['uid']}" value="{$keys}/1">
+                                            {else}
+                                                <td><button type="submit" class="btn btn-danger" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" name="tisheng_stu" value="{$val['uid']}">降职</button></td>
+                                                <input hidden id="stu{$val['uid']}" value="{$keys}/0">
+                                            {/if}
+                                        </tr>
+                                    {/foreach}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        {/foreach}
+                    </div>
+                </div>
                 <!-- /.row -->
 
+                <script>
+                    $(function(){
+                        /*这里是选择学生助教时的JQuery部分！！！！！*/
+                        //拼接第一个班级的ID选择器字符串，并让它默认显示；
+                        var firstclass = '#' + $("#showclass").children("input:first-child").val();
+
+                        $(firstclass).show();
+
+                        $("#click_teach").unbind('click').click(function(){
+                            $("#teacher").show();
+                            $("#students").hide();
+                            $("#zhujiao").hide();
+                        });
+
+                        $("#click_studen").unbind('click').click(function(){
+                            $("#teacher").hide();
+                            $("#students").show();
+                            $("#zhujiao").hide();
+                        });
+
+                        $("#click_zhujiao").unbind('click').click(function(){
+                            $("#teacher").hide();
+                            $("#students").hide();
+                            $("#zhujiao").show();
+                        });
+
+                        //教师部分！
+                        $("button[name='tisheng_teach']").unbind('click').click(function(){
+                            //拼接对应hidden的id，以便确定操作
+                            $.ajax({
+                            cache: true,
+                            type: "POST",
+                            url:"http://fuck.io/index/teach/docharts",
+                            data:{
+                                "type":$("#type_teach").val(), 
+                                "class":$(this).val(),                     
+                                },
+                                async: false,
+                                error: function(request) {
+                                    alert("Connection error");
+                                },
+                                success: function(result) {
+
+                                }
+                            });
+                            //location.reload(false); 
+                        });
+
+
+                        //学生部分！--点击提升或降职按钮触发
+                        $("button[name='tisheng_stu']").unbind('click').click(function(){
+                            //拼接对应hidden的id，以便确定操作
+                            var type = '#stu' + $(this).val();
+                            $.ajax({
+                            cache: true,
+                            type: "POST",
+                            url:"http://fuck.io/index/teach/docharts",
+                            data:{
+                                "type":$(type).val(), 
+                                "uid":$(this).val(),                     
+                                },
+                                async: false,
+                                error: function(request) {
+                                    alert("Connection error");
+                                },
+                                success: function(result) {
+
+                                }
+                            });
+                            //location.reload(false); 
+                        });
+                        
+                        //学生部分
+                        $("button[name='click_pick']").unbind('click').click(function(){
+                            //拼接你点击的班级按钮的ID选择器字符串，再把其他班级隐藏，点击的班级显示
+                            var clickclass = '#' + $(this).val();
+                            $("div[name='bianlibanji']").hide();
+                            $(clickclass).show();
+
+                            //点击提升或降职按钮触发
+                            $("button[name='tisheng_stu']").unbind('click').click(function(){
+                                //拼接对应hidden的id，以便确定操作
+                                var type = '#stu' + $(this).val();
+                                $.ajax({
+                                cache: true,
+                                type: "POST",
+                                url:"http://fuck.io/index/teach/docharts",
+                                data:{
+                                    "type":$(type).val(), 
+                                    "uid":$(this).val(),                     
+                                    },
+                                    async: false,
+                                    error: function(request) {
+                                        alert("Connection error");
+                                    },
+                                    success: function(result) {
+
+                                    }
+                                });
+                                //location.reload(false); 
+                            });
+                        });
+                    });
+                </script>
+<!--*******************************************选择教师助教*******************************************************-->
                 <!-- Flot Charts -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2 class="page-header">Flot Charts</h2>
-                        <p class="lead">Flot is a pure JavaScript plotting library for jQuery, with a focus on simple usage, attractive looks and interactive features. For full usage instructions and documentation for Flot Charts, visit <a href="http://www.flotcharts.org/">http://www.flotcharts.org/</a>.</p>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Line Graph Example with Tooltips</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="flot-chart">
-                                    <div class="flot-chart-content" id="flot-line-chart"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="panel panel-green">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Pie Chart Example with Tooltips</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="flot-chart">
-                                    <div class="flot-chart-content" id="flot-pie-chart"></div>
-                                </div>
-                                <div class="text-right">
-                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="panel panel-yellow">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Multiple Axes Line Graph Example with Tooltips and Raw Data</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="flot-chart">
-                                    <div class="flot-chart-content" id="flot-multiple-axes-chart"></div>
-                                </div>
-                                <div class="text-right">
-                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
+                <div id="teacher" style="display:none">
+                    <div class="row">
+                        <div class="col-lg-9 ">
+                            <div class="table-responsive">
+                            
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>校园ID</th>
+                                            <th>姓名</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {foreach $teach as $teacher}
+                                        <tr>
+                                            <td>{$teacher['uid']}</td>
+                                            <td>{$teacher['uname']}</td>
+                                            <td></td>
+                                            <td>
+                                            {foreach $class as $key => $value}
+                                            
+                                            <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" id="click_pick" value="{$key}/{$teacher['uid']}" name="tisheng_teach">{$key}</button>
+                                            {/foreach}
+                                            </td>
+                                        </tr>
+                                        {/foreach}
+                                        <input hidden id="type_teach" value="teach">
+                                    </tbody>
+                                </table>
+                            
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- /.row -->
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="panel panel-red">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Moving Line Chart</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="flot-chart">
-                                    <div class="flot-chart-content" id="flot-moving-line-chart"></div>
-                                </div>
-                                <div class="text-right">
-                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Bar Graph with Tooltips</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="flot-chart">
-                                    <div class="flot-chart-content" id="flot-bar-chart"></div>
-                                </div>
-                                <div class="text-right">
-                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
+<!--**************************************查看班级助教状态*********************************************************-->
+                <div id="zhujiao" style="display:none">
+                    <div class="row">
+                        <div class="col-lg-9 ">
+                            <div class="table-responsive">
+                            
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>校园ID</th>
+                                            <th>姓名</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {foreach $teach as $teacher}
+                                        <tr>
+                                            <td>{$teacher['uid']}</td>
+                                            <td>{$teacher['uname']}</td>
+                                            <td></td>
+                                            <td>
+                                            {foreach $class as $key => $value}
+                                            
+                                            <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" id="click_pick" value="{$key}" name="click_pick">{$key}</button>
+                                            
+                                            {/foreach}
+                                            </td>
+                                        </tr>
+                                        {/foreach}
+                                    </tbody>
+                                </table>
+                            
                             </div>
                         </div>
                     </div>
                 </div>
+                
                 <!-- /.row -->
 
                 <!-- Morris Charts -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2 class="page-header">Morris Charts</h2>
-                        <p class="lead">Morris.js is a very simple API for drawing line, bar, area and donut charts. For full usage instructions and documentation for Morris.js charts, visit <a href="http://morrisjs.github.io/morris.js/">http://morrisjs.github.io/morris.js/</a>.</p>
-                    </div>
-                </div>
+                
                 <!-- /.row -->
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-green">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Area Line Graph Example with Tooltips</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-area-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="panel panel-yellow">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Donut Chart Example</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-donut-chart"></div>
-                                <div class="text-right">
-                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="panel panel-red">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Line Graph Example with Tooltips</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-line-chart"></div>
-                                <div class="text-right">
-                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Bar Graph Example</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-bar-chart"></div>
-                                <div class="text-right">
-                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <!-- /.row -->
 
             </div>
