@@ -17,7 +17,7 @@ class Auth extends Controller
     //注册
     public function reg()
     {
-
+        self::logout();
         $regData = input('post.');
         $data = [
             'uname' =>$regData['uname'],
@@ -32,9 +32,8 @@ class Auth extends Controller
             Cookie::set('uname' , $result['uname'] , 3600);
             Session::set('uid' , $result['uid']);
             Session::set('uname' , $result['uname']);
+            Session::set('role' , $result['role']);
 
-            //跳转至个人页面
-            //$this->success($result['msg'] , '/index/'.$result['uname']);
             //默认跳转至访客页面
             $this->success($result['msg'] , '/vst/'.$result['uname']);
         }else {
@@ -46,6 +45,7 @@ class Auth extends Controller
     //登录
     public function login()
     {
+        self::logout();
         $loginData = input('post.');
 
         $data = [
@@ -60,21 +60,22 @@ class Auth extends Controller
             Cookie::set('uname' , $result['uname'] , 3600);
             Session::set('uid' , $result['uid']);
             Session::set('uname' , $result['uname']);
+            Session::set('role' , $result['role']);
             switch ($result['role']){
                 case 0:
-                    $this->success($result['msg'] , '/stu/'.$result['uname']);
+                    $this->success($result['msg'] , '/stu');
                     break;
                 case 1:
-                    $this->success($result['msg'] , '/assis/'.$result['uname']);
+                    $this->success($result['msg'] , '/assis');
                     break;
                 case 2:
-                    $this->success($result['msg'] , '/teach/'.$result['uname']);
+                    $this->success($result['msg'] , '/teach');
                     break;
                 case 3:
-                    $this->success($result['msg'] , '/admin/'.$result['uname']);
+                    $this->success($result['msg'] , '/admin');
                     break;
                 case 4:
-                    $this->success($result['msg'] , '/vst/'.$result['uname']);
+                    $this->success($result['msg'] , '/vst');
             }
         }else{
             $this->error($result['msg']);
@@ -86,5 +87,6 @@ class Auth extends Controller
     public function logout()
     {
         Cookie::delete('uname');
+        Session::clear();
     }
 }

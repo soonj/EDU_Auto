@@ -3,6 +3,7 @@ namespace app\index\controller;
 
 use app\common\controller\Common;
 use think\Loader;
+use think\Request;
 
 /**
  * Class Vst
@@ -41,7 +42,7 @@ class Vst extends Common
         $profile = Loader::model('Profile')->getProfile($_SESSION['think']['uid']);
 
         $data = Loader::model('user')->getUser($_SESSION['think']['uid']);
-        
+
         $this->assign('userinfo', $profile);
 
         $this->assign('user', $data);

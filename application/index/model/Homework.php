@@ -14,7 +14,7 @@ class Homework extends Model
     }
 
     public function homeworkNum()
-    {   
+    {
         if (empty($_SESSION['think']['workcacheid'])) {
             return false;
         } else {
@@ -179,7 +179,7 @@ class Homework extends Model
             $newcontent[] = $val['content'];
         }
         $string = join('', $newcontent);
-        
+
         $senddata['end_time'] = $data['work_time']*3600*24 + time();
         $senddata['class_id'] = $class;
         $senddata['content'] = '<div class="jumbotron">'.$string.'</div>';
@@ -226,7 +226,7 @@ class Homework extends Model
         } else {
             $homework = false;
         }
-        
+
         //取出数组中的题目类型和uid
         $key = $data['subject_type'];
         $uid = $_SESSION['think']['uid'];
@@ -259,6 +259,6 @@ class Homework extends Model
             return true;
         } else {
             return false;
-        }     
+        }
     }
 }
