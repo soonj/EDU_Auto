@@ -15,10 +15,7 @@ class Assis extends Common
     {
         parent::_initialize();
         //角色权限检查
-        $role = Loader::model('Role')->getRole($this->uid);
-        if ($role != 1){
-            $this->error('权限不正确');
-        }
+        parent::verify(get_class());
     }
 
     public function index($uname)

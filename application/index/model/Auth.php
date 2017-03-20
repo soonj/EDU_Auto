@@ -28,7 +28,7 @@ class Auth extends Model
                         'uid'       => $user->uid,
                         'uname'     => $user->uname,
                         'profile'   => $user->profile->profile,
-                        'role'      => $user->role->role,
+                        'role'      => $user->role,
                     );
                 } else {
                     return array(

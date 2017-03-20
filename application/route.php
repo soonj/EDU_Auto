@@ -22,12 +22,13 @@ return [
     'reg'                   => 'index/auth/reg',
     'signup'                => 'signup/signup',
     'signin'                => 'signin/signin',
-    'stu/:uname/[:func]'    => 'index/stu/index',
-    'teach/:uname/[:func]'  => 'index/teach/index',
-    'assis/:uname/[:func]'  => 'index/assis/index',
-    'admin/:uname/[:func]'  => 'admin/index',
-    'vst/:uname/[:func]'    => 'index/vst/index',
+    'stu/[:func]'           => 'index/stu/index',
+    'teach/[:func]'         => 'index/teach/index',
+    'assis/[:func]'         => 'index/assis/index',
+    'admin/[:func]'         => 'admin/admin/index',
+    'vst/[:func]'           => 'index/vst/index',
     'download/:fileNameUrl' => 'index/download/download',
     'upload'                => 'index/upload/upload',
+    //'uploadtmp'             => 'admin/admin/index/initStu',
 
 ];

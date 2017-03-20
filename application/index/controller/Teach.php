@@ -17,16 +17,13 @@ class Teach extends Common
     {
         parent::_initialize();
         //角色权限检查
-        $role = Loader::model('Role')->getRole($this->uid);
-        if ($role != 2){
-            $this->error('权限不正确');
-        }
+        parent::verify(get_class());
     }
 
-    public function index($uname , $func = null)
+    public function index($func = null)
     {
         //访客是否登录验证
-        parent::verify($uname);
+
 
         //方法跳转
         if (!is_null($func)){
@@ -100,27 +97,6 @@ class Teach extends Common
         return $this->fetch('upload');
     }
 
-
-    public function Bootstrapelements()
-    {
-        return $this->fetch();
-    }
-
-    public function Bootstrapgrid()
-    {
-        return $this->fetch();
-    }
-
-    public function Mywork()
-    {
-        return $this->fetch();
-    }
-
-    public function charts()
-    {
-        return $this->fetch();
-    }
-
     public function Fixinfo()
     {
         $data = db('profile')->where('pid', $_SESSION['think']['uid'])->find();
@@ -128,15 +104,4 @@ class Teach extends Common
         return $this->fetch('Fixinfo');
 
     }
-
-    public function Forms()
-    {
-        return $this->fetch();
-    }
-
-    public function Tables()
-    {
-        return $this->fetch();
-    }
-
 }

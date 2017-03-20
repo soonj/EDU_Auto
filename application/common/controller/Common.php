@@ -9,21 +9,40 @@ class Common extends Controller
 {
     protected $uid;
     protected $uname;
+    protected $role;
+
     public function _initialize()
     {
 
-        if( !Cookie::has('uname') || !Session::has('uid')) {
+        if (!Session::has('uid')) {
             $this->error('Please login first', '/signin');
         }
 
         $this->uid = Session::get('uid');
         $this->uname = Session::get('uname');
+        $this->role = Session::get('role');
     }
 
-    public function verify($uname)
+    //验证权限
+    public function verify($role)
     {
-        if( $uname != $this->uname) {
-            $this->error('Please login first', '/signin');
+        switch ($role) {
+            case 'stu':
+                $role = 0;
+                break;
+            case 'assis':
+                $role = 1;
+                break;
+            case 'teach':
+                $role = 2;
+                break;
+            case 'admin':
+                $role = 3;
+                break;
+        }
+
+        if ($role != $this->role) {
+            $this->error('Role Type Error');
         }
     }
 }

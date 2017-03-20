@@ -16,23 +16,15 @@ class Stu extends Common
     {
         parent::_initialize();
         //角色权限检查
-        //todo:角色检查代码冗余度高，需修改
-        $role = Loader::model('Role')->getRole($this->uid);
-        if ($role != 0){
-            $this->error('权限不正确');
-        }
+        parent::verify(get_class());
     }
 
-    public function index($uname , $func = null)
+    public function index($func = null)
     {
-        //访客是否登录验证
-        parent::verify($uname);
-
         //方法跳转
         if (!is_null($func)){
             return $this->$func();
         }
-        //$this->assign('notice', $this->notice);
         return $this->fetch('bgd_index');
     }
 

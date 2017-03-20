@@ -10,7 +10,10 @@ class Upload extends Common
 {
     public function upload()
     {
-        parent::verify(Session::get('uname'));
+        //ajax 验证
+        if (! request()->isAjax()){
+            $this->error('Request Type Error');
+        }
 
         $files = request()->file('file-zh');
         $title = Request::instance()->post();
@@ -27,11 +30,12 @@ class Upload extends Common
                     'title'     => $title['title'],
                 ];
                 Loader::model('Res')->upload($data);
-                echo json_encode($title['title']);
+                echo json_encode($data['path']);
             }else{
                 // 上传失败
                 echo json_encode($file->getError());
             }
         }
     }
+
 }
