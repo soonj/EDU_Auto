@@ -3,6 +3,9 @@ namespace app\index\controller;
 
 use app\common\controller\Common;
 use think\Loader;
+use think\Request;
+use think\Session;
+
 /**
  * Class Teach
  * @package app\index\controller
@@ -11,29 +14,38 @@ use think\Loader;
 class Teach extends Common
 {
     public function _initialize()
-    {	
+    {
         parent::_initialize();
         //角色权限检查
-        $role = Loader::model('Role')->getRole($this->uid);
-        if ($role != 2){
-            $this->error('权限不正确');
-        }
+        parent::verify(get_class());
     }
 
-
-    public function index($uname , $func = null)
+    public function index($func = null)
     {
-        //访客是否登录验证
-        //dump($_SESSION);
-        parent::verify($uname);
-        
         //方法跳转
         if (!is_null($func)){
             return $this->$func();
         }
         return $this->fetch('index');
     }
-	
+
+    //发布通知页面显示
+    public function announce()
+    {
+        return $this->fetch('announce');
+    }
+
+    //发布全站通知，旋转吧小陀螺！！
+    public function doAnnounce()
+    {
+        $data = Request::instance()->post();
+        $data['sender_id'] = $this->uid;
+        $result = Loader::model('Notice')->announce($data);
+        if ($result){
+            $this->success('发布成功');
+        }
+    }
+
     public function homework()
     {
         $homework = Loader::model('Homework')->showHomework();
@@ -44,7 +56,7 @@ class Teach extends Common
                     ->where('pid', $_SESSION['think']['uid'])
                     ->find();
 
-        //处理拼接的班级字符串           
+        //处理拼接的班级字符串
         $class = explode('/' , $teach_info['class']);
         //dump($class);
         $this->assign('class', $class);

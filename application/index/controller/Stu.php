@@ -17,27 +17,25 @@ class Stu extends Common
     {
         parent::_initialize();
         //角色权限检查
-        //todo:角色检查代码冗余度高，需修改
-        $role = Loader::model('Role')->getRole($this->uid);
-        if ($role != 0){
-            $this->error('权限不正确');
-        }
-
-        //此处为获取所有通知，类型为数组，数组中包含对应的对象`array(obj()->content)`
-        $this->notice = Loader::controller('Notice')->getNotices($this->uid);
+        parent::verify(get_class());
     }
 
-    public function index($uname , $func = null)
+    public function index($func = null)
     {
-        //访客是否登录验证
-        parent::verify($uname);
-
         //方法跳转
         if (!is_null($func)){
             return $this->$func();
         }
-        $this->assign('notice', $this->notice);
-        return $this->fetch('index');
+        return $this->fetch('bgd_index');
+    }
+
+    //ajax轮询返回通知内容
+    public function ajaxGetNotice()
+    {
+        //此处为获取所有通知，返回类型为数组，数组中包含对应的对象 `array(obj()->content)`
+        $data = Loader::controller('Notice')->getNotices($this->uid);
+        echo json_encode($data);
+        exit();
     }
 
     //查看学生作业
@@ -79,15 +77,8 @@ class Stu extends Common
     //查看用户资源
     private function res()
     {
-        $data = Loader::model('Res')->getRes($this->uid);
-        $this->assign('ures' , $data);
+        $data = Loader::model('Res')->getRes();
+        $this->assign('res' , $data);
         return $this->fetch('res');
     }
-
-//    protected function dotest()
-//    {
-//        $data = Request::instance()->post();
-//        Loader::model('Notice')->announce($data);
-//    }
-
 }

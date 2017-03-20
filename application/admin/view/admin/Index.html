@@ -30,23 +30,6 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script>
-        var getting = {
-            url:'http://fuck.io/stu/{$Think.session.uname}/ajaxGetNotice',
-            dataType : 'json',
-            success:function(data){
-                var str = '';
-                for (notice in data)
-                {
-                    str += '<li><a href="#">'+ data[notice].content +'<span class="label label-default">' + data[notice].sender_id + '</span></a></li>';
-                }
-                $("#get_notice").html(str);
-            }
-        };
-        window.setInterval(function () {
-            $.ajax(getting)
-        } , 5000)
-    </script>
 </head>
 
 <body>
@@ -63,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://fuck.io/stu/{$_SESSION['think']['uname']}">WTF University</a>
+                <a class="navbar-brand" href="http://fuck.io/teach/{$_SESSION['think']['uname']}">WTF University</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -78,7 +61,7 @@
                                         <img class="media-object" src="http://placehold.it/50x50" alt="">
                                     </span>
                                     <div class="media-body">
-                                        <h5 class="media-heading"><strong>{name}</strong>
+                                        <h5 class="media-heading"><strong>{$_SESSION['think']['uname']}</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -124,8 +107,25 @@
 <!--**********************************************这里是顶部铃铛通知部分！************************************************-->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown" id="get_notice">
-
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                        </li>
                         <li class="divider"></li>
                         <li>
                             <a href="#">View All</a>
@@ -134,13 +134,13 @@
                 </li>
 <!--**********************************************这里是顶部用户选项部分！************************************************-->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uid']} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uname']} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="http://fuck.io/stu/{$_SESSION['think']['uname']}/profile"><i class="fa fa-fw fa-user"></i> 个人信息</a>
+                            <a href="http://fuck.io/admin/{$_SESSION['think']['uname']}/fixinfo"><i class="fa fa-fw fa-user"></i> 个人信息</a>
                         </li>
                         <li>
-                            <a href="http://fuck.io/stu/{$_SESSION['think']['uname']}/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
+                            <a href="http://fuck.io/admin/{$_SESSION['think']['uname']}/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -153,22 +153,22 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="http://fuck.io/stu/{$_SESSION['think']['uname']}/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
+                        <a href="http://fuck.io/admin/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/stu/{$_SESSION['think']['uname']}/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
+                        <a href="http://fuck.io/admin/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/stu/{$_SESSION['think']['uname']}/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
+                        <a href="http://fuck.io/admin/homework"><i class="fa fa-fw fa-table"></i> 发布作业</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/stu/{$_SESSION['think']['uname']}/profile"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                        <a href="http://fuck.io/admin/announce"><i class="fa fa-fw fa-edit"></i> 发布通知</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/stu/{$_SESSION['think']['uname']}/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
+                        <a href="http://fuck.io/admin/uploadExcel"><i class="fa fa-fw fa-desktop"></i> 批量上传学生名单</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/stu/{$_SESSION['think']['uname']}/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+                        <a href="http://fuck.io/admin/fixinfo"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
@@ -182,7 +182,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="http://fuck.io/stu/{$_SESSION['think']['uname']}/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+                        <a href="http://fuck.io/index/admin/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
                     </li>
                 </ul>
             </div>
@@ -197,7 +197,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            WTF(world technology Franklyn) University <small></small>
+                            WTF(world technology Franklyn) University <small>教务管理系统</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
@@ -274,7 +274,7 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">124</div>
-                                        <div>新的任务!</div>
+                                        <div>已发作业</div>
                                     </div>
                                 </div>
                             </div>

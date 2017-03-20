@@ -31,12 +31,13 @@ class Role extends Model
     //TODO:联表操作风格不一致，看着难受
     public function setRole($data , $id = null)
     {
-        $role = new Role;
+
         if (is_null($id)){
-            $list = $data;
-            $role->saveAll($list);
+            $role = new Role;
+            $role->saveAll($data);
         }else{
-            $role->save($data , ['roleid' => $id]);
+            $user = User::get($id);
+            $user->role->save($data);
         }
 
 //        Tips: 判断数组是否为多维

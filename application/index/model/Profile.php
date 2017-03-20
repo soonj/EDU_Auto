@@ -1,7 +1,10 @@
 <?php
 namespace app\index\model;
 
+use think\Loader;
 use think\Model;
+use think\Session;
+use think\Validate;
 
 class Profile extends Model
 {
@@ -19,13 +22,9 @@ class Profile extends Model
 
     public function setProfile($data)
     {
-        $result = Profile::update($data);
-        return $result;
-    }
-
-    public function updateProfile($data, $field = null, $where = null)
-    {
-        $result = Profile::where($field, $where)->update($data);
-        return $result;
+        $uid = Session::get('uid');
+        $user = User::get($uid);
+        $user->profile->save($data);
+        return true;
     }
 }
