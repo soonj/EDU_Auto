@@ -53,9 +53,11 @@ class User extends Model
         return $result;
     }
 
-    public function studens()
-    {
-        
+    public function charts($uid, $class, $type = '1')
+    {   
+        $user = User::get($uid);
+        $user->zhujiao = $type;
+        $user->save();
     }
 
 }

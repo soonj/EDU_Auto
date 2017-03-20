@@ -30,6 +30,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+
 </head>
 
 <body>
@@ -211,208 +213,246 @@
                 </div>
 
                 <div class="row" style="margin-bottom: 30px;">
-                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_pick">选择学生为助教</button>
-                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_panduan">选择教师为助教</button>
-                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_yulan">查看助教情况</button>
+                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_studen">选择学生为助教</button>
+                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_teach">选择教师为助教</button>
+                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_zhujiao">查看助教情况</button>
                 </div>
 
 <!--**********************************************选择学生助教****************************************************-->
-                <div class="row">
-                    <div class="col-lg-9">
-                        <div class="panel panel-yellow ">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">tips:</h3>
-                            </div>
-                            <div class="panel-body">
-                                如果需要选择学生为助教，将只能认命为该学生所在班级的助教！
+                <div id="students" >
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="panel panel-yellow ">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">tips:</h3>
+                                </div>
+                                <div class="panel-body">
+                                    如果需要选择学生为助教，将只能认命为该学生所在班级的助教！
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row" style="margin-bottom: 10px;">
-                    <label style="font-size:24px;margin-left:15px;padding-top:5px;">请选择班级：</label>
-                    {foreach $class as $key => $value}
-                    <button type="submit" class="btn btn-info" style="margin-left:20px;margin-top:-8px;" id="click_pick">{$key}</button>
-                    {/foreach}
-                </div>
-                <div class="row">
-                    {foreach $class as $keys => $values}
-                    <div class="col-lg-9 " name="{$keys}">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>学号</th>
-                                        <th>姓名</th>
-                                        <th>状态</th>
-                                        <th>提升</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                {foreach $values as $val}
-                                    <tr>
-                                        <td>{$val['uid']}</td>
-                                        <td>{$val['uname']}</td>
-                                        <td>{$val['role']}</td>
-                                        <td><button type="submit" class="btn btn-success" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" name="tisheng_stu" value="{$val['uid']}">提升</button></td>
-                                    </tr>
-                                {/foreach}
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <label style="font-size:24px;margin-left:15px;padding-top:5px;">请选择班级：</label>
+                        {foreach $class as $key => $value}
+                        <button type="submit" class="btn btn-info" style="margin-left:20px;margin-top:-8px;" id="click_pick" value="{$key}" name="click_pick">{$key}</button>
+                        {/foreach}
                     </div>
-                    {/foreach}
+                    <div class="row" id="showclass" value="1111" name="1111">
+                        {foreach $class as $keys => $values}
+                        <input hidden id="classname" value="{$keys}">
+                        <div class="col-lg-9 " name="bianlibanji" class="bianlibanji" value="{$keys}" id="{$keys}" style="display:none;">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>学号</th>
+                                            <th>姓名</th>
+                                            <th>状态</th>
+                                            <th>提升</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {foreach $values as $val}
+                                        <tr>
+                                            <td>{$val['uid']}</td>
+                                            <td>{$val['uname']}</td>
+                                            <td>{$val['role']}</td>
+                                            {if empty($val['zhujiao'])}
+                                                <td><button type="submit" class="btn btn-success" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" name="tisheng_stu" value="{$val['uid']}">提升</button></td>
+                                                <input hidden id="stu{$val['uid']}" value="{$keys}/1">
+                                            {else}
+                                                <td><button type="submit" class="btn btn-danger" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" name="tisheng_stu" value="{$val['uid']}">降职</button></td>
+                                                <input hidden id="stu{$val['uid']}" value="{$keys}/0">
+                                            {/if}
+                                        </tr>
+                                    {/foreach}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        {/foreach}
+                    </div>
                 </div>
                 <!-- /.row -->
 
                 <script>
-                    
+                    $(function(){
+                        /*这里是选择学生助教时的JQuery部分！！！！！*/
+                        //拼接第一个班级的ID选择器字符串，并让它默认显示；
+                        var firstclass = '#' + $("#showclass").children("input:first-child").val();
+
+                        $(firstclass).show();
+
+                        $("#click_teach").unbind('click').click(function(){
+                            $("#teacher").show();
+                            $("#students").hide();
+                            $("#zhujiao").hide();
+                        });
+
+                        $("#click_studen").unbind('click').click(function(){
+                            $("#teacher").hide();
+                            $("#students").show();
+                            $("#zhujiao").hide();
+                        });
+
+                        $("#click_zhujiao").unbind('click').click(function(){
+                            $("#teacher").hide();
+                            $("#students").hide();
+                            $("#zhujiao").show();
+                        });
+
+                        //教师部分！
+                        $("button[name='tisheng_teach']").unbind('click').click(function(){
+                            //拼接对应hidden的id，以便确定操作
+                            $.ajax({
+                            cache: true,
+                            type: "POST",
+                            url:"http://fuck.io/index/teach/docharts",
+                            data:{
+                                "type":$("#type_teach").val(), 
+                                "class":$(this).val(),                     
+                                },
+                                async: false,
+                                error: function(request) {
+                                    alert("Connection error");
+                                },
+                                success: function(result) {
+
+                                }
+                            });
+                            //location.reload(false); 
+                        });
+
+
+                        //学生部分！--点击提升或降职按钮触发
+                        $("button[name='tisheng_stu']").unbind('click').click(function(){
+                            //拼接对应hidden的id，以便确定操作
+                            var type = '#stu' + $(this).val();
+                            $.ajax({
+                            cache: true,
+                            type: "POST",
+                            url:"http://fuck.io/index/teach/docharts",
+                            data:{
+                                "type":$(type).val(), 
+                                "uid":$(this).val(),                     
+                                },
+                                async: false,
+                                error: function(request) {
+                                    alert("Connection error");
+                                },
+                                success: function(result) {
+
+                                }
+                            });
+                            //location.reload(false); 
+                        });
+                        
+                        //学生部分
+                        $("button[name='click_pick']").unbind('click').click(function(){
+                            //拼接你点击的班级按钮的ID选择器字符串，再把其他班级隐藏，点击的班级显示
+                            var clickclass = '#' + $(this).val();
+                            $("div[name='bianlibanji']").hide();
+                            $(clickclass).show();
+
+                            //点击提升或降职按钮触发
+                            $("button[name='tisheng_stu']").unbind('click').click(function(){
+                                //拼接对应hidden的id，以便确定操作
+                                var type = '#stu' + $(this).val();
+                                $.ajax({
+                                cache: true,
+                                type: "POST",
+                                url:"http://fuck.io/index/teach/docharts",
+                                data:{
+                                    "type":$(type).val(), 
+                                    "uid":$(this).val(),                     
+                                    },
+                                    async: false,
+                                    error: function(request) {
+                                        alert("Connection error");
+                                    },
+                                    success: function(result) {
+
+                                    }
+                                });
+                                //location.reload(false); 
+                            });
+                        });
+                    });
                 </script>
 <!--*******************************************选择教师助教*******************************************************-->
                 <!-- Flot Charts -->
-                <div class="row">
-                    <div class="col-lg-9">
-                        <div class="panel panel-yellow ">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">tips:</h3>
+                <div id="teacher" style="display:none">
+                    <div class="row">
+                        <div class="col-lg-9 ">
+                            <div class="table-responsive">
+                            
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>校园ID</th>
+                                            <th>姓名</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {foreach $teach as $teacher}
+                                        <tr>
+                                            <td>{$teacher['uid']}</td>
+                                            <td>{$teacher['uname']}</td>
+                                            <td></td>
+                                            <td>
+                                            {foreach $class as $key => $value}
+                                            
+                                            <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" id="click_pick" value="{$key}/{$teacher['uid']}" name="tisheng_teach">{$key}</button>
+                                            {/foreach}
+                                            </td>
+                                        </tr>
+                                        {/foreach}
+                                        <input hidden id="type_teach" value="teach">
+                                    </tbody>
+                                </table>
+                            
                             </div>
-                            <div class="panel-body">
-                                如果需要选择学生为助教，将只能认命为该学生所在班级的助教！
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-9 ">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>班级</th>
-                                        <th>姓名</th>
-                                        <th>学号</th>
-                                        <th>状态</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                   
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                       
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
                 <!-- /.row -->
 <!--**************************************查看班级助教状态*********************************************************-->
-                <div class="row">
-                    <div class="col-lg-9">
-                        <div class="panel panel-yellow ">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">tips:</h3>
+                <div id="zhujiao" style="display:none">
+                    <div class="row">
+                        <div class="col-lg-9 ">
+                            <div class="table-responsive">
+                            
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>校园ID</th>
+                                            <th>姓名</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {foreach $teach as $teacher}
+                                        <tr>
+                                            <td>{$teacher['uid']}</td>
+                                            <td>{$teacher['uname']}</td>
+                                            <td></td>
+                                            <td>
+                                            {foreach $class as $key => $value}
+                                            
+                                            <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" id="click_pick" value="{$key}" name="click_pick">{$key}</button>
+                                            
+                                            {/foreach}
+                                            </td>
+                                        </tr>
+                                        {/foreach}
+                                    </tbody>
+                                </table>
+                            
                             </div>
-                            <div class="panel-body">
-                                如果需要选择学生为助教，将只能认命为该学生所在班级的助教！
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-9 ">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>班级</th>
-                                        <th>姓名</th>
-                                        <th>状态</th>
-                                        <th>任命</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                   
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                       
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>

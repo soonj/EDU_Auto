@@ -92,13 +92,14 @@ class Teach extends Common
         return $this->fetch('mywork');
     }
 
-    //提升助教权限页面
+    //展示助教权限页面
     public function charts()
     {
         $class = Loader::model('user')->getUser($_SESSION['think']['uid']);
 
         $classarr = explode('/', $class['class']);
 
+        //按不同班级处理学生数据
         foreach($classarr as $value) {
             $user = Loader::model('user')->where('role', 0)->where('class', $value)->select();
             foreach($user as $val) {
@@ -106,11 +107,35 @@ class Teach extends Common
             }
         }
 
-        //dump($studens['1701']['0']['uid']);
-        //die;
+        //获取老师的数据
+        $teach = Loader::model('user')->where('role', 2)->select();
+
+        $this->assign('teach', $teach);
         $this->assign('class', $studens);
 
         return $this->fetch('charts');
+    }
+
+    //修改助教权限部分
+    public function docharts()
+    {
+        $sdata = input('post.');
+        //dump($sdata);
+        //die;
+        if ($sdata['type'] == 'teach') {
+            $teachdata = explode('/', $sdata['class']);
+
+            $teach = Loader::model('user')->charts($teachdata[1], $teachdata[0]);
+
+            $update = Loader::model('zhujiao')->updatezhujiao($teachdata[1], $teachdata[0]);
+        } else {
+            $studata = explode('/', $sdata['type']);
+
+            $teach = Loader::model('user')->charts($sdata['uid'], $studata[0], $studata[1]);
+
+            $update = Loader::model('zhujiao')->updatezhujiao($sdata['uid'], $studata[0], $studata[1]);
+        }
+
     }
 	
     public function fixinfo()
