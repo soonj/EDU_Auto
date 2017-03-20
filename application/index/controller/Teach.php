@@ -131,6 +131,9 @@ class Teach extends Common
         } else {
             $studata = explode('/', $sdata['type']);
 
+            //dump($studata[1]);
+            //die;
+
             $teach = Loader::model('user')->charts($sdata['uid'], $studata[0], $studata[1]);
 
             $update = Loader::model('zhujiao')->updatezhujiao($sdata['uid'], $studata[0], $studata[1]);

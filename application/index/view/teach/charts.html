@@ -321,7 +321,7 @@
 
                                 }
                             });
-                            //location.reload(false); 
+                            location.reload(false); 
                         });
 
 
@@ -345,7 +345,7 @@
 
                                 }
                             });
-                            //location.reload(false); 
+                            location.reload(false); 
                         });
                         
                         //学生部分
@@ -375,7 +375,7 @@
 
                                     }
                                 });
-                                //location.reload(false); 
+                                location.reload(false); 
                             });
                         });
                     });
@@ -420,7 +420,7 @@
                 </div>
                 <!-- /.row -->
 <!--**************************************查看班级助教状态*********************************************************-->
-                <div id="zhujiao" style="display:none">
+                <div id="zhujiao_list" style="display:none">
                     <div class="row">
                         <div class="col-lg-9 ">
                             <div class="table-responsive">
@@ -443,12 +443,12 @@
                                             <td>
                                             {foreach $class as $key => $value}
                                             
-                                            <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" id="click_pick" value="{$key}" name="click_pick">{$key}</button>
-                                            
+                                            <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" id="click_pick" value="{$key}/{$teacher['uid']}" name="tisheng_teach">{$key}</button>
                                             {/foreach}
                                             </td>
                                         </tr>
                                         {/foreach}
+                                        <input hidden id="type_teach" value="teach">
                                     </tbody>
                                 </table>
                             

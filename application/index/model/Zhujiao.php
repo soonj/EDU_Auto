@@ -16,11 +16,13 @@ class Zhujiao extends Model
     public function updatezhujiao($uid, $class ,$fix = 1)
     {
     	//dump($uid);
-    	//dump($class);
+    	//dump($fix);
     	//die;
     	$zhujiaoinfo = Loader::model('zhujiao')->where('class', $class)->select();
-
-    	if ($fix = 0) {
+    	//dump($zhujiaoinfo[0]['zhujiao2']);
+    	dump($uid);
+    	//die;
+    	if ($fix == 0) {
     		//删除助教部分
     		$zid = $zhujiaoinfo[0]['zid'];
     		$update = new Zhujiao;
@@ -30,11 +32,11 @@ class Zhujiao extends Model
 					],['zid' => $zid]);
     		} elseif($zhujiaoinfo[0]['zhujiao2'] == $uid) {
     			$update->save([
-					'zhujiao1' => null,
+					'zhujiao2' => null,
 					],['zid' => $zid]);
     		} elseif($zhujiaoinfo[0]['zhujiao3'] == $uid) {
     			$update->save([
-					'zhujiao1' => null,
+					'zhujiao3' => null,
 					],['zid' => $zid]);
     		} else {
     			return false;
