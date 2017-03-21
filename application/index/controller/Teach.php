@@ -132,7 +132,7 @@ class Teach extends Common
     public function docharts()
     {
         $sdata = input('post.');
-        //dump($sdata);
+        dump($sdata);
         //die;
         if ($sdata['type'] == 'teach') {
             $teachdata = explode('/', $sdata['class']);
