@@ -13,7 +13,7 @@
 
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/../application/');
-define('CSS_PATH', __DIR__ . './CSS/');
-define('JS_PATH', __DIR__ . './JS/');
+define('CSS_PATH', __DIR__ . './css/');
+define('JS_PATH', __DIR__ . './js/');
 // 加载框架引导文件
 require __DIR__ . '/../thinkphp/start.php';
