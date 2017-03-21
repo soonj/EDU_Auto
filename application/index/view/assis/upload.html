@@ -55,7 +55,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://{$Think.server.server_name}/teach/{$_SESSION['think']['uname']}">WTF University</a>
+            <a class="navbar-brand" href="http://fuck.io/assis/{$_SESSION['think']['uname']}">WTF University</a>
         </div>
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
@@ -146,10 +146,10 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uname']} <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="http://{$Think.server.server_name}/teach/{$_SESSION['think']['uname']}/fixinfo"><i class="fa fa-fw fa-user"></i> 个人信息</a>
+                        <a href="http://fuck.io/assis/{$_SESSION['think']['uname']}/fixinfo"><i class="fa fa-fw fa-user"></i> 个人信息</a>
                     </li>
                     <li>
-                        <a href="http://{$Think.server.server_name}/teach/{$_SESSION['think']['uname']}/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
+                        <a href="http://fuck.io/assis/{$_SESSION['think']['uname']}/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
                     </li>
                     <li class="divider"></li>
                     <li>
@@ -161,26 +161,26 @@
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
-                <li>
-                    <a href="http://{$Think.server.server_name}/admin/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
+                <li class="active">
+                    <a href="http://fuck.io/assis/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
                 </li>
                 <li>
-                    <a href="http://{$Think.server.server_name}/admin/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
+                    <a href="http://fuck.io/assis/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
                 </li>
                 <li>
-                    <a href="http://{$Think.server.server_name}/admin/homework"><i class="fa fa-fw fa-table"></i> 发布作业</a>
+                    <a href="http://fuck.io/assis/homework"><i class="fa fa-fw fa-table"></i> 发布作业</a>
                 </li>
                 <li>
-                    <a href="http://{$Think.server.server_name}/admin/announce"><i class="fa fa-fw fa-edit"></i> 发布通知</a>
-                </li>
-                <li  class="active">
-                    <a href="http://{$Think.server.server_name}/admin/uploadExcel"><i class="fa fa-fw fa-desktop"></i> 批量上传学生名单</a>
+                    <a href="http://fuck.io/assis/announce"><i class="fa fa-fw fa-edit"></i> 发布通知</a>
                 </li>
                 <li>
-                    <a href="http://{$Think.server.server_name}/admin/fixinfo"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+                    <a href="http://fuck.io/assis/upload"><i class="fa fa-fw fa-desktop"></i> 上传课件</a>
                 </li>
                 <li>
-                    <a href="http://{$Think.server.server_name}/admin/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+                    <a href="http://fuck.io/assis/fixinfo"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+                </li>
+                <li>
+                    <a href="http://fuck.io/assis/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
                 </li>
             </ul>
         </div>
@@ -206,27 +206,50 @@
                     <hr>
                     <br>
         </div>
+        <div>
+            <table class="table">
+                {foreach $res as $val}
 
+                <tr class='
+                {switch name="$val.type"}
+                    {case value="gif|png|jpg"}active{/case}
+                    {case value="js"}warning{/case}
+                    {case value="wmv"}danger{/case}
+                    {case value="ppt"}active{/case}
+                    {case value="doc"}info{/case}
+                    {default /}.info
+                {/switch}
+                '>
+                    <td>{$val.rid}</td>
+                    <td>{$val.title}</td>
+                    <td><a href="http://fuck.io/download/{$val.filename}">{$val.filename}</a></td>
+                    <td>{$val.type}</td>
+                    <td>{$val.create_time}</td>
+                    <td><a href="javascript:;">删除</a></td>
+                </tr>
+                {/foreach}
+            </table>
+        </div>
     </div>
                 <!--</div>-->
             <!--</div>-->
 <!-- /#wrapper -->
 </body>
 <script>
-    var title = '{$Think.session.uname}的课件';
+    var title = 的课件';
     $('#file-zh').fileinput({
         showUpload: true,
         showPreview:false,
         showCaption: true,
         uploadExtraData: {title : title},
         language: 'zh',
-        uploadUrl: 'initStu',
+        uploadUrl: 'http://fuck.io/upload',
     });
     $("#file-0").fileinput({
         'allowedFileExtensions' : ['jpg', 'png','gif'],
     });
     $("#file-1").fileinput({
-        uploadUrl: 'http://{$Think.server.server_name}/teach/{$Think.session.uname}/doupload', // you must set a valid URL here else you will get an error
+        uploadUrl: 'http://fuck.io/assis/doupload', // you must set a valid URL here else you will get an error
         allowedFileExtensions : ['jpg', 'png','gif'],
         overwriteInitial: false,
         maxFileSize: 1000,
