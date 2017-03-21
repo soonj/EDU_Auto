@@ -17,7 +17,7 @@ class Teach extends Common
     {
         parent::_initialize();
         //角色权限检查
-        parent::verify(get_class());
+        parent::verify('teach');
     }
 
     public function index($func = null)
