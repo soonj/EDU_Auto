@@ -115,14 +115,11 @@ class Homework extends Model
                 $titlename = $value['title'];
                 $titleid = $value['hcid'];
             }
-            $newtitle['content'] = $value['title'];
+            $newtitle['content'] = '<h4>'.$value['title'].'</h4>';
             $newtitle['hcid'] = $value['hcid'];
             $homework[] = $newtitle;
         }
-        /*
-        if (!empty($newtitle)) {
-            $homework[] = $newtitle;
-        }*/
+        
         foreach($xuanze as $xuan) {
             $homework[] = $xuan;
         }
@@ -134,8 +131,6 @@ class Homework extends Model
         foreach($jianda as $jian) {
             $homework[] = $jian;
         }
-        //dump($homework);
-        //die;
         return $homework;
     }
 
@@ -147,10 +142,30 @@ class Homework extends Model
                     ->update($deldata);
     }
 
+    //教师列表页展示发过的作业
+    public function homework($data)
+    {   
+        $show = db('homework')
+                ->where('teach_id', $_SESSION['think']['uid'])
+                ->select();
+        return $show;
+    }
+
     //学生载入作业方法！
-    public function stu_homework()
+    public function gethomework($data)
     {
-        echo 11111111;
+        $show = db('homework')
+                ->where('class_id', $data['class'])
+                ->select();
+
+        return $show;
+    }
+
+    //学生交作业方法
+    public function pushwork($data)
+    {
+        dump($data);
+        die;
     }
 
     //发布作业方法
@@ -175,27 +190,44 @@ class Homework extends Model
         }
         $content = $this->showhomework();
 
+        
+
         foreach ($content as $val) {
             $newcontent[] = $val['content'];
         }
         $string = join('', $newcontent);
 
+        $title = $xuanze = db('homeworkcache')
+                ->where('keyid', $_SESSION['think']['workcacheid'])
+                ->where('title', '<>', 'null')
+                ->where('del_work', 1)
+                ->select();
+        
+        $senddata['title'] = $title[0]['title'];
+
         $senddata['end_time'] = $data['work_time']*3600*24 + time();
         $senddata['class_id'] = $class;
         $senddata['content'] = '<div class="jumbotron">'.$string.'</div>';
         $senddata['teach_id'] = $_SESSION['think']['uid'];
-        //dump($senddata);
 
         $result = db('homework')->insert($senddata);
+
+        $deldata = ['del_work' => '0'];
+        $del = db('homeworkcache')
+                    ->where('uid',$_SESSION['think']['uid'])
+                    ->where('keyid', $_SESSION['think']['workcacheid'])
+                    ->update($deldata);
+
         if ($result) {
             return true;
         } else {
             return false;
         }
+
         
     }
 
-    //删除作业方法
+    //删除未发布的作业方法
     public function delHomework()
     {
         $deldata = ['del_work' => '0'];
@@ -247,7 +279,7 @@ class Homework extends Model
         //如果是题目，去掉题目数量字段
         } elseif($key == 'title'){
             $new_timu =$data['pick_main'];
-            $send = ['uid' => $uid, $key => '<h4 id="homework">'.$new_timu.'</h4>', 'keyid' => $keyid];
+            $send = ['uid' => $uid, $key => $new_timu, 'keyid' => $keyid];
         //判断和简答可以通用
         } else {
             $new_timu = '<div class="table-responsive" id="homework"><h4>'.$data['pick_main'].'</h4></div>';
