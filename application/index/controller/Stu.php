@@ -26,7 +26,7 @@ class Stu extends Common
         if (!is_null($func)){
             return $this->$func();
         }
-        return $this->fetch('bgd_index');
+        return $this->fetch('index');
     }
 
     //ajax轮询返回通知内容
