@@ -30,5 +30,4 @@ return [
     'download/:fileNameUrl' => 'index/download/download',
     'upload'                => 'index/upload/upload',
     //'uploadtmp'             => 'admin/admin/index/initStu',
-
 ];

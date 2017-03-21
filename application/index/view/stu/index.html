@@ -63,7 +63,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+
                 <a class="navbar-brand" href="http://{$Think.server.server_name}/stu/{$_SESSION['think']['uname']}">WTF University</a>
+
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -134,13 +136,13 @@
                 </li>
 <!--**********************************************这里是顶部用户选项部分！************************************************-->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uid']} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uname']} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="http://{$Think.server.server_name}/stu/{$_SESSION['think']['uname']}/profile"><i class="fa fa-fw fa-user"></i> 个人信息</a>
+                            <a href="http://{$Think.server.server_name}/stu/profile"><i class="fa fa-fw fa-user"></i> 个人信息</a>
                         </li>
                         <li>
-                            <a href="http://{$Think.server.server_name}/stu/{$_SESSION['think']['uname']}/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
+                            <a href="http://{$Think.server.server_name}/stu/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -153,6 +155,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
+
                         <a href="http://{$Think.server.server_name}/stu/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
                     </li>
                     <li>
@@ -169,6 +172,7 @@
                     </li>
                     <li>
                         <a href="http://{$Think.server.server_name}/stu/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>

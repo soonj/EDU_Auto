@@ -38,11 +38,14 @@ class Stu extends Common
         exit();
     }
 
-    //查看学生作业
+    //学生写作业
     private function homework()
     {
-        //$data = Loader::model('Homework')->getHomework($this->uid);
-        //return $this->fetch('homework' , $data);
+        $userinfo = Loader::model('user')->getUser($_SESSION['think']['uid']);
+        $data = Loader::model('Homework')->getHomework($userinfo);
+
+        $this->assign('homework', $data);
+
         return $this->fetch('homework');
     }
 
@@ -52,10 +55,11 @@ class Stu extends Common
     }
 
     //提交完成作业
-    private function doHomework()
+    public function doHomework()
     {
-        $data = input('post');
-        Loader::model('Homework')->doHomework($data);
+        $sdata = input('post.');
+        
+        $pushhomework = Loader::model('Homework')->pushwork($sdata);
     }
 
     //查看用户详情

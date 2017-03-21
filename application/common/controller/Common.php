@@ -26,6 +26,7 @@ class Common extends Controller
     //验证权限
     public function verify($role)
     {
+
         switch ($role) {
             case 'stu':
                 $role = 0;
@@ -42,6 +43,8 @@ class Common extends Controller
         }
 
         if ($role != $this->role) {
+            dump($role);
+            die;
             $this->error('Role Type Error');
         }
     }
