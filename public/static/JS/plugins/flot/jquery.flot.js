@@ -232,7 +232,7 @@ Licensed under the MIT license.
 
 	// Creates (if necessary) and returns the text overlay container.
 	//
-	// @param {string} classes String of space-separated CSS classes used to
+	// @param {string} classes String of space-separated css classes used to
 	//     uniquely identify the text layer.
 	// @return {object} The jQuery-wrapped text-layer div.
 
@@ -305,10 +305,10 @@ Licensed under the MIT license.
 	// Canvas maintains a cache of recently-used text info objects; getTextInfo
 	// either returns the cached element or creates a new entry.
 	//
-	// @param {string} layer A string of space-separated CSS classes uniquely
+	// @param {string} layer A string of space-separated css classes uniquely
 	//     identifying the layer containing this text.
 	// @param {string} text Text string to retrieve info for.
-	// @param {(string|object)=} font Either a string of space-separated CSS
+	// @param {(string|object)=} font Either a string of space-separated css
 	//     classes or a font-spec object, defining the text's font and style.
 	// @param {number=} angle Angle at which to rotate the text, in degrees.
 	//     Angle is currently unused, it will be implemented in the future.
@@ -323,7 +323,7 @@ Licensed under the MIT license.
 
 		text = "" + text;
 
-		// If the font is a font-spec object, generate a CSS font definition
+		// If the font is a font-spec object, generate a css font definition
 
 		if (typeof font === "object") {
 			textStyle = font.style + " " + font.variant + " " + font.weight + " " + font.size + "px/" + font.lineHeight + "px " + font.family;
@@ -386,12 +386,12 @@ Licensed under the MIT license.
 	// The text isn't drawn immediately; it is marked as rendering, which will
 	// result in its addition to the canvas on the next render pass.
 	//
-	// @param {string} layer A string of space-separated CSS classes uniquely
+	// @param {string} layer A string of space-separated css classes uniquely
 	//     identifying the layer containing this text.
 	// @param {number} x X coordinate at which to draw the text.
 	// @param {number} y Y coordinate at which to draw the text.
 	// @param {string} text Text string to draw.
-	// @param {(string|object)=} font Either a string of space-separated CSS
+	// @param {(string|object)=} font Either a string of space-separated css
 	//     classes or a font-spec object, defining the text's font and style.
 	// @param {number=} angle Angle at which to rotate the text, in degrees.
 	//     Angle is currently unused, it will be implemented in the future.
@@ -464,12 +464,12 @@ Licensed under the MIT license.
 	// where we potentially get rid of all text on a layer, but will likely
 	// add back most or all of it later, as when redrawing axes, for example.
 	//
-	// @param {string} layer A string of space-separated CSS classes uniquely
+	// @param {string} layer A string of space-separated css classes uniquely
 	//     identifying the layer containing this text.
 	// @param {number=} x X coordinate of the text.
 	// @param {number=} y Y coordinate of the text.
 	// @param {string=} text Text string to remove.
-	// @param {(string|object)=} font Either a string of space-separated CSS
+	// @param {(string|object)=} font Either a string of space-separated css
 	//     classes or a font-spec object, defining the text's font and style.
 	// @param {number=} angle Angle at which the text is rotated, in degrees.
 	//     Angle is currently unused, it will be implemented in the future.
@@ -531,7 +531,7 @@ Licensed under the MIT license.
                     show: null, // null = auto-detect, true = always, false = never
                     position: "bottom", // or "top"
                     mode: null, // null or "time"
-                    font: null, // null (derived from CSS in placeholder) or object like { size: 11, lineHeight: 13, style: "italic", weight: "bold", family: "sans-serif", variant: "small-caps" }
+                    font: null, // null (derived from css in placeholder) or object like { size: 11, lineHeight: 13, style: "italic", weight: "bold", family: "sans-serif", variant: "small-caps" }
                     color: null, // base color, labels, ticks
                     tickColor: null, // possibly different color of ticks, e.g. "rgba(0,0,0,0.15)"
                     transform: null, // null or f: number -> number to transform axis
