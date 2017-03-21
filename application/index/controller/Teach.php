@@ -17,7 +17,7 @@ class Teach extends Common
     {
         parent::_initialize();
         //角色权限检查
-        parent::verify(get_class());
+        parent::verify('teach');
     }
 
     public function index($func = null)
@@ -79,10 +79,8 @@ class Teach extends Common
             } else {
                 $homework = Loader::model('Homework')->setSubject($sdata);
             }
-        }
-        
+        } 
     }
-	
 
     public function blankpage()
     {
@@ -101,6 +99,11 @@ class Teach extends Common
 
     public function mywork()
     {
+        $worklist = Loader::model('Homework')->where('teach_id', $_SESSION['think']['uid'])->paginate(5);
+        $fenye = $worklist->render();
+        
+        $this->assign('fenye', $fenye);
+        $this->assign('worklist', $worklist);
         return $this->fetch('mywork');
     }
 
@@ -112,16 +115,29 @@ class Teach extends Common
         $classarr = explode('/', $class['class']);
 
         //按不同班级处理学生数据
-        foreach($classarr as $value) {
+        /*foreach($classarr as $value) {
             $user = Loader::model('user')->where('role', 0)->where('class', $value)->select();
             foreach($user as $val) {
                 $studens[$value][] = $val;
             }
+        }*/
+        $i = 0;
+        foreach($classarr as $value) {
+            $studens[] = Loader::model('user')->where('role', 0)->where('class', $value)->paginate(5);
+            $fenye[] = $studens[$i]->render();
+            $i++;
         }
-
+        //dump($fenye);
+        //die;
         //获取老师的数据
         $teach = Loader::model('user')->where('role', 2)->select();
 
+        //助教情况获取
+        $list = loader::model('zhujiao')->zhujiaolist($classarr);
+        //dump($studens);
+        //die;
+        $this->assign('fenye', $fenye);
+        $this->assign('list', $list);
         $this->assign('teach', $teach);
         $this->assign('class', $studens);
 
@@ -132,8 +148,7 @@ class Teach extends Common
     public function docharts()
     {
         $sdata = input('post.');
-        //dump($sdata);
-        //die;
+
         if ($sdata['type'] == 'teach') {
             $teachdata = explode('/', $sdata['class']);
 
@@ -143,14 +158,26 @@ class Teach extends Common
         } else {
             $studata = explode('/', $sdata['type']);
 
-            //dump($studata[1]);
-            //die;
-
             $teach = Loader::model('user')->charts($sdata['uid'], $studata[0], $studata[1]);
 
             $update = Loader::model('zhujiao')->updatezhujiao($sdata['uid'], $studata[0], $studata[1]);
         }
 
+    }
+
+    //从列表页中删除助教
+    public function delcharts()
+    {
+        $sdata = input('post.');
+
+        $userinfo = explode('/', $sdata['type']);
+
+        $uid = $userinfo[0];
+        $class = $userinfo[2];
+
+        $teach = Loader::model('user')->charts($uid, $class, 0);
+
+        $update = Loader::model('zhujiao')->updatezhujiao($uid, $class, 0);
     }
 	
     public function fixinfo()

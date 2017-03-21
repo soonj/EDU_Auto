@@ -13,28 +13,39 @@ class Zhujiao extends Model
         parent::initialize();
     }
 
+    public function zhujiaolist($class)
+    {
+    	foreach($class as $val) {
+    		$zhujiaoinfo = Loader::model('zhujiao')->where('class', $val)->select();
+    		$classinfo[] = $zhujiaoinfo[0];
+    		
+    	}
+    	return $classinfo;
+    }
+
+    public function delzhujiao($uid) {
+    	
+    }
+
     public function updatezhujiao($uid, $class ,$fix = 1)
     {
-    	//dump($uid);
-    	//dump($fix);
-    	//die;
     	$zhujiaoinfo = Loader::model('zhujiao')->where('class', $class)->select();
-    	//dump($zhujiaoinfo[0]['zhujiao2']);
-    	dump($uid);
-    	//die;
+
+    	$userdata = Loader::model('user')->where('uid', $uid)->select();
+    	$uname = $userdata[0]['uname'];
     	if ($fix == 0) {
     		//删除助教部分
     		$zid = $zhujiaoinfo[0]['zid'];
     		$update = new Zhujiao;
-    		if ($zhujiaoinfo[0]['zhujiao1'] == $uid) {
+    		if ($zhujiaoinfo[0]['zhujiao1'] == $uid.'/'.$uname) {
     			$update->save([
 					'zhujiao1' => null,
 					],['zid' => $zid]);
-    		} elseif($zhujiaoinfo[0]['zhujiao2'] == $uid) {
+    		} elseif($zhujiaoinfo[0]['zhujiao2'] == $uid.'/'.$uname) {
     			$update->save([
 					'zhujiao2' => null,
 					],['zid' => $zid]);
-    		} elseif($zhujiaoinfo[0]['zhujiao3'] == $uid) {
+    		} elseif($zhujiaoinfo[0]['zhujiao3'] == $uid.'/'.$uname) {
     			$update->save([
 					'zhujiao3' => null,
 					],['zid' => $zid]);
@@ -55,21 +66,19 @@ class Zhujiao extends Model
 	    		$update = new Zhujiao;
 	    		if (empty($zhujiaoinfo[0]['zhujiao1'])) {
 					$update->save([
-					    'zhujiao1' =>  $uid,
+					    'zhujiao1' =>  $uid.'/'.$uname,
 					],['zid' => $zid]);
 	    		} elseif (empty($zhujiaoinfo[0]['zhujiao2'])) {
 	    			$update->save([
-					    'zhujiao2' =>  $uid,
+					    'zhujiao2' =>  $uid.'/'.$uname,
 					],['zid' => $zid]);
 					die;
 	    		} elseif (empty($zhujiaoinfo[0]['zhujiao3'])) {
 	    			$update->save([
-					    'zhujiao3' =>  $uid,
+					    'zhujiao3' =>  $uid.'/'.$uname,
 					],['zid' => $zid]);
 	    		} else {
-	    			$msg = '每个班最多只能有三个助教';
-	    			dump($msg);
-	    			//return false;
+	    			return false;
 	    		}
 	    		
 	    	}

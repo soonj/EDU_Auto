@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://fuck.io/teach/{$_SESSION['think']['uname']}">WTF University</a>
+                <a class="navbar-brand" href="http://fuck.io/teach">WTF University</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -134,10 +134,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uname']} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/fixinfo"><i class="fa fa-fw fa-user"></i> 个人信息</a>
+                            <a href="http://fuck.io/teach/fixinfo"><i class="fa fa-fw fa-user"></i> 个人信息</a>
                         </li>
                         <li>
-                            <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
+                            <a href="http://fuck.io/teach/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -150,22 +150,22 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
+                        <a href="http://fuck.io/teach"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
+                        <a href="http://fuck.io/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
+                        <a href="http://fuck.io/teach/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                        <a href="http://fuck.io/teach/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
+                        <a href="http://fuck.io/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+                        <a href="http://fuck.io/teach/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
@@ -234,6 +234,7 @@
                         {/if}
                         <input hidden id="subject_timu" value="deltimu">
                         <script>
+                            //删除题目部分
                             $(function(){
                                 $("button[name='deltimu']").unbind('click').click(function(){
                                 var del_id = $(this).val();
@@ -411,12 +412,14 @@
                                     }
                                     
                                 });
+                                alert('出题成功');
                                 location.reload(false); 
                             });
 
                         //出判断题
                         $('#click_panduan').click(function(){
                             $('#edit_work').show();
+                            $('#edit_send').hide();
                             $('#edit_show').hide();
                             $('#hw_panduan').show();
                             $('#hw_jianda').hide();
@@ -439,6 +442,7 @@
                                     }
                                      
                                 });
+                                alert('出题成功');
                                 location.reload(false);
                             });
                             
@@ -448,6 +452,7 @@
                         $('#click_jianda').click(function(){
                             $('#edit_work').show();
                             $('#edit_show').hide();
+                            $('#edit_send').hide();
                             $('#hw_jianda').show();
                             $('#hw_panduan').hide();
                             $("#hw_pick").hide();
@@ -469,6 +474,7 @@
                                     }
                                     
                                 });
+                                alert('出题成功');
                                 location.reload(false); 
                             });
                         });
@@ -478,6 +484,7 @@
                             $('#edit_work').show();
                             $('#edit_show').hide();
                             $('#hw_pick').show();
+                            $('#edit_send').hide();
                             $('#hw_panduan').hide();
                             $("#hw_jianda").hide();
                             $('#put_xuanze').unbind('click').click(function(){
@@ -502,6 +509,7 @@
                                     }
                                     
                                 });
+                                alert('出题成功');
                                 location.reload(false); 
                             });
                         });
@@ -525,6 +533,7 @@
                                 }
                                 
                             });
+                            alert('标题设置成功');
                             location.reload(false); 
                         });
 
@@ -546,6 +555,7 @@
                                 }
                                 
                             });
+                            alert('删除作业成功');
                             location.reload(false); 
                         });
                        
@@ -578,6 +588,8 @@
 
                                     }
                                 });  
+                                alert('发布成功！');
+                                //location.reload(false); 
                             });
                         });
                     });

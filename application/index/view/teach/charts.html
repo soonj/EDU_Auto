@@ -48,7 +48,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://fuck.io/teach/{$_SESSION['think']['uname']}">WTF University</a>
+                <a class="navbar-brand" href="http://fuck.io/teach">WTF University</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -155,22 +155,22 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
+                        <a href="http://fuck.io/teach"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
                     </li>
                     <li class="active">
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
+                        <a href="http://fuck.io/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
+                        <a href="http://fuck.io/teach/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                        <a href="http://fuck.io/teach/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
+                        <a href="http://fuck.io/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+                        <a href="http://fuck.io/teach/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
@@ -184,7 +184,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+                        <a href="http://fuck.io/teach/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
                     </li>
                 </ul>
             </div>
@@ -235,7 +235,7 @@
                     <div class="row" style="margin-bottom: 10px;">
                         <label style="font-size:24px;margin-left:15px;padding-top:5px;">请选择班级：</label>
                         {foreach $class as $key => $value}
-                        <button type="submit" class="btn btn-info" style="margin-left:20px;margin-top:-8px;" id="click_pick" value="{$key}" name="click_pick">{$key}</button>
+                        <button type="submit" class="btn btn-info" style="margin-left:20px;margin-top:-8px;" id="click_pick" value="{$key}" name="click_pick">{$value[0]['class']}</button>
                         {/foreach}
                     </div>
                     <div class="row" id="showclass" value="1111" name="1111">
@@ -260,18 +260,24 @@
                                             <td>{$val['role']}</td>
                                             {if empty($val['zhujiao'])}
                                                 <td><button type="submit" class="btn btn-success" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" name="tisheng_stu" value="{$val['uid']}">提升</button></td>
-                                                <input hidden id="stu{$val['uid']}" value="{$keys}/1">
+                                                <input hidden id="stu{$val['uid']}" value="{$val['class']}/1">
                                             {else}
                                                 <td><button type="submit" class="btn btn-danger" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" name="tisheng_stu" value="{$val['uid']}">降职</button></td>
-                                                <input hidden id="stu{$val['uid']}" value="{$keys}/0">
+                                                <input hidden id="stu{$val['uid']}" value="{$val['class']}/0">
                                             {/if}
                                         </tr>
                                     {/foreach}
+                                    
                                     </tbody>
                                 </table>
                             </div>
+                            {foreach $fenye as $page}
+                                {$page}
+                            {/foreach}
                         </div>
                         {/foreach}
+
+                        
                     </div>
                 </div>
                 <!-- /.row -->
@@ -321,7 +327,29 @@
 
                                 }
                             });
-                            location.reload(false); 
+                            //location.reload(false); 
+                        });
+
+                        //列表部分！
+                        $("button[name='click_del']").unbind('click').click(function(){
+                            //alert($(this).val());
+                            //var ban = '#del' + $(this).val();
+
+                            $.ajax({
+                            cache: true,
+                            type: "POST",
+                            url:"http://fuck.io/index/teach/delcharts",
+                            data:{
+                                "type":$(this).val(),                    
+                                },
+                                async: false,
+                                error: function(request) {
+                                    alert("Connection error");
+                                },
+                                success: function(result) {
+
+                                }
+                            });
                         });
 
 
@@ -345,7 +373,7 @@
 
                                 }
                             });
-                            location.reload(false); 
+                            //location.reload(false); 
                         });
                         
                         //学生部分
@@ -375,7 +403,7 @@
 
                                     }
                                 });
-                                location.reload(false); 
+                                //location.reload(false); 
                             });
                         });
                     });
@@ -405,7 +433,7 @@
                                             <td>
                                             {foreach $class as $key => $value}
                                             
-                                            <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" id="click_pick" value="{$key}/{$teacher['uid']}" name="tisheng_teach">{$key}</button>
+                                            <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" id="click_pick" value="{$value[0]['class']}/{$teacher['uid']}" name="tisheng_teach">{$value[0]['class']}</button>
                                             {/foreach}
                                             </td>
                                         </tr>
@@ -420,7 +448,7 @@
                 </div>
                 <!-- /.row -->
 <!--**************************************查看班级助教状态*********************************************************-->
-                <div id="zhujiao_list" style="display:none">
+                <div id="zhujiao" style="display:none">
                     <div class="row">
                         <div class="col-lg-9 ">
                             <div class="table-responsive">
@@ -428,23 +456,34 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>校园ID</th>
-                                            <th>姓名</th>
+                                            <th>班级</th>
                                             <th>状态</th>
-                                            <th>操作</th>
+                                            <th>助教</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {foreach $teach as $teacher}
+                                        {foreach $list as $info}
                                         <tr>
-                                            <td>{$teacher['uid']}</td>
-                                            <td>{$teacher['uname']}</td>
-                                            <td></td>
+                                            <td>{$info['class']}</td>
+                                            <td>正常</td>
                                             <td>
-                                            {foreach $class as $key => $value}
-                                            
-                                            <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" id="click_pick" value="{$key}/{$teacher['uid']}" name="tisheng_teach">{$key}</button>
-                                            {/foreach}
+                                            {if empty($info['zhujiao1']) && empty($info['zhujiao2']) && empty($info['zhujiao3'])}
+                                                这个班没有助教
+                                            {/if}
+                                            {if !empty($info['zhujiao1'])}
+                                                <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" name="click_del" value="{$info['zhujiao1']}/{$info['class']}" >{$info['zhujiao1']|stristr='/'|trim='/'}</button>
+                                                
+                                            {else}
+                                            {/if}
+                                            {if !empty($info['zhujiao2'])}
+                                                <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" name="click_del" value="{$info['zhujiao2']}/{$info['class']}" >{$info['zhujiao2']|stristr='/'|trim='/'}</button>
+                                               
+                                            {else}
+                                            {/if}
+                                            {if !empty($info['zhujiao3'])}
+                                                <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" name="click_del" value="{$info['zhujiao3']}/{$info['class']}">{$info['zhujiao3']|stristr='/'|trim='/'}</button>
+                                            {else}
+                                            {/if}
                                             </td>
                                         </tr>
                                         {/foreach}
