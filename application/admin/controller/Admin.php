@@ -46,6 +46,7 @@ class Admin extends Auth
     {
         return $this->fetch('upload');
     }
+
     //初始化学生
     public function initStu()
     {
@@ -57,6 +58,13 @@ class Admin extends Auth
     //学生管理（对应教师管理）
     public function manage()
     {
+        $list = Loader::model('Profile')->getProfile();
+        $this->assign('list' , $list);
+        return $this->fetch();
+    }
+
+    public function domanage()
+    {
         if (! request()->isAjax()){
             $this->error('Request Type Error');
         }
@@ -65,10 +73,12 @@ class Admin extends Auth
         $data = model('User')->$request['action']($request);
         return $data;
     }
+
+
     //对教师发送通知
     public function sendMessage()
     {
-
+        return $this->fetch('announce');
     }
     //课程管理
     public function course()
