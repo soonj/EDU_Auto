@@ -156,6 +156,7 @@ class Homework extends Model
     {
         $show = db('homework')
                 ->where('class_id', $data['class'])
+                ->where('dowork', null)
                 ->select();
 
         return $show;
@@ -210,7 +211,7 @@ class Homework extends Model
         $senddata['content'] = '<div class="jumbotron">'.$string.'</div>';
         $senddata['teach_id'] = $_SESSION['think']['uid'];
 
-        $result = db('homework')->insert($senddata);
+        $result = db('homework')->insertGetId($senddata);
 
         $deldata = ['del_work' => '0'];
         $del = db('homeworkcache')

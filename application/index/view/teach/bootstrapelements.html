@@ -20,6 +20,8 @@
     <!-- Custom Fonts -->
     <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <script src="/static/js/jquery.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -43,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://fuck.io/teach/{$_SESSION['think']['uname']}">WTF University</a>
+                <a class="navbar-brand" href="http://{$Think.server.server_name}/teach">WTF University</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -131,10 +133,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uname']} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/fixinfo"><i class="fa fa-fw fa-user"></i> 个人信息</a>
+                            <a href="http://{$Think.server.server_name}/teach/fixinfo"><i class="fa fa-fw fa-user"></i> 个人信息</a>
                         </li>
                         <li>
-                            <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
+                            <a href="http://{$Think.server.server_name}/teach/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -147,36 +149,26 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
+                        <a href="http://{$Think.server.server_name}/teach"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
+                        <a href="http://{$Think.server.server_name}/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 助教管理</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
+                        <a href="http://{$Think.server.server_name}/teach/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
-                    </li>
-                    <li class="active">
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
+                        <a href="http://{$Think.server.server_name}/teach/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+                        <a href="http://{$Think.server.server_name}/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> 管理考勤</a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                        </ul>
+                        <a href="http://{$Think.server.server_name}/teach/homework"><i class="fa fa-fw fa-wrench"></i> 布置作业</a>
                     </li>
+                    
                     <li>
-                        <a href="http://fuck.io/teach/{$_SESSION['think']['uname']}/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+                        <a href="http://{$Think.server.server_name}/index/teach/mywork"><i class="fa fa-fw fa-table"></i> 查看作业</a>
                     </li>
                 </ul>
             </div>
@@ -191,7 +183,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            学生管理
+                            学生考勤
                         </h1>
                         <ol class="breadcrumb">
                             <li>
@@ -206,74 +198,88 @@
                 <!-- /.row -->
 
                 <!-- Main jumbotron for a primary marketing message or call to action -->
+                
+                    <script>
+                        $(function(){
+                            $("#qingjia_main").show();
+                            $("#qingjia_list").hide();
+                            $("#click_shenpi").unbind('click').click(function(){
+                                $("#qingjia_main").show();
+                                $("#qingjia_list").hide();
+                                
+                            });
+
+                            $("#click_list").unbind('click').click(function(){
+                                $("#qingjia_list").show();
+                                $("#qingjia_main").hide();
+                            });
+                        });
+                            
+                    </script>
                 <div class="row">
                     <div class="row" style="margin-bottom: 10px;margin-left: 0px;">
-                        <button type="submit" class="btn btn-lg btn-primary" style="margin-left:20px;" id="click_pick">学生考勤</button>
-                        <button type="submit" class="btn btn-lg btn-primary" style="margin-left:20px;" id="click_panduan">学生请假</button>
-                        
+                        <button type="submit" class="btn btn-lg btn-primary" style="margin-left:20px;" id="click_shenpi">请假审批</button>
+                        <button type="submit" class="btn btn-lg btn-primary" style="margin-left:20px;" id="click_list">全部列表</button>
                     </div>
-                    <div class="col-lg-10">
+                    <div class="col-lg-10" id="qingjia_main" style="margin-bottom: 280px;">
                         <h3>学生考勤</h3>
-                        <div class="alert alert-warning">
-                            <strong>tips:</strong> 请您选择正确的选项！
-                        </div>
+                        
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>课程</th>
-                                        <th>教室</th>
-                                        <th>时间</th>
-                                        <th>违纪项目</th>
+                                        <th>请假原因</th>
+                                        <th>开始时间</th>
+                                        <th>结束时间</th>
+                                        <th>班级</th>
+                                        <th>状态</th>
+                                        <th>操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                   
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                       
-                                    </tr>
+                                    {foreach $qingjia as $value}
+                                        {foreach $value as $val}
+                                        <tr>
+                                            <td>{$val['content']}</td>
+                                            <td>{$ctime = date('Y-m-d',$val['ctime'])}</td>
+                                            <td>{$etime = date('Y-m-d',$val['etime'])}</td>
+                                            <td>{$val['class']}</td>
+                                            {if $val['type']==1}
+                                                <td>已批准</td>
+                                            {elseif $val['type']==2}
+                                                <td>未批准</td>
+                                            {else}
+                                                <td>未审核</td>
+                                            {/if}
+                                            <td>
+                                            <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" value="{$val['kid']}" name="click_yes">批准</button>
+                                            <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" value="{$val['kid']}" name="click_no">拒绝</button>
+                                            </td>
+                                        </tr>
+                                        {/foreach}
+                                    {/foreach}
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <div class="col-lg-6" id="qingjia_list" name="showbox">
+                        <h3>我要请假</h3>
+                        <div class="alert alert-warning">
+                            <strong>tips:</strong> 请您按照2017-03-01格式填写时间！
+                        </div>
+                        <div class="table-responsive">
+                            <div class="table-responsive" id="hw_panduan">
+                                <input class="form-control" id="qingjia_yy" placeholder="请您输入请假原因" style="margin-top: 10px;margin-bottom: 10px;">
+
+                                <input class="form-control" id="qingjia_ctime" placeholder="请您输入请假开始时间" style="margin-top: 10px;margin-bottom: 10px;">
+
+                                <input class="form-control" id="qingjia_etime" placeholder="请您输入请假结束时间" style="margin-top: 10px;margin-bottom: 10px;">
+
+                                <button type="submit" class="btn btn-success" id="put_qingjia" style="margin-top:20px;margin-bottom:90px;">提交</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -283,7 +289,7 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="/static/js/jquery.js"></script>
+    
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/static/js/bootstrap.min.js"></script>

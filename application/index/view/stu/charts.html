@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://fuck.io/stu">WTF University</a>
+                <a class="navbar-brand" href="http://{$Think.server.server_name}/stu">WTF University</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -134,10 +134,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uname']} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="http://fuck.io/stu/profile"><i class="fa fa-fw fa-user"></i> 个人信息</a>
+                            <a href="http://{$Think.server.server_name}/stu/profile"><i class="fa fa-fw fa-user"></i> 个人信息</a>
                         </li>
                         <li>
-                            <a href="http://fuck.io/stu/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
+                            <a href="http://{$Think.server.server_name}/stu/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -149,37 +149,28 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li>
-                        <a href="http://fuck.io/stu"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
-                    </li>
                     <li class="active">
-                        <a href="http://fuck.io/stu/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
+
+                        <a href="http://{$Think.server.server_name}/stu/index"><i class="fa fa-fw fa-dashboard"></i> 我的首页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/stu/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
+                        <a href="http://{$Think.server.server_name}/stu/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/stu/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                        <a href="http://{$Think.server.server_name}/stu/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/stu/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
+                        <a href="http://{$Think.server.server_name}/stu/profile"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/stu/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+                        <a href="http://{$Think.server.server_name}/stu/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                        </ul>
+                        <a href="http://{$Think.server.server_name}/stu/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 作业历史</a>
+
                     </li>
                     <li>
-                        <a href="http://fuck.io/stu/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+                        <a href="http://{$Think.server.server_name}/stu/homework"><i class="fa fa-fw fa-table"></i> 当前作业</a>
                     </li>
                 </ul>
             </div>
