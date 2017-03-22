@@ -26,7 +26,8 @@ class Stu extends Common
         if (!is_null($func)){
             return $this->$func();
         }
-        return $this->fetch('index');
+
+        return $this->fetch();
     }
 
     //ajax轮询返回通知内容
@@ -36,6 +37,27 @@ class Stu extends Common
         $data = Loader::controller('Notice')->getNotices($this->uid);
         echo json_encode($data);
         exit();
+    }
+
+    //ajax 标为已读信息
+    public function ajaxDoRead()
+    {
+        $data = input('post.');
+        Loader::controller('Notice')->setRead($data['nid'] , $this->uid);
+        echo json_encode('ok');
+    }
+
+    public function ajaxDoUnRead()
+    {
+        $data = input('post.');
+        Loader::controller('Notice')->setUnRead($data['nid'] , $this->uid);
+        echo json_encode('ok');
+    }
+
+    public function ajaxDoAllRead()
+    {
+        Loader::controller('Notice')->setAllRead($this->uid);
+        echo json_encode('ok');
     }
 
     //学生写作业
@@ -84,5 +106,13 @@ class Stu extends Common
         $data = Loader::model('Res')->getRes();
         $this->assign('res' , $data);
         return $this->fetch('res');
+    }
+
+    //通知记录页面
+    protected function tables()
+    {
+        $notice = Loader::controller('Notice')->getAllNotices($this->uid);
+        $this->assign('notice' , $notice);
+        return $this->fetch('tables');
     }
 }

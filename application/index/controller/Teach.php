@@ -186,6 +186,13 @@ class Teach extends Common
         return $this->fetch('fixinfo');
         
     }
+
+    public function upload()
+    {
+        $data = Loader::model('Res')->getRes();
+        $this->assign('res' , $data);
+        return $this->fetch('upload');
+    }
 	
     public function forms()
     {

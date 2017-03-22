@@ -29,5 +29,6 @@ return [
     'vst/[:func]'           => 'index/vst/index',
     'download/:fileNameUrl' => 'index/download/download',
     'upload'                => 'index/upload/upload',
+    'uploadMyHomework'      => 'index/upload/uploadMyHomework',
     //'uploadtmp'             => 'admin/admin/index/initStu',
 ];

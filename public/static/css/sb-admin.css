@@ -225,3 +225,7 @@ ul.alert-dropdown {
 .panel-yellow > a:hover {
     color: #df8a13;
 }
+
+.fa-thumbs-up-back {
+    background-color: #b52b27;
+}
