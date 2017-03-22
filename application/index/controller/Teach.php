@@ -183,7 +183,7 @@ class Teach extends Common
     {
         $data = db('profile')->where('pid', $_SESSION['think']['uid'])->find();
         $this->assign('userinfo', $data);
-        return $this->fetch('Fixinfo');
+        return $this->fetch('fixinfo');
         
     }
 	
