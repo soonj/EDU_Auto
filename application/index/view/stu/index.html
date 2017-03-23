@@ -32,15 +32,29 @@
 
     <script>
         var getting = {
-            url:'http://{$Think.server.server_name}/stu/{$Think.session.uname}/ajaxGetNotice',
+            url:'http://{$Think.server.server_name}/stu/ajaxGetNotice',
             dataType : 'json',
             success:function(data){
                 var str = '';
-                for (notice in data)
-                {
-                    str += '<li><a href="#">'+ data[notice].content +'<span class="label label-default">' + data[notice].sender_id + '</span></a></li>';
+                if (data.length != 0){
+                    for (notice in data)
+                    {
+                        str += '<lable><li>&nbsp;&nbsp;' + data[notice].title.substring(0,5) +
+                            '<span class="label label-default" style="float: right;margin-right: 5px">' + data[notice].sender_id +
+                            '</span></li></lable>';
+                    }
+                    str += '<li class="divider"></li><li>' +
+                        '<a href="http://{$Think.server.server_name}/stu/tables">' +
+                        'View More Info</a></li>';
+                    $("#get_notice").html(str);
+                    $("#unread").show();
+                }else {
+                    str = '<li class="divider"></li><li>' +
+                        '<a href="http://{$Think.server.server_name}/stu/tables">' +
+                        'View More Info</a></li>';
+                    $("#get_notice").html(str);
+                    $("#unread").hidden();
                 }
-                $("#get_notice").html(str);
             }
         };
         window.setInterval(function () {
@@ -125,13 +139,11 @@
                 </li>
 <!--**********************************************这里是顶部铃铛通知部分！************************************************-->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="mail-status" id="unread"></span>
+                        <i id="notice-bell" class="fa fa-bell"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown" id="get_notice">
 
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
                     </ul>
                 </li>
 <!--**********************************************这里是顶部用户选项部分！************************************************-->
@@ -155,7 +167,6 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-
                         <a href="http://{$Think.server.server_name}/stu/index"><i class="fa fa-fw fa-dashboard"></i> 我的首页</a>
                     </li>
                     <li>

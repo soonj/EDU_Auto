@@ -37,7 +37,7 @@ class ImportExcel extends Controller
         $user = new User;
         foreach($dataArr as $val){
             $list[] = [
-                'code'       => $val[0],
+                'code'      => $val[0],
                 'uname'     => $val[1],
                 'sex'       => $val[2],
                 'age'       => $val[3],
