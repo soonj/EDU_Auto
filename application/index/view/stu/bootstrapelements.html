@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - Bootstrap Admin Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/css/sb-admin.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script src="/static/js/jquery.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://{$Think.server.server_name}/stu">WTF University</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">Read All New Messages</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uname']} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="http://{$Think.server.server_name}/stu/profile"><i class="fa fa-fw fa-user"></i> 个人信息</a>
+                        </li>
+                        <li>
+                            <a href="http://{$Think.server.server_name}/stu/homework"><i class="fa fa-fw fa-gear"></i> 我的作业</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> 退出</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+
+                        <a href="http://{$Think.server.server_name}/stu/index"><i class="fa fa-fw fa-dashboard"></i> 我的首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://{$Think.server.server_name}/stu/profile"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                    </li>
+                    <li class="active">
+                        <a href="http://{$Think.server.server_name}/stu/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> 我的考勤</a>
+                    </li>
+                    <li>
+                        <a href="http://{$Think.server.server_name}/stu/mywork"><i class="fa fa-fw fa-wrench"></i> 作业历史</a>
+
+                    </li>
+                    <li>
+                        <a href="http://{$Think.server.server_name}/stu/homework"><i class="fa fa-fw fa-table"></i> 当前作业</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            学生考勤
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">管理首页</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-desktop"></i> 学生管理
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <!-- Main jumbotron for a primary marketing message or call to action -->
+                <div class="row">
+                    <div class="row" style="margin-bottom: 10px;margin-left: 0px;">
+                        <button type="submit" class="btn btn-lg btn-primary" style="margin-left:20px;" id="click_kaoqin">登记考勤</button>
+                        <button type="submit" class="btn btn-lg btn-primary" style="margin-left:20px;" id="click_qingjia">学生请假</button>
+                    </div>
+                    <div class="col-lg-10" id="kaoqin_main" style="display:none;margin-bottom: 210px;" name="showbox">
+                        <h3>我的考勤</h3>
+                        {foreach $qingjia as $values}
+                        {/foreach}
+                        {if !empty($values['content'])}
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>请假原因</th>
+                                        <th>开始时间</th>
+                                        <th>结束时间</th>
+                                        <th>状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {foreach $qingjia as $value}
+                                    <tr>
+                                        <td>{$value['content']}</td>
+                                        <td>{$ctime = date('Y-m-d',$value['ctime'])}</td>
+                                        <td>{$etime = date('Y-m-d',$value['etime'])}</td>
+                                        {if $value['type']==1}
+                                            <td>已批准</td>
+                                        {elseif $value['type']==2}
+                                            <td>未批准</td>
+                                        {else}
+                                            <td>未审核</td>
+                                        {/if}
+                                    </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                        {else}
+                            <div class="table-responsive" style="margin-left:-15px;margin-top: 20px;margin-bottom: 280px;">
+                                <div class="col-sm-6">
+                                    <div class="panel panel-yellow">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">notice</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            并没有发现之前作业的记录！
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {/if}
+                    </div>
+
+                    <script>
+                        $(function(){
+                            $("#qingjia_main").hide();
+                            $("#kaoqin_main").show();
+                            $("#click_kaoqin").unbind('click').click(function(){
+                                $("#qingjia_main").hide();
+                                $("#kaoqin_main").show();
+                                
+                            });
+
+                            $("#click_qingjia").unbind('click').click(function(){
+                                $("#kaoqin_main").hide();
+                                $("#qingjia_main").show();
+                            });
+
+                            $("#put_qingjia").unbind('click').click(function(){
+                                $.ajax({
+                                    cache: true,
+                                    type: "POST",
+                                    url:"http://fuck.io/stu/doqingjia",
+                                    data:{
+                                        "content":$("#qingjia_yy").val(), 
+                                        "ctime":$("#qingjia_ctime").val(),
+                                        "etime":$("#qingjia_etime").val(),                      
+                                        },
+                                    async: false,
+                                    error: function(request) {
+                                        alert("Connection error");
+                                    },
+                                    success: function(msg) {
+                                        if (msg) {
+                                            alert('请假成功');
+                                        } else {
+                                            alert('请假失败');
+                                        }
+                                    }
+                                });
+                                location.reload(false); 
+                            });
+                        });
+                            
+                    </script>
+
+                    <div class="col-lg-6" id="qingjia_main" name="showbox">
+                        <h3>我要请假</h3>
+                        <div class="alert alert-warning">
+                            <strong>tips:</strong> 请您按照2017-03-01格式填写时间！
+                        </div>
+                        <div class="table-responsive">
+                            <div class="table-responsive" id="hw_panduan">
+                                <input class="form-control" id="qingjia_yy" placeholder="请您输入请假原因" style="margin-top: 10px;margin-bottom: 10px;">
+
+                                <input class="form-control" id="qingjia_ctime" placeholder="请您输入请假开始时间" style="margin-top: 10px;margin-bottom: 10px;">
+
+                                <input class="form-control" id="qingjia_etime" placeholder="请您输入请假结束时间" style="margin-top: 10px;margin-bottom: 10px;">
+
+                                <button type="submit" class="btn btn-success" id="put_qingjia" style="margin-top:20px;margin-bottom:90px;">提交</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

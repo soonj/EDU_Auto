@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - Bootstrap Admin Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/css/sb-admin.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script src="/static/js/jquery.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://{$Think.server.server_name}/stu">WTF University</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">Read All New Messages</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uname']} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="http://{$Think.server.server_name}/stu/fixinfo"><i class="fa fa-fw fa-user"></i> 个人信息</a>
+                        </li>
+                        <li>
+                            <a href="http://{$Think.server.server_name}/stu/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> 退出</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="http://{$Think.server.server_name}/stu/index"><i class="fa fa-fw fa-dashboard"></i> 我的首页</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://{$Think.server.server_name}/stu/profile"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                    </li>
+                    <li>
+                        <a href="http://{$Think.server.server_name}/stu/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> 我的考勤</a>
+                    </li>
+                    <li class="active">
+                        <a href="http://{$Think.server.server_name}/stu/mywork"><i class="fa fa-fw fa-wrench"></i> 作业历史</a>
+                    </li>
+                    <li>
+                        <a href="http://{$Think.server.server_name}/stu/homework"><i class="fa fa-fw fa-table"></i> 当前作业</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            我发布的作业
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-table"></i> Tables
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-12" style="margin-bottom: 230px;">
+                        {foreach $worklist as $val}
+                        {/foreach}
+                        {if !empty($val)}
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>名称</th>
+                                        <th>发布时间</th>
+                                        <th>结束时间</th>
+                                        <th>班级</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {foreach $worklist as $value}
+                                    <tr>
+                                        <td>{$value['title']}</td>
+                                        <td>{$value['create_time']}</td>
+
+                                        <td>{$etime = date('Y-m-d H:i:s', $value['end_time'])}</td>
+                                        <td>{$value['class_id']}</td>
+                                        <td>
+                                            <a href="http://{$Think.server.server_name}/stu/tables?hid={$value['hid']}&class={$value['class_id']}">
+                                                <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" id="click_pick" value="{$value['hid']}" name="tisheng_teach">查看详情</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                        {else}
+                            <div class="table-responsive" style="margin-left:-15px;margin-top: 20px;margin-bottom: 20px;">
+                                <div class="col-sm-6">
+                                    <div class="panel panel-yellow">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">notice</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            并没有发现之前作业的记录！
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alert alert-info col-sm-6" style="margin-bottom: 200px;">
+                                <strong>tips:</strong> 您可以稍微自学一下！
+                            </div>
+                        {/if}
+                        {if !empty($fenye)}
+                            <div>
+                                {$fenye}
+                            </div>
+                        {else}
+                        {/if}
+                    </div>
+                    <script>
+                        $(function(){
+                            $("button[name='del_homework']").unbind('click').click(function(){
+                                $.ajax({
+                                cache: true,
+                                type: "POST",
+                                url:"http://fuck.io/index/teach/domywork",
+                                data:{
+                                    "type":'delwork', 
+                                    "hid":$(this).val(),                     
+                                    },
+                                    async: false,
+                                    error: function(request) {
+                                        alert("Connection error");
+                                    },
+                                    success: function(result) {
+
+                                    }
+                                });
+                            });
+
+                        });
+                    </script>
+
+                
+                <!-- /.row -->
+
+                </div>
+                <!-- /.row -->
+
+                
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

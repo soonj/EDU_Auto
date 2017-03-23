@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - Bootstrap Admin Template</title>
+
+    <!-- Bootstrap Core css -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom css -->
+    <link href="/static/css/sb-admin.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://fuck.io/assis/">WTF University</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">Read All New Messages</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uname']} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="http://fuck.io/assis/{$_SESSION['think']['uname']}/fixinfo"><i class="fa fa-fw fa-user"></i> 个人信息</a>
+                        </li>
+                        <li>
+                            <a href="http://fuck.io/assis/{$_SESSION['think']['uname']}/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> 退出</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="http://fuck.io/assis/"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
+                    </li>
+                    <li>
+                        <a href="http://fuck.io/assis/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
+                    </li>
+                    <li>
+                        <a href="http://fuck.io/assis/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
+                    </li>
+                    <li>
+                        <a href="http://fuck.io/assis/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                    </li>
+                    <li>
+                        <a href="http://fuck.io/assis/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
+                    </li>
+                    <li>
+                        <a href="http://fuck.io/assis/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="#">Dropdown Item</a>
+                            </li>
+                            <li>
+                                <a href="#">Dropdown Item</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="http://fuck.io/index/assis/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Homework 
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">首页</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-edit"></i> 发布作业
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row" style="margin-bottom: 30px;">
+                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_pick">来点选择题？</button>
+                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_panduan">来点判断题？</button>
+                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_jianda">来点简答题？</button>
+                    <button type="submit" class="btn btn-info" style="margin-left:20px;" id="click_yulan">预览一下？</button>
+                </div>
+
+<!--**********************************************作业预览部分*******************************************-->
+
+                <div class="row">
+                    <div class="col-lg-9" style="margin-bottom: 30px;display:none;" id="edit_show">
+                        {if !empty($homework)}
+                            {foreach $homework as $val}
+                                <div class="col-lg-1">
+                                     <button type="submit" class="btn btn-danger" name="deltimu" value="{$val['hcid']}" style="margin-left:-15px;height:30px;margin-top: 24px;">删除</button>
+                                </div>
+                                <div class="col-lg-11" style="margin-top:20px;margin-bottom:20px;">
+                                    {$val['content']}
+                                </div>
+                                
+                            {/foreach}
+                        {else}
+                            <h3>您还没出题</h3>
+                        {/if}
+                        <input hidden id="subject_timu" value="deltimu">
+                        <script>
+                            $(function(){
+                                $("button[name='deltimu']").unbind('click').click(function(){
+                                var del_id = $(this).val();
+                                $.ajax({
+                                        cache: true,
+                                        type: "POST",
+                                        url:"http://fuck.io/index/assis/doHomework",
+                                        data:{
+                                            "delid":del_id, 
+                                            "subject_type":$("#subject_timu").val(),                     
+                                            },
+                                        async: false,
+                                        error: function(request) {
+                                            alert("Connection error");
+                                        },
+                                        success: function(result) {
+
+                                        }
+                                    });
+                                    location.reload(false); 
+                                });
+                            });
+                        </script>
+
+                    </div>
+<!--*********************************************作业发布div***************************************************-->
+                    <div class="col-lg-9" style="margin-bottom: 30px;display:none;" id="edit_send">
+                        <div class="alert alert-info col-lg-10" style="height:50px;">
+                            <div class="form-group">
+                                <label style="margin-right:20px;">给哪些班布置作业：</label>
+                                {foreach $class as $val}
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="class_homework" value="{$val}">{$val}
+                                    </label>
+                                {/foreach}
+                            </div>
+                        </div>
+                        <div class="alert alert-info col-lg-10" style="height:50px;">
+                            <div class="form-group">
+                                <label>什么时候交作业？：</label>
+                                <label>
+                                    <input type="radio" name="work_time" id="optionsRadios1" value="1" checked>1天
+                                </label>
+                                <label>
+                                    <input type="radio" name="work_time" id="optionsRadios1" value="2" checked>2天
+                                </label>
+                                <label>
+                                    <input type="radio" name="work_time" id="optionsRadios1" value="3" checked>3天
+                                </label>
+                                <label>
+                                    <input type="radio" name="work_time" id="optionsRadios1" value="7" checked>1周
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-10" style="height:50px;">
+                            <button type="submit" class="btn btn-success" id="gogogo" style="margin-left:-15px;">发布！</button>
+                        </div>
+                    </div>
+<!--********************************************出题部分********************************************************-->
+                    <div class="col-lg-9" style="margin-bottom: 30px;" id="edit_work">
+                        <div class="table-responsive" id="hw_pick">
+                            <h3>选择题题目</h3>
+                                <input class="form-control" id="pick_main" style="margin-bottom: 10px;">
+                            <label>选项1</label>
+                                <input class="form-control" id="pick_1" style="margin-bottom: 10px;">
+                            <label>选项2</label>
+                                <input class="form-control" id="pick_2" style="margin-bottom: 10px;">
+                            <label>选项3</label>
+                                <input class="form-control" id="pick_3" style="margin-bottom: 10px;">
+                            <label>选项4</label>
+                                <input class="form-control" id="pick_4" style="margin-bottom: 10px;">
+
+                                <input hidden id="subject_type" value="xuanze">
+
+                            <button type="submit" class="btn btn-success" id="put_xuanze" style="margin-top:20px;margin-bottom:20px;">提交</button>
+                            
+                        </div>
+
+                        <div class="table-responsive" id="hw_panduan">
+                            <h3>判断题题目</h3>
+                                <input class="form-control" id="panduan_main">
+
+                                <input hidden id="subject_panduan" value="panduan">
+
+                            <button type="submit" class="btn btn-success" id="put_panduan" style="margin-top:20px;margin-bottom:20px;">提交</button>
+                        </div>
+                        <div class="table-responsive" id="hw_jianda">
+                            <h3>简答题题目</h3>
+                                <input class="form-control" id="jianda_main">
+
+                                <input hidden id="subject_jianda" value="jianda">
+
+                            <button type="submit" class="btn btn-success" id="put_jianda" style="margin-top:20px;margin-bottom:20px;">提交</button>
+                        </div>
+                        
+                    </div>
+<!--*****************************************右边数量等**********************************************************-->
+                    <div class="col-lg-3" style="">
+                        <div>
+                            {if !empty($homeworkNum['content'])}
+                                <h3>{$homeworkNum['content']}</h3>
+                            {else}
+                                <h3>未命名作业</h3>
+                            {/if}
+                                <input class="form-control" id="hm_title" style="margin-top:15px;margin-bottom:10px;">
+
+                                <input hidden id="subject_title" value="title">
+
+                                <button type="submit" class="btn btn-success" id="put_rename" style="margin-top:25px;margin-bottom:40px;">更改名字</button>
+                        </div>
+                        <div style="margin-bottom: 30px;">
+                            <label>已经出好的题目：</label>
+                            {if !empty($homeworkNum['xuanze'])}
+                                <h4>选择题：{$homeworkNum['xuanze']}道</h4>
+                            {else}
+                                <h4>选择题：0道</h4>
+                            {/if}
+                            {if !empty($homeworkNum['panduan'])}
+                                <h4>判断题：{$homeworkNum['panduan']}道</h4>
+                            {else}
+                                <h4>判断题：0道</h4>
+                            {/if}
+                            {if !empty($homeworkNum['jianda'])}
+                                <h4>简答题：{$homeworkNum['jianda']}道</h4>
+                            {else}
+                                <h4>简答题：0道</h4>
+                            {/if}
+
+                        </div>
+                        <div style="margin-bottom: 200px;">
+                            <button type="submit" class="btn btn-warning" id="send_work" style="margin-left:10px;margin-top:50px;margin-bottom:40px;margin-right: 30px;">准备发布</button>
+
+                            <input hidden id="subject_send" value="send_work">
+
+                            <button type="submit" class="btn btn-warning" id="del_work" style="margin-top:50px;margin-bottom:40px;">放弃编辑</button>
+
+                            <input hidden id="subject_del" value="del_work">
+                        </div>
+                    </div>  
+                </div>
+
+                <script>
+                    $(function(){
+                        //页面默认为选择题界面
+                        //$('#edit_work')
+                        $('#edit_work').show();
+                        $('#edit_send').hide();
+                        $('#edit_show').hide();
+                        $('#click_yulan').unbind('click').click(function(){
+                            $('#edit_work').hide();
+                            $('#edit_send').hide();
+                            $('#edit_show').show();
+                        });
+                        $('#hw_panduan').hide();
+                        $('#hw_jianda').hide();
+                        $('#put_xuanze').unbind('click').click(function(){
+                                $.ajax({
+                                    cache: true,
+                                    type: "POST",
+                                    url:"http://fuck.io/index/assis/doHomework",
+                                    data:{
+                                      "pick_main":$("#pick_main").val(),
+                                      "pick_1":$("#pick_1").val(), 
+                                      "pick_2":$("#pick_2").val(),
+                                      "pick_3":$("#pick_3").val(),
+                                      "pick_4":$("#pick_4").val(),
+                                      "subject_type":$("#subject_type").val(),                     
+                                    },
+                                    async: false,
+                                    error: function(request) {
+                                        alert("Connection error");
+                                    },
+                                    success: function(result) {
+
+                                    }
+                                    
+                                });
+                                location.reload(false); 
+                            });
+
+                        //出判断题
+                        $('#click_panduan').click(function(){
+                            $('#edit_work').show();
+                            $('#edit_show').hide();
+                            $('#hw_panduan').show();
+                            $('#hw_jianda').hide();
+                            $("#hw_pick").hide();
+                            $('#put_panduan').unbind('click').click(function(){
+                                $.ajax({
+                                    cache: true,
+                                    type: "POST",
+                                    url:"http://fuck.io/index/assis/doHomework",
+                                    data:{
+                                      "pick_main":$("#panduan_main").val(),
+                                      "subject_type":$("#subject_panduan").val(),                     
+                                    },
+                                    async: false,
+                                    error: function(request) {
+                                        alert("Connection error");
+                                    },
+                                    success: function(result) {
+
+                                    }
+                                     
+                                });
+                                location.reload(false);
+                            });
+                            
+                        });
+
+                        //出简答题
+                        $('#click_jianda').click(function(){
+                            $('#edit_work').show();
+                            $('#edit_show').hide();
+                            $('#hw_jianda').show();
+                            $('#hw_panduan').hide();
+                            $("#hw_pick").hide();
+                            $('#put_jianda').unbind('click').click(function(){
+                                $.ajax({
+                                    cache: true,
+                                    type: "POST",
+                                    url:"http://fuck.io/index/assis/doHomework",
+                                    data:{
+                                      "pick_main":$("#jianda_main").val(),
+                                      "subject_type":$("#subject_jianda").val(),                     
+                                    },
+                                    async: false,
+                                    error: function(request) {
+                                        alert("Connection error");
+                                    },
+                                    success: function(result) {
+
+                                    }
+                                    
+                                });
+                                location.reload(false); 
+                            });
+                        });
+
+                        //出选择题
+                        $('#click_pick').click(function(){
+                            $('#edit_work').show();
+                            $('#edit_show').hide();
+                            $('#hw_pick').show();
+                            $('#hw_panduan').hide();
+                            $("#hw_jianda").hide();
+                            $('#put_xuanze').unbind('click').click(function(){
+                                $.ajax({
+                                    cache: true,
+                                    type: "POST",
+                                    url:"http://fuck.io/index/assis/doHomework",
+                                    data:{
+                                      "pick_main":$("#pick_main").val(),
+                                      "pick_1":$("#pick_1").val(), 
+                                      "pick_2":$("#pick_2").val(),
+                                      "pick_3":$("#pick_3").val(),
+                                      "pick_4":$("#pick_4").val(),
+                                      "subject_type":$("#subject_type").val(),                     
+                                    },
+                                    async: false,
+                                    error: function(request) {
+                                        alert("Connection error");
+                                    },
+                                    success: function(result) {
+
+                                    }
+                                    
+                                });
+                                location.reload(false); 
+                            });
+                        });
+
+                        //作业重命名
+                        $('#put_rename').unbind('click').click(function(){
+                            $.ajax({
+                                cache: true,
+                                type: "POST",
+                                url:"http://fuck.io/index/assis/doHomework",
+                                data:{
+                                      "pick_main":$("#hm_title").val(),
+                                      "subject_type":$("#subject_title").val(),                     
+                                },
+                                async: false,
+                                error: function(request) {
+                                    alert("Connection error");
+                                },
+                                success: function(result) {
+
+                                }
+                                
+                            });
+                            location.reload(false); 
+                        });
+
+                        //删除作业
+                        $('#del_work').unbind('click').click(function(){
+                            $.ajax({
+                                cache: true,
+                                type: "POST",
+                                url:"http://fuck.io/index/assis/doHomework",
+                                data:{
+                                      "subject_type":$("#subject_del").val(),                     
+                                },
+                                async: false,
+                                error: function(request) {
+                                    alert("Connection error");
+                                },
+                                success: function(result) {
+
+                                }
+                                
+                            });
+                            location.reload(false); 
+                        });
+                       
+                        //发布作业
+                        $('#send_work').unbind('click').click(function(){
+                            $('#edit_work').hide();
+                            $('#edit_show').hide();
+                            $('#edit_send').show();
+                            
+                            $('#gogogo').unbind('click').click(function(){
+                                var chk_value =[];
+                                $('input[name="class_homework"]:checked').each(function(){    
+                                    chk_value.push($(this).val());    
+                                });  
+                                var work_time = $("input[name='work_time']:checked").val();
+                                $.ajax({
+                                    cache: true,
+                                    type: "POST",
+                                    url:"http://fuck.io/index/assis/doHomework",
+                                    data:{
+                                          "class":chk_value,
+                                          "work_time":work_time,  
+                                          "subject_type":'send_work',                   
+                                    },
+                                    async: false,
+                                    error: function(request) {
+                                        alert("Connection error");
+                                    },
+                                    success: function(result) {
+
+                                    }
+                                });  
+                            });
+                        });
+                    });
+                </script>
+
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
