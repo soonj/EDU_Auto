@@ -32,6 +32,19 @@ class Profile extends Model
         return true;
     }
 
+    public function setAllProfile($data)
+    {
+        $profile = new Profile;
+        foreach($data as $value){
+                foreach ($value as $val){
+                    var_dump($val);
+                    $profile->save(['true_name'=>'hahaha'],['pid' => $val['pid']]);
+                }
+
+        }
+
+    }
+
     public function updateProfile($data)
     {
         $uid = Session::get('uid');

@@ -19,6 +19,7 @@ return [
     ],
 
     'login'                 => 'index/auth/login',
+    'logout'                => 'index/auth/logout',
     'reg'                   => 'index/auth/reg',
     'signup'                => 'signup/signup',
     'signin'                => 'signin/signin',

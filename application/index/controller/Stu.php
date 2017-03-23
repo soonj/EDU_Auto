@@ -68,7 +68,7 @@ class Stu extends Common
 
         $this->assign('homework', $data);
 
-        return $this->fetch('homework');
+        return $this->fetch('mywork');
     }
 
     private function charts()

@@ -49,7 +49,6 @@ class Admin extends Auth
     //学生管理（教师管理）
     public function manage()
     {
-
         $profile = Loader::model('Profile')->getProfile();
         $this->assign('profile' , $profile);
         return $this->fetch('manage');
@@ -58,12 +57,9 @@ class Admin extends Auth
     //执行修改
     public function domanage()
     {
-        if (! request()->isAjax()){
-            $this->error('Request Type Error');
-        }
+        $data = input('post.');
 
-        $request = request()->param();
-        $data = model('User')->$request['action']($request);
+        $result = Loader::model('Profile')->setAllProfile($data);
         return $data;
     }
 

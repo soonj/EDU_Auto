@@ -222,25 +222,29 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {volist name="profile" id="vo"}
+
+                            {volist name="profile" id="vo" key="k"}
+                            <form action="domanage" method="post">
                             <tr>
+                                <input type="hidden" name="list[{$k}][pid]" value="{$vo.pid}">
                                 <td>
-                                    <input class="form-control" type="text" value="{$vo.true_name}" readonly>
+                                    <input class="form-control" type="text" name="list[{$k}][true_name]" value="{$vo.true_name}" readonly>
                                 </td>
                                 <td>
-                                    <input class="form-control" type="text" value="{$vo.sex}" readonly>
+                                    <input class="form-control" type="text" name="list[{$k}][sex]" value="{$vo.sex}" readonly>
                                 </td>
                                 <td>
-                                    <input class="form-control" type="text" value="{$vo.class}" readonly>
+                                    <input class="form-control" type="text" name="list[{$k}][class]" value="{$vo.class}" readonly>
                                 </td>
                                 <td>
-                                    <input class="form-control" type="text" value="{$vo.id_card}" readonly>
+                                    <input id="{$vo.pid}" class="form-control" type="text" name="list[{$k}][id_card]" value="{$vo.id_card}" readonly>
                                 </td>
-                                <td>
-                                    <button class="btn btn-primary btn-xs" name="setprofile" value="{$vo.pid}">修改</button>
-                                </td>
+                                <td><button class="btn btn-primary btn-xs" type="submit">提交修改</button></td>
                             </tr>
+                            </form>
                             {/volist}
+
+
                             </tbody>
                         </table>
                     </div>
@@ -263,17 +267,6 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="/static/js/bootstrap.min.js"></script>
 <script>
-    $("button[name='setprofile']").click(function () {
-    $.ajax({
-        type:"POST",
-        url:'http://{$Think.server.server_name}/stu/ajaxDoRead',
-        data:{"nid":$(this).val()},
-        dataType : 'json',
-        success:function(){
-            console.log('ok');
-        }
-    });
-    );
     $("input").click(function () {
         $(this).removeAttr("readonly");
     });
