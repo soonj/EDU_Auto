@@ -89,6 +89,6 @@ class Auth extends Controller
     {
         Cookie::delete('uname');
         Session::clear();
-        $this->success('Log Out Success');
+        $this->success('Log Out Success' , '/');
     }
 }
