@@ -410,7 +410,8 @@
     <?php } ?>
 
     <div class="copyright">
-        <img src = "https://i.ytimg.com/vi/IrRqMZuAtrw/maxresdefault.jpg"/>
+        <a href="{$Think.server.server_name}"><img src = "https://i.ytimg.com/vi/IrRqMZuAtrw/maxresdefault.jpg"/></a>
+
     </div>
     <?php if(\think\App::$debug) { ?>
     <script>
