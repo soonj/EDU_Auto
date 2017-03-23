@@ -65,4 +65,21 @@ class Upload extends Common
         }
     }
 
+    public function uploadHeadIcon()
+    {
+
+        $file = request()->file('head_icon');
+            // 移动到框架应用根目录/public/uploads/ 目录下
+        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
+        if ($info) {
+            //上传成功
+            $data = ['head_path' => 'uploads/' . $info->getSavename()];
+            Loader::model('Profile')->updateProfile($data);
+            $this->success('修改成功');
+        } else {
+            // 上传失败
+            $this->error('修改失败');
+        }
+
+    }
 }

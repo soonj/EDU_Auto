@@ -212,7 +212,7 @@
                     <div class="col-lg-3">
                         <h2></h2>
                         <div class="table-responsive">
-                            <img src="/static/image/ROTK.jpg" width="" height="100%">
+                            <img src="http://{$Think.server.server_name}/{$userinfo['head_path']}" width="100%" height="100%">
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -260,7 +260,7 @@
                     <div class="col-lg-3">
                         <h2></h2>
                         <div class="table-responsive">
-                            <img src="/static/image/ROTK.jpg" width="" height="100%">
+                            <img src="http://{$Think.server.server_name}/{$userinfo['head_path']}" width="100%" height="100%">
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -305,8 +305,15 @@
                                 </form>
                             </table>
                             <div class="text-right col-lg-12" style="margin-left: -15px;">
-                                <a id="update_userinfo" class="col-lg-2"><input type="file"></a>
-                                <span id="update_userinfo" class="col-lg-8" style="margin-top:-10px;">
+                                <a id="update_userinfo_file" class="col-lg-2">
+                                    <form action="/uploadHeadIcon" method="post" enctype="multipart/form-data">
+                                        <span class="col-lg-8" style="margin-top:-10px;">
+                                            <input id="head_img" type="file" name="head_icon">
+                                            <button type="submit" class="btn btn-default" id="head_icon">修改头像</button>
+                                        </span>
+                                    </form>
+                                </a>
+                                <span id="update_userinfo_button" class="col-lg-8" style="margin-top:-10px;">
                                     <button type="submit" class="btn btn-default" id="push_data">提交更新</button>
                                     <button type="submit" class="btn btn-default" id="return_data" style="margin-left:50px;">返回</button>
                                 </span>
@@ -376,18 +383,20 @@
                                 alert(str);
                                 return false;
                             } else {
+                                var formData = new FormData();
+                                formData.append('file', $('#file')[0].files[0]);
                                 $.ajax({
                                     cache: true,
                                     type: "POST",
                                     url:"http://fuck.io/stu/setProfile",
                                     data:{
                                       "phone":$("#fix_phone").val(),
-                                      "email":$("#fix_email").val(), 
+                                      "email":$("#fix_email").val(),
                                       "add":$("#fix_add").val(),
                                       "dizhi":$("#fix_dizhi").val(),
                                       "yuanxi":$("#fix_yuanxi").val(),
                                       "kemu":$("#fix_kemu").val(),
-                                      "class":$("#fix_class").val(),                      
+                                      "class":$("#fix_class").val(),
                                     },
                                     async: false,
                                     error: function(request) {

@@ -30,5 +30,6 @@ return [
     'download/:fileNameUrl' => 'index/download/download',
     'upload'                => 'index/upload/upload',
     'uploadMyHomework'      => 'index/upload/uploadMyHomework',
+    'uploadHeadIcon'        => 'index/upload/uploadHeadIcon',
     //'uploadtmp'             => 'admin/admin/index/initStu',
 ];
