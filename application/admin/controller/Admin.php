@@ -49,7 +49,14 @@ class Admin extends Auth
     //学生管理（教师管理）
     public function manage()
     {
-        $profile = Loader::model('Profile')->getProfile();
+        //$profile = Loader::model('Profile')->getProfile();
+
+        $profile = Loader::model('Profile')
+            ->where('pid', '>', 0)
+            ->paginate(5);
+        $page = $profile->render();
+
+        $this->assign('page' , $page);
         $this->assign('profile' , $profile);
         return $this->fetch('manage');
     }

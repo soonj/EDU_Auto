@@ -155,18 +155,9 @@ class Teach extends Common
 
         $classarr = explode('/', $class['class']);
 
-        //按不同班级处理学生数据
-        /*foreach($classarr as $value) {
-            $user = Loader::model('user')->where('role', 0)->where('class', $value)->select();
-            foreach($user as $val) {
-                $studens[$value][] = $val;
-            }
-        }*/
-        $i = 0;
         foreach($classarr as $value) {
-            $studens[] = Loader::model('user')->where('role', 0)->where('class', $value)->paginate(5);
-            $fenye[] = $studens[$i]->render();
-            $i++;
+            $studens[] = Loader::model('user')->where('role', 0)->where('class', $value)->select();
+
         }
 
         //获取老师的数据
@@ -174,9 +165,7 @@ class Teach extends Common
 
         //助教情况获取
         $list = loader::model('zhujiao')->zhujiaolist($classarr);
-        //dump($studens);
-        //die;
-        $this->assign('fenye', $fenye);
+
         $this->assign('list', $list);
         $this->assign('teach', $teach);
         $this->assign('class', $studens);
@@ -250,12 +239,24 @@ class Teach extends Common
         return $this->fetch('upload');
 
     }
-	
-    public function forms()
+
+    public function stulist()
     {
-        return $this->fetch('forms');
+        $class = Loader::model('user')->getUser($_SESSION['think']['uid']);
+
+        $classarr = explode('/', $class['class']);
+
+        foreach($classarr as $value) {
+            $studens[$value] = Loader::model('user')->where('role', 0)->where('class', $value)->select();
+        }
+
+        $this->assign('class', $studens);
+
+        return $this->fetch('stulist');
     }
 
-    
+
+
+
 
 }

@@ -68,7 +68,7 @@ class Stu extends Common
 
         $this->assign('homework', $data);
 
-        return $this->fetch('mywork');
+        return $this->fetch('homework');
     }
 
     private function charts()
@@ -82,6 +82,21 @@ class Stu extends Common
         $sdata = input('post.');
         
         $pushhomework = Loader::model('Homework')->pushwork($sdata);
+    }
+
+    public function mywork()
+    {
+        $userinfo = Loader::model('user')->getUser($_SESSION['think']['uid']);
+
+        $worklist = Loader::model('Homework')
+            ->where('class_id', $userinfo['class'])
+            ->where('dowork', null)
+            ->paginate(5);
+        $fenye = $worklist->render();
+
+        $this->assign('fenye', $fenye);
+        $this->assign('worklist', $worklist);
+        return $this->fetch('mywork');
     }
 
     //查看用户详情

@@ -149,37 +149,17 @@
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
-                <li>
-                    <a href="http://fuck.io/teach/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
+                <li >
+                    <a href="http://{$Think.server.server_name}/admin/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
                 </li>
-                <li>
-                    <a href="http://fuck.io/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
+                <li >
+                    <a href="http://{$Think.server.server_name}/admin/notice"><i class="fa fa-fw fa-edit"></i> 发布通知</a>
                 </li>
-                <li>
-                    <a href="http://fuck.io/teach/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
+                <li >
+                    <a href="http://{$Think.server.server_name}/admin/uploadExcel"><i class="fa fa-fw fa-desktop"></i> 批量上传学生名单</a>
                 </li>
-                <li  class="active">
-                    <a href="http://fuck.io/teach/announce"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
-                </li>
-                <li>
-                    <a href="http://fuck.io/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
-                </li>
-                <li>
-                    <a href="http://fuck.io/teach/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
-                </li>
-                <li>
-                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                    <ul id="demo" class="collapse">
-                        <li>
-                            <a href="#">Dropdown Item</a>
-                        </li>
-                        <li>
-                            <a href="#">Dropdown Item</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="http://fuck.io/teach/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+                <li class="active">
+                    <a href="http://{$Think.server.server_name}/admin/manage"><i class="fa fa-fw fa-desktop"></i> 管理学生</a>
                 </li>
             </ul>
         </div>
@@ -194,7 +174,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        人员管理
+                        人员信息管理
                     </h1>
                     <ol class="breadcrumb">
                         <li>
@@ -247,7 +227,10 @@
 
                             </tbody>
                         </table>
+                        {$page}
+
                     </div>
+
                 </div>
             </div>
             <!-- /.row -->

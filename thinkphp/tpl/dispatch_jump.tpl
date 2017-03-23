@@ -29,6 +29,7 @@
         <p class="detail"></p>
         <p class="jump">
             页面自动 <a id="href" href="<?php echo($url);?>">跳转</a> 等待时间： <b id="wait"><?php echo($wait);?></b>
+            <img src="https://lh3.ggpht.com/-DyQcIycVtHmJSHeUGh1iCQ5eQN1F4WjpI1h-oQ1aA3s0oqaM38b7GVE0rqM6VAnYQ"/>
         </p>
     </div>
     <script type="text/javascript">

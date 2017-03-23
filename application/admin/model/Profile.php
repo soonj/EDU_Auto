@@ -37,7 +37,6 @@ class Profile extends Model
         $profile = new Profile;
         foreach($data as $value){
                 foreach ($value as $val){
-                    var_dump($val);
                     $profile->save(['true_name'=>'hahaha'],['pid' => $val['pid']]);
                 }
 
