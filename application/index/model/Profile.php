@@ -14,9 +14,13 @@ class Profile extends Model
         parent::initialize();
     }
 
-    public function getProfile($id)
+    public function getProfile($id = null)
     {
-        $this->profile = Profile::get($id);
+        if (!is_null($id)){
+            $this->profile = Profile::get($id);
+        }else{
+            $this->profile = Profile::all();
+        }
         return $this->profile;
     }
 
