@@ -152,27 +152,39 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li>
-                        <a href="http://{$Think.server.server_name}/teach"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
+                    <li class="active">
+                        <a href="http://{$Think.server.server_name}/teach/"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
                     </li>
                     <li>
-                        <a href="http://{$Think.server.server_name}/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 助教管理</a>
+                        <a href="http://{$Think.server.server_name}/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
                     </li>
                     <li>
                         <a href="http://{$Think.server.server_name}/teach/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
                     </li>
                     <li>
-                        <a href="http://{$Think.server.server_name}/teach/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                        <a href="http://{$Think.server.server_name}/teach/fixinfo"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                     </li>
                     <li>
-                        <a href="http://{$Think.server.server_name}/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> 管理考勤</a>
+                        <a href="http://{$Think.server.server_name}/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
                     </li>
                     <li>
-                        <a href="http://{$Think.server.server_name}/teach/homework"><i class="fa fa-fw fa-wrench"></i> 布置作业</a>
+                        <a href="http://{$Think.server.server_name}/teach/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
                     </li>
-                    
                     <li>
-                        <a href="http://{$Think.server.server_name}/index/teach/mywork"><i class="fa fa-fw fa-table"></i> 查看作业</a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="#">Dropdown Item</a>
+                            </li>
+                            <li>
+                                <a href="#">Dropdown Item</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+
+                        <a href="http://{$Think.server.server_name}/teach/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+
                     </li>
                 </ul>
             </div>
