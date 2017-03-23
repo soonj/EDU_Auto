@@ -20,8 +20,6 @@
     <!-- Custom Fonts -->
     <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <script src="/static/js/jquery.js"></script>
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -161,7 +159,7 @@
                         <a href="http://{$Think.server.server_name}/teach/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                     </li>
                     <li>
-                        <a href="http://{$Think.server.server_name}/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> 管理考勤</a>
+                        <a href="http://{$Think.server.server_name}/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
                     </li>
                     <li>
                         <a href="http://{$Think.server.server_name}/teach/homework"><i class="fa fa-fw fa-wrench"></i> 布置作业</a>
@@ -183,200 +181,113 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            学生考勤
+                            作业完成情况
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard"></i>  <a href="index.html">管理首页</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-desktop"></i> 学生管理
+                                <i class="fa fa-table"></i> 作业完成情况
                             </li>
                         </ol>
                     </div>
                 </div>
                 <!-- /.row -->
 
-                <!-- Main jumbotron for a primary marketing message or call to action -->
-                
-                    <script>
-                        $(function(){
-                            $("#qingjia_main").show();
-                            $("#qingjia_list").hide();
-                            $("#click_shenpi").unbind('click').click(function(){
-                                $("#qingjia_main").show();
-                                $("#qingjia_list").hide();
-                                
-                            });
-
-                            $("#click_list").unbind('click').click(function(){
-                                $("#qingjia_list").show();
-                                $("#qingjia_main").hide();
-                            });
-
-                            $("button[name='click_yes']").unbind('click').click(function(){
-                                $.ajax({
-                                        cache: true,
-                                        type: "POST",
-                                        url:"http://fuck.io/index/teach/shenpi",
-                                        data:{
-                                            "type":1, 
-                                            "kid":$(this).val(),                     
-                                            },
-                                        async: false,
-                                        error: function(request) {
-                                            alert("Connection error");
-                                        },
-                                        success: function(result) {
-
-                                        }
-                                    });
-                                location.reload(false); 
-                            });
-
-                            $("button[name='click_no']").unbind('click').click(function(){
-                                $.ajax({
-                                        cache: true,
-                                        type: "POST",
-                                        url:"http://fuck.io/index/teach/shenpi",
-                                        data:{
-                                            "type":2, 
-                                            "kid":$(this).val(),                     
-                                            },
-                                        async: false,
-                                        error: function(request) {
-                                            alert("Connection error");
-                                        },
-                                        success: function(result) {
-
-                                        }
-                                    });
-                                location.reload(false); 
-                            });
-                        });
-                            
-                    </script>
                 <div class="row">
-                    <div class="row" style="margin-bottom: 10px;margin-left: 0px;">
-                        <button type="submit" class="btn btn-lg btn-primary" style="margin-left:20px;" id="click_shenpi">请假审批</button>
-                        <button type="submit" class="btn btn-lg btn-primary" style="margin-left:20px;" id="click_list">全部列表</button>
-                    </div>
-                    <div class="col-lg-10" id="qingjia_main" style="margin-bottom: 280px;">
-                        <h3>学生考勤</h3>
-                        {foreach $qingjia as $test}
-                            {foreach $test as $taicai}
-                            {/foreach}
-                        {/foreach}
-                        {if !empty($taicai['kid'])}
+                    <div class="col-lg-9">
+                        <h2>{$info['0']['title']}</h2>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>请假原因</th>
-                                        <th>开始时间</th>
-                                        <th>结束时间</th>
-                                        <th>班级</th>
-                                        <th>状态</th>
-                                        <th>操作</th>
+                                        <th>姓名</th>
+                                        <th>学号</th>
+                                        <th>作业详情</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {foreach $qingjia as $value}
-                                        {foreach $value as $val}
-                                        <tr>
-                                            <td>{$val['content']}</td>
-                                            <td>{$ctime = date('Y-m-d',$val['ctime'])}</td>
-                                            <td>{$etime = date('Y-m-d',$val['etime'])}</td>
-                                            <td>{$val['class']}</td>
-                                            {if $val['type']==1}
-                                                <td>已批准</td>
-                                            {elseif $val['type']==2}
-                                                <td>未批准</td>
-                                            {else}
-                                                <td>未审核</td>
-                                            {/if}
-                                            <td>
-                                            <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" value="{$val['kid']}" name="click_yes">批准</button>
-                                            <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" value="{$val['kid']}" name="click_no">拒绝</button>
-                                            </td>
-                                        </tr>
-                                        {/foreach}
-                                    {/foreach}
-                                </tbody>
-                            </table>
-                        </div>
-                        {else}
-                            <div class="table-responsive" style="margin-left:-15px;margin-top: 20px;margin-bottom: 20px;">
-                                <div class="col-sm-9">
-                                    <div class="panel panel-yellow">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">notice</h3>
-                                        </div>
-                                        <div class="panel-body">
-                                            目前没有任何请假需要您审批。
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {/if}
-                    </div>
-                    <div class="col-lg-10" id="qingjia_list" name="showbox" style="margin-bottom: 280px;">
-                        <h3>全部列表</h3>
-                        {foreach $qingjialist as $testall}
-                            {foreach $testall as $cai}
-                            {/foreach}
-                        {/foreach}
-                        {if !empty($cai['kid'])}
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead>
+                                    {foreach $worklist as $value}
                                     <tr>
-                                        <th>请假原因</th>
-                                        <th>开始时间</th>
-                                        <th>结束时间</th>
-                                        <th>班级</th>
-                                        <th>状态</th>
+                                        <td>{$value['']}</td>
+                                        <td>1265</td>
+                                        <td>32.3%</td>
+                                        
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {foreach $qingjialist as $listvalue}
-                                        {foreach $listvalue as $lval}
-                                        <tr>
-                                            <td>{$lval['content']}</td>
-                                            <td>{$lctime = date('Y-m-d',$lval['ctime'])}</td>
-                                            <td>{$letime = date('Y-m-d',$lval['etime'])}</td>
-                                            <td>{$lval['class']}</td>
-                                            {if $lval['type']==1}
-                                                <td>已批准</td>
-                                            {elseif $lval['type']==2}
-                                                <td>未批准</td>
-                                            {else}
-                                                <td>未审核</td>
-                                            {/if}
-                                        </tr>
-                                        {/foreach}
                                     {/foreach}
                                 </tbody>
                             </table>
                         </div>
-                        {else}
-                            <div class="table-responsive" style="margin-left:-15px;margin-top: 20px;margin-bottom: 20px;">
-                                <div class="col-sm-9">
-                                    <div class="panel panel-yellow">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">notice</h3>
-                                        </div>
-                                        <div class="panel-body">
-                                            目前您还没有接到过任何请假审批。
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {/if}
                     </div>
-
                 </div>
+                <!-- /.row -->
+
+                
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>黑名单</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>姓名</th>
+                                        <th>班级</th>
+                                        <th>次数</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="active">
+                                        <td>/index.html</td>
+                                        <td>1265</td>
+                                        <td>32.3%</td>
+                                    </tr>
+                                    <tr class="success">
+                                        <td>/about.html</td>
+                                        <td>261</td>
+                                        <td>33.3%</td>
+                                    </tr>
+                                    <tr class="warning">
+                                        <td>/sales.html</td>
+                                        <td>665</td>
+                                        <td>21.3%</td>
+                                    </tr>
+                                    <tr class="danger">
+                                        <td>/blog.html</td>
+                                        <td>9516</td>
+                                        <td>89.3%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>/404.html</td>
+                                        <td>23</td>
+                                        <td>$23.52</td>
+                                    </tr>
+                                    <tr>
+                                        <td>/services.html</td>
+                                        <td>421</td>
+                                        <td>60.3%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>/blog/post.html</td>
+                                        <td>1233</td>
+                                        <td>93.2%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2>Bootstrap Docs</h2>
+                        <p>For complete documentation, please visit <a target="_blank" href="http://getbootstrap.com/css/#tables">Bootstrap's Tables Documentation</a>.</p>
+                    </div>
+                </div>
+                <!-- /.row -->
+
             </div>
+            <!-- /.container-fluid -->
+
         </div>
         <!-- /#page-wrapper -->
 
@@ -384,7 +295,7 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    
+    <script src="/static/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/static/js/bootstrap.min.js"></script>

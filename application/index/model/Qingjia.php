@@ -44,19 +44,36 @@ class Qingjia extends Model
 
     public function getqingjia()
     {  
-        $data = $xuanze = db('qingjia')
+        $data = db('qingjia')
                 ->where('uid', $_SESSION['think']['uid'])
                 ->select();
         return $data;
     }
 
     //教师查看请假列表
-    public function qingjialist($class)
+    public function qingjialist($class, $num = 0)
     {  
-        $data = $xuanze = db('qingjia')
+        $data = db('qingjia')
                 ->where('class', $class)
-                ->where('type', 0)
+                ->where('type', $num)
                 ->select();
+        return $data;
+    }
+
+    public function qingjiaall($class)
+    {  
+        $data = db('qingjia')
+                ->where('class', $class)
+                ->select();
+        return $data;
+    }
+
+    public function shenpi($data)
+    {  
+        $type['type']=$data['type'];
+        $result = db('qingjia')
+                    ->where('kid',$data['kid'])
+                    ->update($type);
         return $data;
     }
 }

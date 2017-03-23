@@ -82,6 +82,7 @@ class Teach extends Common
         } 
     }
 
+    //展示学生请假页面
     public function bootstrapelements()
     {
         $teach_info = db('profile')
@@ -93,11 +94,23 @@ class Teach extends Common
 
         foreach($class as $cla) {
             $data[] = Loader::model('Qingjia')->qingjialist($cla);
+
+            $list[] = Loader::model('Qingjia')->qingjiaall($cla);
         }
 
+        $this->assign('qingjialist', $list);
         $this->assign('qingjia', $data);
 
         return $this->fetch('bootstrapelements');
+    }
+
+    //处理学生请假方法
+    public function shenpi()
+    {
+        $sdata = input('post.');
+        
+        $data = Loader::model('Qingjia')->shenpi($sdata);
+        
     }
 
     public function bootstrapgrid()
