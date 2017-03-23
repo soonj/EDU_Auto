@@ -82,14 +82,35 @@ class Teach extends Common
         } 
     }
 
-    public function blankpage()
-    {
-        return $this->fetch('blankpage');
-    }
-
+    //展示学生请假页面
     public function bootstrapelements()
     {
+        $teach_info = db('profile')
+                    ->where('pid', $_SESSION['think']['uid'])
+                    ->find();
+
+        //处理拼接的班级字符串
+        $class = explode('/' , $teach_info['class']);
+
+        foreach($class as $cla) {
+            $data[] = Loader::model('Qingjia')->qingjialist($cla);
+
+            $list[] = Loader::model('Qingjia')->qingjiaall($cla);
+        }
+
+        $this->assign('qingjialist', $list);
+        $this->assign('qingjia', $data);
+
         return $this->fetch('bootstrapelements');
+    }
+
+    //处理学生请假方法
+    public function shenpi()
+    {
+        $sdata = input('post.');
+        
+        $data = Loader::model('Qingjia')->shenpi($sdata);
+        
     }
 
     public function bootstrapgrid()
@@ -105,6 +126,26 @@ class Teach extends Common
         $this->assign('fenye', $fenye);
         $this->assign('worklist', $worklist);
         return $this->fetch('mywork');
+    }
+
+    public function domywork()
+    {
+        $sdata = input('post.');
+        $delwork = Loader::model('Homework')->where('hid', $sdata['hid'])->delete();
+    }
+
+    //展示对应的作业
+    public function tables()
+    {
+        if (empty($_GET)) {
+            return $this->mywork();
+        }
+        $info_homework = Loader::model('Homework')->where('hid', $_GET['hid'])->select();
+        $list_work = Loader::model('Homework')->where('dowork', $_GET['hid'])->where('class_id', $_GET['class'])->select();
+        
+        $this->assign('info', $info_homework);
+        $this->assign('worklist', $list_work);
+        return $this->fetch('tables');
     }
 
     //展示助教权限页面
@@ -127,8 +168,7 @@ class Teach extends Common
             $fenye[] = $studens[$i]->render();
             $i++;
         }
-        //dump($fenye);
-        //die;
+
         //获取老师的数据
         $teach = Loader::model('user')->where('role', 2)->select();
 
@@ -186,15 +226,27 @@ class Teach extends Common
         return $this->fetch('fixinfo');
         
     }
+
+    public function setProfile()
+    {
+        $sdata = input('post.');
+        
+        $data = Loader::model('Profile')->getProfile($_SESSION['think']['uid']);
+
+        dump($data['pid']);
+        if (!empty($data['pid'])) {
+            $profile = Loader::model('Profile')->updateProfile($sdata, 'pid', $_SESSION['think']['uid']);
+        } else {
+            $data = Request::instance()->post();
+            Loader::model('Profile')->setProfile($sdata);
+        }
+    }
 	
     public function forms()
     {
         return $this->fetch('forms');
     }
 
-    public function tables()
-    {
-        return $this->fetch('tables');
-    }
+    
 
 }

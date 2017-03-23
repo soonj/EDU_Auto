@@ -43,7 +43,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://fuck.io/teach">WTF University</a>
+                <a class="navbar-brand" href="http://{$Think.server.server_name}/teach">WTF University</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -131,10 +131,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uname']} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="http://fuck.io/teach/fixinfo"><i class="fa fa-fw fa-user"></i> 个人信息</a>
+                            <a href="http://{$Think.server.server_name}/teach/fixinfo"><i class="fa fa-fw fa-user"></i> 个人信息</a>
                         </li>
                         <li>
-                            <a href="http://fuck.io/teach/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
+                            <a href="http://{$Think.server.server_name}/teach/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -147,36 +147,26 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="http://fuck.io/teach/index"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
+                        <a href="http://{$Think.server.server_name}/teach"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
-                    </li>
-                    <li class="active">
-                        <a href="http://fuck.io/teach/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
+                        <a href="http://{$Think.server.server_name}/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 助教管理</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/fixinfo"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                        <a href="http://{$Think.server.server_name}/teach/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
+                        <a href="http://{$Think.server.server_name}/teach/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+                        <a href="http://{$Think.server.server_name}/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                        </ul>
+                        <a href="http://{$Think.server.server_name}/teach/homework"><i class="fa fa-fw fa-wrench"></i> 布置作业</a>
                     </li>
+                    
                     <li>
-                        <a href="http://fuck.io/teach/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+                        <a href="http://{$Think.server.server_name}/index/teach/mywork"><i class="fa fa-fw fa-table"></i> 查看作业</a>
                     </li>
                 </ul>
             </div>
@@ -191,14 +181,14 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            我发布的作业
+                            作业完成情况
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">管理首页</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-table"></i> 我发布的作业
+                                <i class="fa fa-table"></i> 作业完成情况
                             </li>
                         </ol>
                     </div>
@@ -206,119 +196,26 @@
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-6">
-                        <h2>布置的作业</h2>
+                    <div class="col-lg-9">
+                        <h2>{$info['0']['title']}</h2>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>作业名称</th>
-                                        <th>发布时间</th>
-                                        <th>对象班级</th>
+                                        <th>姓名</th>
+                                        <th>学号</th>
+                                        <th>作业详情</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {foreach $worklist as $value}
                                     <tr>
-                                        <td>/index.html</td>
+                                        <td>{$value['']}</td>
                                         <td>1265</td>
                                         <td>32.3%</td>
                                         
                                     </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                   
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                       
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <h2>班级完成情况</h2>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Page</th>
-                                        <th>Visits</th>
-                                        <th>% New Visits</th>
-                                        <th>Revenue</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-                                        <td>$234.12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-                                        <td>$16.34</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-                                        <td>$1644.43</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-                                        <td>$23.52</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                                        <td>$724.32</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                        <td>$126.34</td>
-                                    </tr>
+                                    {/foreach}
                                 </tbody>
                             </table>
                         </div>

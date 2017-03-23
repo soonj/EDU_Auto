@@ -31,4 +31,12 @@ class Profile extends Model
         $user->profile->save($data);
         return true;
     }
+
+    public function updateProfile($data)
+    {
+        $uid = Session::get('uid');
+        $user = User::get($uid);
+        $user->profile->save($data);
+        return true;
+    }
 }

@@ -20,6 +20,8 @@
     <!-- Custom Fonts -->
     <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <script src="/static/js/jquery.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -43,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://fuck.io/teach">WTF University</a>
+                <a class="navbar-brand" href="http://{$Think.server.server_name}/teach">WTF University</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -128,20 +130,17 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$_SESSION['think']['uname']} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="http://{$Think.server.server_name}/teach/fixinfo"><i class="fa fa-fw fa-user"></i> 个人信息</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            <a href="http://{$Think.server.server_name}/teach/homework"><i class="fa fa-fw fa-gear"></i> 发布作业</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> 退出</a>
                         </li>
                     </ul>
                 </li>
@@ -150,36 +149,26 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="http://fuck.io/teach"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
+                        <a href="http://{$Think.server.server_name}/teach"><i class="fa fa-fw fa-dashboard"></i> 管理首页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 成绩分析</a>
+                        <a href="http://{$Think.server.server_name}/teach/charts"><i class="fa fa-fw fa-bar-chart-o"></i> 助教管理</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
+                        <a href="http://{$Think.server.server_name}/teach/tables"><i class="fa fa-fw fa-table"></i> 表格页</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/fixinfo"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
+                        <a href="http://{$Think.server.server_name}/teach/forms"><i class="fa fa-fw fa-edit"></i> 资料管理</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
+                        <a href="http://{$Think.server.server_name}/teach/bootstrapelements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements列表</a>
                     </li>
                     <li>
-                        <a href="http://fuck.io/teach/bootstrapgrid"><i class="fa fa-fw fa-wrench"></i> 我的课表</a>
+                        <a href="http://{$Think.server.server_name}/teach/homework"><i class="fa fa-fw fa-wrench"></i> 布置作业</a>
                     </li>
+                    
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="active">
-                        <a href="http://fuck.io/teach/mywork"><i class="fa fa-fw fa-table"></i> 我的工作</a>
+                        <a href="http://{$Think.server.server_name}/index/teach/mywork"><i class="fa fa-fw fa-table"></i> 查看作业</a>
                     </li>
                 </ul>
             </div>
@@ -194,7 +183,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Tables
+                            我发布的作业
                         </h1>
                         <ol class="breadcrumb">
                             <li>
@@ -209,9 +198,12 @@
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12" style="margin-bottom: 230px;">
                         <h2>我发布的作业</h2>
-                        <div class="table-responsive" style="display:-none;">
+                        {foreach $worklist as $val}
+                        {/foreach}
+                        {if !empty($val)}
+                        <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -219,7 +211,7 @@
                                         <th>发布时间</th>
                                         <th>结束时间</th>
                                         <th>班级</th>
-                                        <th>查看详情</th>
+                                        <th>操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -227,19 +219,67 @@
                                     <tr>
                                         <td>{$value['title']}</td>
                                         <td>{$value['create_time']}</td>
-                                        <td>{$value['end_time']}</td>
+
+                                        <td>{$etime = date('Y-m-d H:i:s', $value['end_time'])}</td>
                                         <td>{$value['class_id']}</td>
-                                        <td></td>
+                                        <td>
+                                            <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" id="click_pick" value="{$value['hid']}" name="del_homework">删除</button>
+                                            <a href="http://{$Think.server.server_name}/teach/tables?hid={$value['hid']}&class={$value['class_id']}">
+                                                <button type="submit" class="btn btn-info" style="margin-left:24px;height:20px;font-size:12px;line-height: 6px;" id="click_pick" value="{$value['hid']}" name="tisheng_teach">查看详情</button>
+                                            </a>
+                                        </td>
                                     </tr>
                                     {/foreach}
                                 </tbody>
                             </table>
                         </div>
-                        <div>
-                            {$fenye}
-                        </div>
+                        {else}
+                            <div class="table-responsive" style="margin-left:-15px;margin-top: 20px;margin-bottom: 20px;">
+                                <div class="col-sm-6">
+                                    <div class="panel panel-yellow">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">notice</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            非常抱歉，您之前可能没有发布过作业！或者您已经将之前发布的作业删除掉了。请您重新发布作业吧！
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alert alert-info col-sm-6" style="margin-bottom: 200px;">
+                                <strong>tips:</strong> 您可以点击顶部最右边的按钮来发布作业
+                            </div>
+                        {/if}
+                        {if !empty($fenye)}
+                            <div>
+                                {$fenye}
+                            </div>
+                        {else}
+                        {/if}
                     </div>
-                    
+                    <script>
+                        $(function(){
+                            $("button[name='del_homework']").unbind('click').click(function(){
+                                $.ajax({
+                                cache: true,
+                                type: "POST",
+                                url:"http://fuck.io/index/teach/domywork",
+                                data:{
+                                    "type":'delwork', 
+                                    "hid":$(this).val(),                     
+                                    },
+                                    async: false,
+                                    error: function(request) {
+                                        alert("Connection error");
+                                    },
+                                    success: function(result) {
+
+                                    }
+                                });
+                            });
+
+                        });
+                    </script>
 
                 
                 <!-- /.row -->
@@ -247,68 +287,7 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h2>Contextual Classes</h2>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Page</th>
-                                        <th>Visits</th>
-                                        <th>% New Visits</th>
-                                        <th>Revenue</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="active">
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr class="success">
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-                                        <td>$234.12</td>
-                                    </tr>
-                                    <tr class="warning">
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-                                        <td>$16.34</td>
-                                    </tr>
-                                    <tr class="danger">
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-                                        <td>$1644.43</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-                                        <td>$23.52</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                                        <td>$724.32</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                        <td>$126.34</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    
-                </div>
+                
                 <!-- /.row -->
 
             </div>
@@ -321,7 +300,7 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="/static/js/jquery.js"></script>
+    
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/static/js/bootstrap.min.js"></script>
