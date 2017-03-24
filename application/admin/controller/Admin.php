@@ -51,7 +51,7 @@ class Admin extends Auth
     {
         //$profile = Loader::model('Profile')->getProfile();
 
-        $profile = Loader::model('Profile')
+        $profile = Loader::model('User')
             ->where('pid', '>', 0)
             ->paginate(5);
         $page = $profile->render();
