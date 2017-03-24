@@ -11,7 +11,6 @@ class Upload extends Controller
     public function uploadTmp(){
 
         $files = request()->file('file-zh');
-        var_dump($files);
         // 移动到目录
         foreach ($files as $file){
             $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
