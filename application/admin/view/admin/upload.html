@@ -200,12 +200,10 @@
 <!-- /#wrapper -->
 </body>
 <script>
-    var title = '{$Think.session.uname}的课件';
     $('#file-zh').fileinput({
         showUpload: true,
         showPreview:false,
         showCaption: true,
-        uploadExtraData: {title : title},
         language: 'zh',
         uploadUrl: 'initStu',
     });

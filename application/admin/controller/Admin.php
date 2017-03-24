@@ -43,7 +43,7 @@ class Admin extends Auth
     {
         $path = Loader::controller('Upload')->uploadTmp();
         $importExcel = Loader::controller('ImportExcel')->importExcel($path);
-        echo json_encode($importExcel);
+        echo json_encode('ok');
     }
 
     //学生管理（教师管理）
