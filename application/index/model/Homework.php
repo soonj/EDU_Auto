@@ -155,9 +155,10 @@ class Homework extends Model
     public function gethomework($data)
     {
         $show = db('homework')
-                ->where('class_id', $data['class'])
-                ->where('dowork', null)
-                ->select();
+            ->where('class_id', $data['class'])
+            ->where('dowork', null)
+            ->where('end_time', '>', time())
+            ->select();
 
         return $show;
     }
