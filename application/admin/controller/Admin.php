@@ -43,7 +43,7 @@ class Admin extends Auth
     {
         $path = Loader::controller('Upload')->uploadTmp();
         $importExcel = Loader::controller('ImportExcel')->importExcel($path);
-        return $importExcel;
+        echo json_encode($importExcel);
     }
 
     //学生管理（教师管理）
@@ -52,7 +52,7 @@ class Admin extends Auth
         //$profile = Loader::model('Profile')->getProfile();
 
         $profile = Loader::model('User')
-            ->where('pid', '>', 0)
+            ->where('uid', '>', 0)
             ->paginate(5);
         $page = $profile->render();
 

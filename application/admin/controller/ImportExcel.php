@@ -52,8 +52,8 @@ class ImportExcel extends Controller
             ];
         }
         $result = $user->saveAll($list , false);
-
+        return $result;
         //添加用户详情信息
-        Loader::model('Profile')->setAllProfile($result);
+        //Loader::model('Profile')->setAllProfile($result);
     }
 }
