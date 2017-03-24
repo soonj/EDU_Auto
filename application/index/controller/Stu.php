@@ -115,7 +115,6 @@ class Stu extends Common
         
         $data = Loader::model('Profile')->getProfile($_SESSION['think']['uid']);
 
-        dump($data);
         if (!empty($data['pid'])) {
             $profile = Loader::model('Profile')->updateProfile($sdata, 'pid', $_SESSION['think']['uid']);
         } else {
