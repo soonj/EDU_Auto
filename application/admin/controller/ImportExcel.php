@@ -46,9 +46,6 @@ class ImportExcel extends Controller
                 'age'       => $val[3],
                 'role'      => $val[4],
                 'class'     => $val[5],
-                'true_name' => $val[6],
-                'id_card'   => $val[7],
-                'zhuanye'   => $val[8],
             ];
         }
         $result = $user->saveAll($list , false);
