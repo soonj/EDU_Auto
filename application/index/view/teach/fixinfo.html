@@ -200,7 +200,7 @@
                     <div class="col-lg-3">
                         <h2></h2>
                         <div class="table-responsive">
-                            <img src="/static/image/ROTK.jpg" width="" height="100%">
+                            <img src="http://{$Think.server.server_name}/{$userinfo['head_path']}" width="" height="100%">
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -337,7 +337,7 @@
                             $.ajax({
                                 cache: true,
                                 type: "POST",
-                                url:"http://fuck.io/index/userinfo/userinfo",
+                                url:"setProfile",
                                 data:{
                                   "phone":$("#fix_phone").val(),
                                   "qq":$("#fix_qq").val(), 

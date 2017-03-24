@@ -261,7 +261,7 @@
             if ($(this).html() == 'MarkRead'){
                 $.ajax({
                     type:"POST",
-                    url:'http://{$Think.server.server_name}/stu/ajaxDoRead',
+                    url:'ajaxDoRead',
                     data:{"nid":$(this).val()},
                     dataType : 'json',
                     success:function(){
@@ -272,7 +272,7 @@
             } else {
                 $.ajax({
                     type:"POST",
-                    url:'http://{$Think.server.server_name}/stu/ajaxDoUnRead',
+                    url:'ajaxDoUnRead',
                     data:{"nid":$(this).val()},
                     dataType : 'json',
                     success:function(){
@@ -285,7 +285,7 @@
         $("#do_all_read").click(function () {
             $.ajax({
                 type:"GET",
-                url:'http://{$Think.server.server_name}/stu/ajaxDoAllRead',
+                url:'ajaxDoAllRead',
                 dataType : 'json',
                 success:function(){
                     $(this).html('MarkUnread');

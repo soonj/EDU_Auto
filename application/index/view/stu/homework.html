@@ -229,7 +229,7 @@
                                 $.ajax({
                                     cache: true,
                                     type: "POST",
-                                    url:"http://fuck.io/index/stu/doHomework",
+                                    url:"doHomework",
                                     data:{
                                         "homeworkid":$(this).val(), 
                                         "content":$(content).val(),                     
@@ -282,7 +282,7 @@
             showCaption: true,
             uploadExtraData: {title : title},
             language: 'zh',
-            uploadUrl: 'http://fuck.io/uploadMyHomework',
+            uploadUrl: 'uploadMyHomework',
         });
         $("#file-0").fileinput({
             'allowedFileExtensions' : ['jpg', 'png','gif'],
