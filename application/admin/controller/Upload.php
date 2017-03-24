@@ -16,7 +16,7 @@ class Upload extends Controller
             $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
             if ($info) {
                 // 输出路径
-                $path = ROOT_PATH . 'uploads' .DS. $info->getSavename();
+                $path = '/uploads' .DS. $info->getSavename();
                 return $path;
             } else {
                 // 上传失败获取错误信息
